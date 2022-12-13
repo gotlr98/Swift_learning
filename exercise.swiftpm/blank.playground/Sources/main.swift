@@ -1,4 +1,5 @@
-import UIKit
+import Foundation
+
 
 //var greeting = "Hello, playground"
 //
@@ -30,9 +31,11 @@ var age: Int = 100
 var job = "iOS Programmer"
 var height = 181.5
 
-age = 99
+//age = 99
+//
+//// let -> 상수 let [상수명]: [데이터 타입] = [값]
+//
+//let name: String = "yagom"
+//name = "야곰"
 
-// let -> 상수 let [상수명]: [데이터 타입] = [값]
-
-let name: String = "yagom"
-name = "야곰"
+print(name)
