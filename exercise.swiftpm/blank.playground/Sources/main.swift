@@ -67,4 +67,8 @@ let haesik: PersonTuple = ("haesik", 25, 160)
 
 // Array
 
+var names: Array<String> = ["yagom", "chulsoo", "haesik"]
+var names2: [String] = ["yagom", "chulsoo", "haesik"] // 두개는 같은 표현
 
+var emptyArray: [Any] = [Any]() // Any 데이터 요소로 갖는 빈 배열을 생성합니다.
+var emptyArray2: [Any] = Array<Any>()
