@@ -72,3 +72,37 @@ var names2: [String] = ["yagom", "chulsoo", "haesik"] // 두개는 같은 표현
 
 var emptyArray: [Any] = [Any]() // Any 데이터 요소로 갖는 빈 배열을 생성합니다.
 var emptyArray2: [Any] = Array<Any>()
+
+var empty: [Any] = []
+
+names.append(contentsOf: ["john", "max"])
+names.insert("happy", at: 2)
+
+print(names.first) // yagom
+print(names.last) // haesik
+
+let firstItem: String = names.removeFirst() // yagom
+let lastItem: String = names.removeLast() // haesik
+let indexZeroItem: String = names.remove(at: 0)  //chulsoo
+
+// Dictionary
+
+var numberForName: Dictionary<String, Int> = Dictionary<String, Int>()
+var numberForName2: [String: Int] = [String: Int]()
+var numberForName3: [String: Int] = [:]
+var numberForName4: [String: Int] = ["yagom": 100, "chulsoo": 200, "haesik": 400]
+
+numberForName["chulsoo"] = 150
+numberForName["max"] = 999
+numberForName.removeValue(forKey: "chulsoo")
+numberForName["chulsoo", default: 0]
+
+// Set
+
+let englishClassStudents: Set<String> = ["john", "chulsoo", "haesik"]
+let koreanClassStudents: Set<String> = ["jenny", "haesik", "chulsoo", "hana", "minsoo"]
+
+let intersectSet: Set<String> = englishClassStudents.intersection(koreanClassStudents)
+let symmetricDiffSet: Set<String> = englishClassStudents.symmetricDifference(koreanClassStudents) // 여집합의 합
+let unionSet: Set<String> = englishClassStudents.union(koreanClassStudents)
+let subtractSet: Set<String> = englishClassStudents.subtracting(koreanClassStudents)
