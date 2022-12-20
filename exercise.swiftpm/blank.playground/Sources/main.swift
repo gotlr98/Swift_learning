@@ -98,7 +98,6 @@ numberForName.removeValue(forKey: "chulsoo")
 numberForName["chulsoo", default: 0]
 
 // Set
-
 let englishClassStudents: Set<String> = ["john", "chulsoo", "haesik"]
 let koreanClassStudents: Set<String> = ["jenny", "haesik", "chulsoo", "hana", "minsoo"]
 
@@ -106,3 +105,28 @@ let intersectSet: Set<String> = englishClassStudents.intersection(koreanClassStu
 let symmetricDiffSet: Set<String> = englishClassStudents.symmetricDifference(koreanClassStudents) // 여집합의 합
 let unionSet: Set<String> = englishClassStudents.union(koreanClassStudents)
 let subtractSet: Set<String> = englishClassStudents.subtracting(koreanClassStudents)
+
+let 새: Set<String> = ["비둘기", "닭", "기러기"]
+let 포유류: Set<String> = ["사자", "호랑이", "곰"]
+let 동물: Set<String> = 새.union(포유류)
+
+새.isDisjoint(with: 포유류)
+새.isSubset(of: 동물)
+동물.isSuperset(of: 포유류)
+동물.isSuperset(of: 새)
+
+// randomElement(), shuffle()
+
+var array: [Int] = [1,2,3,4,5]
+var set: Set<Int> = [0,1,2,3,4,5]
+var dictinary: [String: Int] = ["a": 1, "b": 2, "c": 3]
+
+print(array.randomElement())
+print(array.shuffled())
+
+// 열거형 - 제한된 선택지를 주고 싶을 때, 정해진 값 외에는 입력받고 싶지 않을 때, 예상된 입력 값이 한정되어 있을 때
+
+enum School{
+    case primary
+    case elementary
+}
