@@ -205,26 +205,62 @@ dinner = .rice
 
 // 만약 재료가 한정적이라 맛과 도우 토핑등을 한정적으로 선언하고 싶다면
 
-enum PastaTaste{
+enum PastaTaste: CaseIterable{
     case cream, tomato
 }
 
-enum PizzaDough{
+enum PizzaDough: CaseIterable{
     case cheeseCrust, thin, original
 }
 
-enum PizzaTopping{
+enum PizzaTopping: CaseIterable{
     case pepperoni, cheese, bacon
 }
 
-enum MainDish2{
+enum MainDish2: CaseIterable{
     case pasta(taste: PastaTaste)
     case pizza(dough: PizzaDough, topping: PizzaTopping)
     case chicken(withSauce: Bool)
     case rice
+    
+    static var allCases: [MainDish2]{
+        return PastaTaste.allCases.map(MainDish.pasta) + PizzaDough.allCases.reduce([]) {
+            (result, dough) -> [MainDish2] in result + PizzaTopping.allCases.map {
+                (topping) -> MainDish2 in MainDish2.pizza(dough: dough, topping: topping)
+                
+            }
+        }
+        + [true, false].map(MainDish.chiken) + [MainDish.rice]
+    }
 }
 
 var dinner2: MainDish2 = MainDish2.pasta(taste: PastaTaste.tomato)
 dinner2 = MainDish2.pizza(dough: PizzaDough.cheeseCrust, topping: PizzaTopping.pepperoni)
 
 // 항목 순회
+
+enum Schools: CaseIterable{
+    case primary
+    case elementary
+    case middle
+    case high
+    case college
+    case university
+    case graduate
+}
+
+let allCases: [Schools] = Schools.allCases
+print(allCases)
+// Schools.primary, Schools.elementary....
+
+enum Schools2: String, CaseIterable{
+    case primary = "유치원"
+    case elementary = "초등학교"
+    case middle = "중학교"
+    case high = "고등학교"
+    case college = "대학"
+    case university = "대학교"
+    case graduate = "대학원"
+}
+
+
