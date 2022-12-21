@@ -129,4 +129,63 @@ print(array.shuffled())
 enum School{
     case primary
     case elementary
+    case middle
+    case high
+    case college
+    case university
+    case graduate
+    
 }
+
+enum School2{
+    case primary, elementary, middle, high, college, university, graduate
+}
+
+
+var highestEducationLevel: School = School.university
+
+var highestEducationLevel2: School = .university
+
+highestEducationLevel = .graduate
+
+enum School3: String{
+    case primary = "유치원"
+    case elementary = "초등학교"
+    case middle = "중학교"
+    case high = "고등학교"
+    case college = "대학"
+    case university = "대학교"
+    case graduate = "대학원"
+}
+
+let highestEducationLevel3: School3 = School3.university
+
+print("저의 최종학력은 \(highestEducationLevel3.rawValue) 졸업입니다.")
+
+// 문자열 형식의 원시 값을 지정해줬다면 각 항목 이름을 그대로 원시 값으로 갖게 되고, 정수 타입이라면 첫 항목을 기준으로 0부터 1씩 늘어난 값을 갖게됨
+
+enum School4: String{
+    case primary = "유치원"
+    case elementary = "초등학교"
+    case middle = "중학교"
+    case high = "고등학교"
+    case college
+    case university
+    case graduate
+}
+
+// School4.college.rawValue -> college
+
+enum Numbers: Int{
+    case zero
+    case one
+    case two
+    case ten = 10
+}
+
+// Numbers.zero -> 0, Numbers.one -> 1 ....
+
+let primary = School4(rawValue: "유치원") // primary
+let graduate = School4(rawValue: "석박사") // nil
+
+
