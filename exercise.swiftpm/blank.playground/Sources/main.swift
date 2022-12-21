@@ -189,3 +189,42 @@ let primary = School4(rawValue: "유치원") // primary
 let graduate = School4(rawValue: "석박사") // nil
 
 
+// 연관 값을 갖는 열거형
+
+enum MainDish{
+    case pasta(taste: String)
+    case pizza(dough: String, topping: String)
+    case chicken(withSauce: Bool)
+    case rice
+}
+
+var dinner: MainDish = MainDish.pasta(taste: "크림")
+dinner = .pizza(dough: "치즈크러스트", topping: "페퍼로니")
+dinner = .chicken(withSauce: true)
+dinner = .rice
+
+// 만약 재료가 한정적이라 맛과 도우 토핑등을 한정적으로 선언하고 싶다면
+
+enum PastaTaste{
+    case cream, tomato
+}
+
+enum PizzaDough{
+    case cheeseCrust, thin, original
+}
+
+enum PizzaTopping{
+    case pepperoni, cheese, bacon
+}
+
+enum MainDish2{
+    case pasta(taste: PastaTaste)
+    case pizza(dough: PizzaDough, topping: PizzaTopping)
+    case chicken(withSauce: Bool)
+    case rice
+}
+
+var dinner2: MainDish2 = MainDish2.pasta(taste: PastaTaste.tomato)
+dinner2 = MainDish2.pizza(dough: PizzaDough.cheeseCrust, topping: PizzaTopping.pepperoni)
+
+// 항목 순회
