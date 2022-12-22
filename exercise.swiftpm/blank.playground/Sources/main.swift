@@ -224,13 +224,13 @@ enum MainDish2: CaseIterable{
     case rice
     
     static var allCases: [MainDish2]{
-        return PastaTaste.allCases.map(MainDish.pasta) + PizzaDough.allCases.reduce([]) {
+        return PastaTaste.allCases.map(MainDish2.pasta) + PizzaDough.allCases.reduce([]) {
             (result, dough) -> [MainDish2] in result + PizzaTopping.allCases.map {
                 (topping) -> MainDish2 in MainDish2.pizza(dough: dough, topping: topping)
                 
             }
         }
-        + [true, false].map(MainDish.chiken) + [MainDish.rice]
+        + [true, false].map(MainDish2.chicken) + [MainDish2.rice]
     }
 }
 
@@ -266,11 +266,11 @@ enum Schools2: String, CaseIterable{
 
 // 순환 열거형 -> 열거형 항목의 연관 값이 열서형 자신의 값이고자 할 때 사용
 
-enum ArithmeticExpression{
-    case number(Int)
-    indirect case addition(ArithmeticExpression, ArithmeticExpression)
-    indirect case multiplication(ArithmeticExpression, ArithmeticExpression)
-}
+//enum ArithmeticExpression{
+//    case number(Int)
+//    indirect case addition(ArithmeticExpression, ArithmeticExpression)
+//    indirect case multiplication(ArithmeticExpression, ArithmeticExpression)
+//}
 
 indirect enum ArithmeticExpression{
     case number(Int)
@@ -296,4 +296,59 @@ func evaluate(_ expression: ArithmeticExpression) -> Int{
 }
 
 let result: Int = evaluate(final)
+
+// Chapter5 연산자
+
+// A === B -> A와 B가 참조 타입일 때 A와 B가 같은 인스턴스를 가치키는지 비교하여 불리언 값을 반환
+// A ~= B -> A와 B가 패턴이 매치되는지 확인하여 불리언 값을 반환합니다
+
+var valueA: Int = 3
+var valueB: Int = 5
+var valueC: Int = 5
+
+let isSameValueAB: Bool = valueA == valueB // False
+let isSameValueBC: Bool = valueB == valueC // True
+
+//let referenceA: SomeClass = SomeClass()
+//let referenceB: SomeClass = SomeClass()
+//let referenceC: SomeClass = referenceA
+
+// let isSameReferenceAB: Bool = referenceA == referenceB // False
+// let isSameReferenceAC: Bool = referenceB == reference  // True
+
+var biggerValue: Int = valueA > valueB ? valueA : valueB // 5
+
+valueA = 0
+valueB = -3
+biggerValue = valueA > valueB ? valueA : valueB // 0
+
+var stringA: String = ""
+var stringB: String = "String"
+var resultValue: Double = stringA.isEmpty ? 1.0 : 0.0 // 1.0
+resultValue = stringB.isEmpty ? 1.0 : 0.0 // 0.0
+
+
+// 범위 연산자
+// 폐쇄 범위 연산자 -> A...B -> A부터 B까지의 수를 묶어 범위를 표현, A와 B를 포함한다
+// 반폐쇄 범위 연산자 -> A..<B -> A부터 B미만까지의 수를 묶어 범위를 표현합니다. A를 포함하고 B를 포함하지 않습니다
+// 단방향 범위 연산자 -> A... -> A이상의 수를 묶어 범위를 표현, A를 포함한다
+// ...A -> A이하의 수를 묶어 범위를 표현, A를 포함
+// ..<A -> A미만의 수를 묶어 범위를 표현, A를 포함하지 않음
+
+// 오버플로 연산자
+
+var unsignedInteger: UInt8 = 0
+let errorUnderflowResult: UInt8 = unsignedInteger - 1 // error
+let underflowedValue: UInt8 = unsignedInteger &- 1 // 255
+
+unsignedInteger = UInt8.max // 255
+let errorOverflowResult: UInt8 = unsignedInteger + 1 // error
+let overflowedValue: UInt8 = unsignedInteger &+ 1 // 0
+
+// A ?? B -> A가 nil이 아니면 A를 반환하고, A가 nil이면 B를 반환
+// -A -> A의 부호를 변경
+// O! -> O의 값을 강제로 추출
+// V? -> V를 안전하게 추출하거나, V가 옵셔녈임을 표현
+// 사용자 지정 연산자는 뒤에 챕터 공부하고 다시와서 하기
+
 
