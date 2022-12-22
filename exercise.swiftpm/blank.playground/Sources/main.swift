@@ -351,4 +351,92 @@ let overflowedValue: UInt8 = unsignedInteger &+ 1 // 0
 // V? -> V를 안전하게 추출하거나, V가 옵셔녈임을 표현
 // 사용자 지정 연산자는 뒤에 챕터 공부하고 다시와서 하기
 
+// Chapter6 흐름 제어
 
+// swift에서 if 구문은 조건의 값이 꼭 Bool 타입이어야 한다
+
+let first: Int = 5
+let second: Int = 7
+
+if first > second{
+    print("first > second")
+}
+
+// case -> switch 구문의 case를 연속 실행하려면 fallthrough 키워드 사용
+
+let integerValue : Int = 5
+
+switch integerValue{
+case 0:
+    print("Value == zero")
+case 1...10:
+    print("value == 1~10")
+    fallthrough
+case Int.min..<0, 101..<Int.max:
+    print("Value < 0 or Value > 100")
+    break
+default:
+    print("10 < Value <= 100")
+}
+
+// Value == 1~10
+// Value < 0 or Value > 100
+// case 1...10에서 fallthrought 키워드를 사용했기 때문에 아래 케이스도 실행
+
+let stringValue: String = "Liam Neeson"
+
+switch stringValue{
+case "yagom":
+    print("He is yagom")
+case "Jay":
+    print("He is Jay")
+case "Jenny", "Joker", "Nova":
+    print("He or She is \(stringValue)")
+default:
+    print("\(stringValue) said 'I dont't know who you are'")
+}
+
+// Liam Neeson said 'I don't know who you are'
+
+typealias NameAge = (name: String, age: Int)
+
+let tupleValue: NameAge = ("yagom", 99)
+
+switch tupleValue {
+case("yagom", 99):
+    print("정확히 맞췄습니다!")
+default:
+    print("누굴 찾나요?")
+}
+
+// 정확히 맞췄습니다!
+
+switch tupleValue{
+case ("yagom", 50):
+    print("정확히 맞췄습니다!")
+case("yagom", _):
+    print("이름만 맞았습니다. 나이는 \(tupleValue.age)입니다.")
+case(_, 99):
+    print("나이만 맞았습니다. 이름은 \(tupleValue.name)입니다.")
+default:
+    print("Who you are looking for")
+}
+
+let 직급: String = "사원"
+let 연차: Int = 1
+let 인턴인가: Bool = false
+
+switch 직급{
+case "사원" where 인턴인가 == true:
+    print("인턴입니다.")
+case "사원" where 연차 < 2 && 인턴인가 == false:
+    print("신입사원입니다.")
+case "사원" where 연차 > 5:
+    print("연식 좀 된 사원입니다.")
+case "사원":
+    print("사원입니다.")
+case "대리":
+    print("대리입니다.")
+default:
+    print("사장입니까?")
+}
