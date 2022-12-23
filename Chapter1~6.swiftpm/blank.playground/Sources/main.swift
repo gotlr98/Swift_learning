@@ -440,3 +440,103 @@ case "대리":
 default:
     print("사장입니까?")
 }
+
+// 열거형에 case가 있는 경우 switch
+
+enum Menu{
+    case chicken
+    case pizza
+    case hamburger
+}
+
+let lunchMenu: Menu = .hamburger
+
+switch lunchMenu{
+case .chicken:
+    print("치킨")
+case .pizza:
+    print("피자")
+@unknown case _: // case default, case _ 와 같은 표현
+    print("what's today menu")
+}
+
+// 반복문
+
+for i in 0...2{
+    print(i)
+}
+
+for i in 0...5{
+    if i.isMultiple(of:2){
+        print(i)
+        continue
+    }
+    print("\(i) == 홀수")
+}
+
+let helloSwift: String = "Hello Swift!"
+
+for char in helloSwift{
+    print(char)
+}
+
+var result2: Int = 1
+
+for _ in 1...3{ // for 뒤에 변수가 필요없을 시 _ 사용
+    result2 += 10
+}
+
+// dictionary
+let friends: [String: Int] = ["Jay":15, "Joe":16, "Jenny":17]
+
+for tuple in friends{
+    print(tuple)
+}
+
+let address: [String: String] = ["도" :"충청북도", "시군구":"청주시 청원구", "동읍면":"율량동"]
+
+for (key, value) in address{
+    print("\(key) : \(value)")
+}
+
+var names3: [String] = ["Joker","Jenny","Nova","Yagom"]
+
+while names3.isEmpty == false{
+    print("Good bye\(names3.removeFirst())")
+}
+
+// repeat-while -> do-while과 같다
+
+repeat {
+    print("Good bye \(names3.removeFirst())")
+}while names3.isEmpty == false
+        
+// 구문 이름표 -> 원하는 반복문을 종료시키고 싶을 때 사용
+
+var numbers3: [Int] = [3, 2342, 6, 3252]
+
+numberLoop: for num in numbers3{
+    if num > 5 || num < 1{
+        continue numberLoop
+    }
+    
+    var count: Int = 0
+    
+    printLoop: while true{
+        
+        print(num)
+        count += 1
+        
+        if count == num{
+            break printLoop
+        }
+    }
+    
+    removeLoop: while true{
+        if numbers3.first != num{
+            break numberLoop
+            }
+        }
+        numbers3.removeFirst()
+    }
+
