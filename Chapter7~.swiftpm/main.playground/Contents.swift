@@ -106,3 +106,60 @@ func chooseMathFunction(_ toAdd: Bool) -> CalculateTwoInts {
 }
 
 printMathResult(chooseMathFunction(true), 3, 5)
+
+
+// 중첩 함수
+
+//typealias MoveFunc = (Int) -> Int
+//
+//func goRight(_ currentPosition: Int) -> Int{
+//    return currentPosition + 1
+//}
+//
+//func goLeft(_ currentPosition: Int) -> Int{
+//    return currentPosition - 1
+//}
+//
+//func functionForMove(_ shouldGoLeft: Bool) -> MoveFunc{
+//    return shouldGoLeft ? goLeft : goRight
+//}
+//
+//var position: Int = 3
+//
+//let moveToZero: MoveFunc = functionForMove(position > 0)
+//print("Let's Go to zero point")
+//
+//while position != 0{
+//    print("\(position)...")
+//    position = moveToZero(position)
+//}
+//
+//print("Here is zero point")
+
+// 위의 함수를 중첩 함수로 구현하기
+
+typealias MoveFunc = (Int) -> Int
+
+func functionForMove(_ shouldGoLeft: Bool) -> MoveFunc{
+    
+    func goRight(_ currentPosition: Int) -> Int{
+        return currentPosition + 1
+    }
+    
+    func goLeft(_ currentPosition: Int) -> Int{
+        return currentPosition - 1
+    }
+    
+    return shouldGoLeft ? goLeft : goRight
+}
+
+var position: Int = -4
+
+let moveToZero: MoveFunc = functionForMove(position > 0)
+
+while position != 0{
+    print("\(position)...")
+    position = moveToZero(position)
+}
+
+print("Here is zero point")
