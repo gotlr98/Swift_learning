@@ -163,3 +163,34 @@ while position != 0{
 }
 
 print("Here is zero point")
+
+// 종료되지 않는 함수
+
+func crashAndBurn() -> Never{
+    fatalError("Something very, very bad happend")
+}
+
+//crashAndBurn()
+
+func someFunction(isAllIsWell: Bool){
+    guard isAllIsWell else{
+        print("마을에 도둑이 들었습니다!")
+        crashAndBurn()
+    }
+    print("All is well")
+}
+
+
+// 반환 값을 무시할 수 있는 함수
+
+func say(_ something: String) -> String{
+    print(something)
+    return something
+}
+
+@discardableResult func discadableResultSay(_ something: String) -> String{
+    print(something)
+    return something
+}
+
+discadableResultSay("Hello")
