@@ -194,3 +194,24 @@ func say(_ something: String) -> String{
 }
 
 discadableResultSay("Hello")
+
+// 옵셔널 -> 안전성을 문법으로 담보하는 기능
+// 옵셔널 변수 or 상수에만 nil을 할당할 수 있다.
+
+var myName: String? = "yagom" // 데이터 타입 뒤에 '?'를 붙여주면 옵셔널 변수
+
+
+// switch를 통한 옵셔널 값의 확인
+
+func checkOptionalValue(value optionalValue: Any?){
+    switch optionalValue{
+    case .none:
+        print("This Optional variable is nil")
+    case .some(let value):
+        print("Value is \(value)")
+    }
+}
+
+checkOptionalValue(value: myName)
+myName = nil
+checkOptionalValue(value: myName)
