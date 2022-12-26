@@ -215,3 +215,88 @@ func checkOptionalValue(value optionalValue: Any?){
 checkOptionalValue(value: myName)
 myName = nil
 checkOptionalValue(value: myName)
+
+let numbers: [Int?] = [2, nil, -4, nil, 100]
+
+for number in numbers{
+    switch number{
+    case .some(let value) where value < 0:
+        print("Negative value!! \(value)")
+    case .some(let value) where value > 10:
+        print("Large value!! \(value)")
+    case .some(let value):
+        print("Value \(value)")
+        
+    case .none:
+        print("nil")
+    }
+}
+
+
+// 옵셔널 추출
+// 옵셔널 강제 추출 -> 옵셔널 값의 뒤에 느낌표 붙이기
+
+
+//var haesik: String = myName2!
+//
+//myName2 = nil
+//haesik = myName2!
+//
+//if myName2 != nil{
+//    print("My name is \(myName2!)")
+//}
+//else{
+//    print("myName == nil")
+//}
+
+// 옵셔널 바인딩
+
+var myName2: String? = "Haesik"
+
+if let name = myName2{
+    print("My name is \(name)")
+}
+else{
+    print("myName == nil")
+}
+
+if var name = myName2{
+    name = "haesik"
+    print("My name is \(name)")
+}
+else{
+    print("myName == nil")
+}
+
+// 옵셔널 바인딩을 사용한 여러 개의 옵셔널 값 추출
+
+var myName3: String? = "haesik"
+var yourName: String? = nil
+
+// yourName이 nil이기 때문에 실행안됨
+if let name = myName3, let friend = yourName{
+    print("We are friend! \(name) & \(friend)")
+}
+
+yourName = "eric"
+
+if let name = myName3, let friend = yourName{
+    print("We are friend! \(name) & \(friend)")
+}
+
+// 암시적 추출 옵셔널 -> 타입 뒤에 느낌표 사용
+
+var myName4 : String! = "haesik"
+myName4 = nil
+
+if let name = myName4{
+    print("My name is \(name)")
+}
+else{
+    print("myName == nil")
+}
+
+//myName.isEmpty
+
+
+
