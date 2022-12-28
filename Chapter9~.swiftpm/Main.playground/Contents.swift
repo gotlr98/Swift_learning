@@ -529,3 +529,224 @@ let myNavi: Navigation = Navigation()
 myNavi.guideWay()
 print(SystemVolume.volume)
 print(myNavi.volume)
+
+
+// Chapter11 인스턴스 생성 및 소멸
+
+//struct Area{
+//    var squareMeter: Double
+//
+//    init(){
+//        print("init")
+//        self.squareMeter = 0.0 // 프로퍼티 초기화를 꼭 해줘야 한다.
+//    }
+//}
+//
+//let room: Area = Area()
+//print(room.squareMeter)
+
+struct Area{
+    var squareMeter: Double
+    
+    init(fromPy py: Double){
+        squareMeter = py * 3.3058
+    }
+    
+    init(fromSquareMeter squareMeter: Double){
+        self.squareMeter = squareMeter
+    }
+    
+    init(value: Double){
+        squareMeter = value
+    }
+    
+    init(_ value: Double){
+        squareMeter = value
+    }
+}
+
+let roomOne: Area = Area(fromPy: 15.0)
+print(roomOne.squareMeter)
+
+let roomTwo: Area = Area(fromSquareMeter: 33.06)
+print(roomTwo.squareMeter)
+
+let roomThree: Area = Area(value: 30.0)
+let roomFour: Area = Area(55.0)
+
+
+class Person3{
+    var name: String
+    var age: Int? // 옵셔널을 통해 초기값을 지정해주지 않아도 된다
+    
+    init(name: String){
+        self.name = name
+    }
+}
+
+let sik: Person3 = Person3(name: "Haesik")
+print(sik.age)
+
+// 상수 프로퍼티는 초기화할때 한번만 값을 할당할 수 있으며, 그 이후에는 값을 변경할 수 없다
+
+
+// 사용자 정의 이니셜라이저를 구현하지 않는 경우 구조체는 멤버와이즈 이니셜라이저를 사용할 수 있다. 그러나 클래스는 지원하지 않는다.
+
+struct Point2{
+    var x: Double = 0.0
+    var y: Double = 0.0
+}
+
+struct Size{
+    var width: Double = 0.0
+    var height: Double = 0.0
+}
+
+let point: Point2 = Point2()
+print(point.x)
+
+enum Student{
+    case elementary, middle, high
+    case none
+    
+    init(){
+        self = .none
+    }
+    
+    init(koreanAge: Int){
+        switch koreanAge{
+        case 8...13:
+            self = .elementary
+        case 14...16:
+            self = .middle
+        case 17...19:
+            self = .high
+        default:
+            self = .none
+        }
+    }
+    
+    init(bornAt: Int, currentYear: Int){
+        self.init(koreanAge: currentYear - bornAt + 1)
+    }
+}
+
+var younger: Student = Student(koreanAge: 16)
+
+younger = Student(bornAt: 1998, currentYear: 2016)
+print(younger)
+
+// 실패 가능한 이니셜라이저
+/*
+ 이니셜라이저의 전달인자로 잘못된 값이나 적절치 못한 값이 전달되었을 때 등 여러 이유로 인스턴스 초기화에 실패할 수 있는데
+ 이런 실패 가능성을 염두에 두기도 하는데, 이렇게 실패 가능성을 내포한 이니셜라이저
+*/
+
+class PersonK{
+    let name: String
+    var age: Int?
+    
+    init?(name: String){ // 이니셜라이저 init뒤에 물음표를 붙여서 실패 가능한 이니셜라이저를 구현한다.
+        if name.isEmpty{
+            return nil
+        }
+        self.name = name
+    }
+    
+    init?(name: String, age: Int){
+        if name.isEmpty || age < 0{
+            return nil
+        }
+        self.name = name
+        self.age = age
+    }
+}
+
+let siksik: PersonK? = PersonK(name: "")
+
+if let personK: PersonK = siksik{
+    print(personK.name)
+}else{
+    print("Person wans't initialized")
+}
+
+// 열거형의 실패 가능한 이니셜라이저
+
+enum Student2: String{
+    case elementary = "초등학생", middle = "중학생", high = "고등학생"
+    
+    init?(koreanAge: Int){
+        switch koreanAge{
+        case 8...13:
+            self = .elementary
+        case 14...16:
+            self = .middle
+        case 17...19:
+            self = .high
+        default:
+            return nil
+        }
+    }
+    
+    init?(bornAt: Int, currentYear: Int){
+        self.init(koreanAge: currentYear - bornAt + 1)
+    }
+}
+
+var age2: Student2? = Student2(koreanAge: 20)
+print(age2)
+
+age2 = Student2(bornAt: 2020, currentYear: 2016)
+print(age2)
+
+age2 = Student2(rawValue: "고등학생")
+print(age2)
+
+// 클로저를 통한 프로퍼티 기본값 설정
+
+struct dummy{
+    var name: String?
+    var number: Int?
+}
+class dummyClass{
+    var dummys: [dummy] = {
+        var arr: [dummy] = [dummy]()
+        
+        for num in 1...15{
+            var student: dummy = dummy(name: nil, number: num)
+            arr.append(student)
+        }
+        
+        return arr
+    }()
+}
+
+// 인스턴스 소멸
+// deinit 키워드 사용하여 구현, 클래스의 인스턴스에만 구현할 수 있다.
+
+class FileManager{
+    var fileName: String
+    
+    init(fileName: String){
+        self.fileName = fileName
+    }
+    
+    func openFile(){
+        print("Open File: \(self.fileName)")
+    }
+    
+    deinit{
+        print("Deinit instance")
+    }
+}
+
+var fileManager: FileManager? = FileManager(fileName: "abc.txt")
+
+if let manager: FileManager = fileManager{
+    manager.openFile()
+}
+
+fileManager = nil
+
+
+// Chapter12 접근제어
