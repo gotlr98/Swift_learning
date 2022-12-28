@@ -750,3 +750,104 @@ fileManager = nil
 
 
 // Chapter12 접근제어
+
+/*
+ open - 공개 접근수준 이상으로 높은 접근수준, 클래스와 클래스의 멤버만 사용할 수 있다. -> 이 클래스를 다른 모듈에서도 부모클래스로 사용하겠다는 목적으로 설계
+ internal - 모든 요소에 암묵적으로 지정하는 기본 접근수준. -> 외부 모듈에서는 접근 할 수 없다.
+ fileprivate - 그 요소가 구현된 소스파일 내부에서만 사용 가능.
+ private - 기능을 정의하고 구현한 범위 내에서만 사용 가능.
+*/
+
+open class OpenClass{
+    open var openProperty: Int = 0
+    public var publicProperty: Int = 0
+    internal var internalProperty: Int = 0
+    fileprivate var filePrivateProperty: Int = 0
+    private var privateProperty: Int = 0
+    
+    open func openMethod(){}
+    public func publicMethod(){}
+    internal func internalMethod(){}
+    fileprivate func fileprivateMethod(){}
+    private func privateMethod(){}
+}
+
+// 상위 요소보다 하위 요소가 더 높은 접근수준을 가질 수 없다.
+// 함수의 매개변수로 특정 접근수준이 부여된 타입이 전달되거나 반환된다면 그 타입의 접근수준보다 함수의 접근수준이 높게 설정될 수 없다.
+
+public struct SomeType{
+    private var privateVariable = 0
+    fileprivate var fileprivateVariable = 0
+}
+
+extension SomeType{ // extension 으로 구현한 경우, private도 접근가능
+    public func publicMethod(){
+        print("\(self.privateVariable), \(self.fileprivateVariable)")
+    }
+}
+
+struct AnotherType{
+    var someInstance: SomeType = SomeType()
+    
+    mutating func someMethod(){
+        self.someInstance.fileprivateVariable = 100 // 같은 파일에 속해 있는 코드이므로 접근 가능
+        
+        // self.someInstance.privateVariable = 100 -> 다른 타입 내부의 코드이므로 접근 불가능
+    }
+}
+
+// 읽기 전용 구현
+// 접근수준(set)처럼 표현
+
+public struct SomeType2{
+    private var count: Int = 0
+    
+    public var publicStoredProperty: Int = 0
+    
+    public private(set) var publicGetOnlyStoredProperty: Int = 0
+    
+    internal var internalComputedProperty: Int{
+        get{
+            return count
+        }
+        set{
+            count += 1
+        }
+    }
+    
+    internal private(set) var internalGetOnlyComputedProperty: Int{
+        get{
+            return count
+        }
+        set{
+            count += 1
+        }
+    }
+    
+    public subscript() -> Int{
+        get{
+            return count
+            
+        }
+        set{
+            count += 1
+        }
+    }
+    
+    public internal(set) subscript(some: Int) -> Int{
+        get{
+            return count
+        }
+        set{
+            count += 1
+        }
+    }
+}
+
+var someInstance: SomeType2 = SomeType2()
+
+print(someInstance.publicStoredProperty)
+someInstance.publicStoredProperty = 100
+
+print(someInstance.publicGetOnlyStoredProperty)
+// someInstance.publicGetOnlyStoredProperty = 100 -> private(set) 타입으로 수정이 불가능하다
