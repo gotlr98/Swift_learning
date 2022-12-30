@@ -66,3 +66,37 @@ let reversed7: [String] = names.sorted{$0 > $1}
 //let reversed8: [String] = names.sorted(by: >)
 
 
+// 탈출 클로저
+/*
+ 함수의 전달인자로 전달한 클로저가 함수 종료 후에 호출될 때 클로저가 함수를 탈출한다고 표현한다.
+ 클로저를 매개변수로 갖는 함수를 선언할 때 매개변수 이름의 콜론 뒤에 @escaping 키워드를 사용하여 클로저가 탈출하는 것을 허용한다고 명시해줄 수 있다.
+*/
+
+typealias VoidVoidClosure = () -> Void
+let firstClosure: VoidVoidClosure = {
+    print("Closure A")
+}
+
+let secondClosure: VoidVoidClosure = {
+    print("Closure B")
+}
+
+func returnOneClosure(first: @escaping VoidVoidClosure, second: @escaping VoidVoidClosure, shouldReturnFirstClosure: Bool) -> VoidVoidClosure{
+    return shouldReturnFirstClosure ? first : second
+} // 전달인자로 전달받은 클로저를 함수 외부로 다시 반환하기 때문에 함수를 탈출하는 클로저이다.
+
+// 함수에서 반환한 클로저가 함수 외부의 상수에 저장되었다.
+let returnedClosure: VoidVoidClosure = returnOneClosure(first: firstClosure, second: secondClosure, shouldReturnFirstClosure: true)
+
+returnedClosure()
+
+var closures: [VoidVoidClosure] = []
+
+// closure 매개변수 클로저는 함수 외부의 변수에 저장될 수 있으므로 탈출 클로저이다.
+func appendClosure(closure: @escaping VoidVoidClosure){
+    closures.append(closure)
+}
+
+// 비탈출 클로저에서는 인스턴스의 프로퍼티인 x를 사용하기 위해 self를 생략해도 무관하지만, 탈출하는 클로저에서는 값 획들을 하기 위해 self 키워드를 사용해야 한다.
+
+// withoutActuallyEscaping
