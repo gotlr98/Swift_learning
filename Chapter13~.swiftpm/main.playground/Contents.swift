@@ -4,4 +4,65 @@ var greeting = "Hello, playground"
 
 // Chapter13 클로저
 
+/*
+ 클로저는 일정 기능을 하는 코드를 하나의 블록으로 모아놓은 것
+ 클로저는 변수나 상수가 선언된 위치에서 참조를 획득하고 저장할 수 있다.
+ 1. 이름이 있으면서 어떤 값도 획득하지 않는 전역함수의 형태
+ 2. 이름이 있으면서 다른 함수 내부의 값을 획득할 수 있는 중첩된 함수의 형태
+ 3. 이름이 없고 주변 문맥에 따라 값을 획득할 수 있는 축약 문법으로 작성한 형태
+*/
+
+// 기본 클로저
+
+let names: [String] = ["wizplan", "eric", "yagom", "jenny"]
+
+func backwards(first: String, second: String) -> Bool{
+    print("\(first), \(second) 비교중")
+    return first > second
+}
+
+let reversed: [String] = names.sorted(by: backwards) // true인 경우 첫 번째 전달인자가 두 번째 전달인자보다 앞에온다.
+print(reversed)
+
+// 위의 함수를 클로저로 구현
+
+let reversed2: [String] = names.sorted (by: {(first: String, second: String) -> Bool in
+    return first > second
+})
+
+// 후행 클로저 -> 괄호 생략 가능하지만, 맨 마지막 전달인자로 전달되는 클로저에만 해당되므로 전달인자로 클로저 여러 개를 전달할 때는 맨 마지막 클로저만 사용 가능
+
+let reversed3: [String] = names.sorted(){(first: String, second: String) -> Bool in
+    return first > second
+}
+
+let reversed4: [String] = names.sorted{(first: String, second: String) -> Bool in
+    return first > second
+}
+
+
+// 클로저 표현 간소화
+
+// 1. 문맥을 이용한 타입 유추 -> 매개변수 타입이나 개수, 반환 타입 등이 같아야 전달인자로서 전달할 수 있다 -> 이미 적한한 타입을 준수하고 있다고 유추 -> 매개변수의 타입이나 반환 값 생략 가능
+
+let reversed5: [String] = names.sorted{(first, second) in
+    return first > second
+}
+
+// 2. 단축 인자 이름 -> 매개변수 이름, in 키워드 생략 가능
+
+let reversed6: [String] = names.sorted{
+    return $0 > $1
+}
+
+// 3. 암시적 반환 표현 -> return 생략 가능
+
+let reversed7: [String] = names.sorted{$0 > $1}
+
+// 4. 연산자 함수
+
+//public func ><T: Comparable>(lhs: T, rhs: T) -> Bool
+
+//let reversed8: [String] = names.sorted(by: >)
+
 
