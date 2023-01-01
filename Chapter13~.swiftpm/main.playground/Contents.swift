@@ -100,3 +100,7 @@ func appendClosure(closure: @escaping VoidVoidClosure){
 // 비탈출 클로저에서는 인스턴스의 프로퍼티인 x를 사용하기 위해 self를 생략해도 무관하지만, 탈출하는 클로저에서는 값 획들을 하기 위해 self 키워드를 사용해야 한다.
 
 // withoutActuallyEscaping
+
+func closureExample(){
+    
+}
