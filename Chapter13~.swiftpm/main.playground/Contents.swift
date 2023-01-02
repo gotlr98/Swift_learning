@@ -182,3 +182,174 @@ func serveCustomer(_ customerProvider: @autoclosure () -> String){
 }
 
 serveCustomer(customersInLine.removeFirst())
+
+// Chaprer 14 옵셔널 체이닝과 빠른 종료
+/*
+ 옵셔널 체이닝은 옵셔널에 속해 있는 nil일지도 모르는 프로퍼티, 메서드, 서브스크립션 등을 가져오거나 호출할 때 사용할 수 있는 일련의 과정
+ 옵셔널에 값이 있다면 프로퍼티, 메서드, 서브스크립트 등을 호출할 수 있고, 옵셔널이 nil이라면 프로퍼티, 메서드, 서브스크립트 등은 nil을 반환
+*/
+
+class Room{
+    var number: Int
+    
+    init(number: Int){
+        self.number = number
+    }
+}
+
+class Building{
+    var name: String
+    var room: Room?
+    
+    init(name: String){
+        self.name = name
+    }
+}
+
+struct Address{
+    var province: String
+    var city: String
+    var street: String
+    var building: Building?
+    var detailAddress: String?
+    
+    init(province: String, city: String, street: String){
+        self.province = province
+        self.city = city
+        self.street = street
+    }
+    
+    func fullAddress() -> String?{
+        var restAddress: String? = nil
+        
+        if let buildingInfo: Building = self.building{
+            restAddress = buildingInfo.name
+        }else if let detail = self.detailAddress{
+            restAddress = detail
+        }
+        
+        if let rest: String = restAddress{
+            var fullAddress: String = self.province
+            
+            fullAddress += " " + self.city
+            fullAddress += " " + self.street
+            fullAddress += " " + rest
+            
+            return fullAddress
+        }else{
+            return nil
+        }
+    }
+    func printAddress(){
+        if let address: String = self.fullAddress(){
+            print(address)
+        }
+    }
+}
+
+class Person{
+    var name: String
+    var address: Address?
+    
+    init(name: String){
+        self.name = name
+    }
+}
+
+let haesik: Person = Person(name: "haesik")
+//var roomNumber: Int? = nil
+//if let haesikAddress: Address = haesik.address{
+//    if let haesikBuilding: Building = haesikAddress.building{
+//        if let haesikRoom: Room = haesikBuilding.room{
+//            roomNumber = haesikRoom.number
+//        }
+//    }
+//}
+//
+//if let number: Int = roomNumber{
+//    print(number)
+//}else{
+//    print("Can not find room number")
+//}
+
+// 위를 옵셔널 체이닝으로 표현
+
+if let roomNumber: Int = haesik.address?.building?.room?.number{
+    print(roomNumber)
+}else{
+    print("Can not find room number")
+}
+
+haesik.address = Address(province: "인천광역시", city: "중구", street: "흰바위로")
+haesik.address?.building = Building(name: "운서 sk뷰")
+haesik.address?.building?.room = Room(number:1105)
+haesik.address?.building?.room?.number = 1
+
+print(haesik.address?.building?.room?.number)
+
+haesik.address?.printAddress()
+
+// 옵셔널 체이닝을 통한 서브스크립트 호출
+
+let optionalArray: [Int]? = [1,2,3]
+print(optionalArray?[1])
+
+var optionalDictionary: [String: [Int]]? = [String: [Int]]()
+
+optionalDictionary?["numberArray"] = optionalArray
+optionalDictionary?["numberArray"]?[2]
+
+// 빠른 종료
+/*
+ guard Bool 타입 값 else{
+    예외사항 실행문
+    제어문 전환 명령어
+ }
+ if 구문을 사용하면 예외사항을 else 블록으로 처리해야 하지만 예외사항만을 처리하고 싶다면 guard구문을 사용하는 것이 훨씬 간편하다
+ */
+
+for i in 0...3{
+    guard i % 2 == 0 else{
+        continue
+    }
+    print(i)
+}
+
+// guard 구문의 옵셔널 바인딩 활용
+
+func greet(_ person: [String: String]){
+    guard let name: String = person["name"] else{
+        return
+    }
+    
+    print("Hello \(name)")
+    
+    guard let location: String = person["location"] else{
+        print("I hope the weather is nice near you")
+        return
+    }
+    
+    print("I hope the weather is nice in \(location)")
+}
+
+var personInfo: [String: String] = [String: String]()
+personInfo["name"] = "Jenny"
+
+greet(personInfo)
+
+personInfo["location"] = "Korea"
+greet(personInfo)
+
+func enterClub(name: String?, age: Int?){
+    guard let name: String = name, let age: Int = age, age > 19, name.isEmpty == false else{
+        print("You are too young to enter the club")
+        return
+    }
+    print("Welcome \(name)!")
+}
+
+enterClub(name: "Haesik", age: 20)
+
+// guard 구문의 한계는 자신을 감싸는 코드 블록, 즉 return, break, continue, throw 등의 제어문 전환 명령어를 쓸 수 없는 상황이라면 사용이 불가
+
+
