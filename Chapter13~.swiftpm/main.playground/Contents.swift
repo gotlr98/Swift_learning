@@ -353,3 +353,143 @@ enterClub(name: "Haesik", age: 20)
 // guard 구문의 한계는 자신을 감싸는 코드 블록, 즉 return, break, continue, throw 등의 제어문 전환 명령어를 쓸 수 없는 상황이라면 사용이 불가
 
 
+// Chapter 15 맵, 필터, 리듀스
+
+// 맵 -> 자신을 호출할 때 매개변수로 전달된 함수를 실행하여 그 결과를 다시 반환해주는 함수. 기존 데이터를 변형하는 데 많이 사용
+
+
+//let numbers2: [Int] = [0,1,2,3,4]
+//
+//var doubledNumbers: [Int] = [Int]()
+//var strings2: [String] = [String]()
+//
+//for number in numbers{
+//    doubledNumbers.append(number*2)
+//    strings2.append("\(number)")
+//}
+//print(doubledNumbers)
+//print(strings2)
+//
+//doubledNumbers = numbers2.map({(number: Int) -> Int in
+//    return number * 2})
+//strings2 = numbers2.map({(number: Int) -> String in
+//    return "\(number)"
+//})
+//
+//print(doubledNumbers)
+//print(strings2)
+
+// 위의 코드를 클로저 간소화로 표현
+
+let numbers2: [Int] = [0,1,2,3,4]
+
+var doubledNumbers = numbers2.map({$0 * 2})
+print(doubledNumbers)
+
+let evenNumbers: [Int] = [0,2,4,6,8]
+let oddNumbers: [Int] = [1,3,5,7,9]
+
+let multiplyTwo: (Int) -> Int = {$0*2}
+
+let doubledEvenNumbers = evenNumbers.map(multiplyTwo)
+let doubledOddNumbers = oddNumbers.map(multiplyTwo)
+
+print(doubledEvenNumbers)
+print(doubledOddNumbers)
+
+
+let alphabetDictionary: [String: String] = ["a": "A", "b": "B"]
+
+var keys: [String] = alphabetDictionary.map{$0.0}
+
+keys = alphabetDictionary.map{$0.0}
+
+let values: [String] = alphabetDictionary.map{$0.1}
+print(keys)
+print(values)
+
+var numberSet: Set<Int> = [1,2,3,4,5]
+let resultSet = numberSet.map{ $0 * 2}
+print(resultSet)
+
+let optionalInt: Int? = 3
+let resultInt: Int? = optionalInt.map{$0*2}
+print(resultInt)
+
+let range: CountableClosedRange = (0...3)
+let resultRange: [Int] = range.map{$0*2}
+print(resultRange)
+
+// 필터
+// 컨테이너 내부의 값을 걸러서 추출하는 역할, 맵은 기존 콘텐츠를 변형하지만 필터는 특정 조건에 맞게 걸러내는 역할
+
+var oddNumbers2: [Int] = numbers2.filter{$0 % 2 == 1}
+print(oddNumbers2)
+
+oddNumbers2 = numbers.map{$0 + 3}.filter{$0 % 2 == 1}
+
+// 리듀스
+// 컨테이너 내부의 콘텐츠를 하나로 합하는 기능
+
+let numbers3: [Int] = [1,2,3]
+
+var sum: Int = numbers3.reduce(0, {(result: Int, next: Int) -> Int in // result로는 처음엔 초기값이 전달되고 그 후엔 결과가 전달, next는 컨테이너 요소
+    print("\(result) + \(next)")
+    return result + next
+})
+print(sum)
+
+// 값 반환이 아니라 내부에서 직접 이전 값을 변경한다
+
+sum = numbers3.reduce(into: 0, {(result: inout Int, next: Int) in
+    print("\(result) + \(next)")
+    result += next
+})
+
+var doubledNumbers2: [Int] = numbers3.reduce(into: [1,2]) {(result: inout [Int], next: Int) in
+    print("result: \(result), next: \(next)")
+    
+    guard result.contains(next) else{
+        return
+    }
+    
+    print("\(result) append \(next)")
+    
+    result.append(next*2)
+}
+print(doubledNumbers2)
+
+doubledNumbers2 = [1,2] + numbers3.filter{$0.isMultiple(of: 2)}.map{$0*2}
+print(doubledNumbers2)
+
+let numbers4: [Int] = [1,2,3,4,5,6,7]
+
+var result2: Int = numbers4.filter{$0.isMultiple(of: 2)}.map{$0 * 3}.reduce(0){$0+$1}
+print(result2)
+
+
+enum Gender{
+    case male, female, unknown
+}
+
+struct Friend{
+    let name: String
+    let gender: Gender
+    let location: String
+    var age: UInt
+}
+
+var friends: [Friend] = [Friend]()
+
+friends.append(Friend(name: "haesik", gender: .male, location: "인천", age: 26))
+friends.append(Friend(name: "taehyi", gender: .male, location: "서울", age: 26))
+friends.append(Friend(name: "kihyun", gender: .male, location: "서울", age: 26))
+friends.append(Friend(name: "yoorim", gender: .male, location: "서울", age: 26))
+
+var result3: [Friend] = friends.map{ Friend(name: $0.name, gender: $0.gender, location: $0.location, age: $0.age + 1)}
+
+result3 = result3.filter{$0.location != "서울" && $0.age >= 25}
+
+let string3: String = result3.reduce("서울 외의 지역에 거주하며 25세 이상인 친구"){ $0 + "\n" + "\($1.name)  \($1.gender) \($1.location) \($1.age)세"}
+print(string3)
+
