@@ -99,8 +99,86 @@ func appendClosure(closure: @escaping VoidVoidClosure){
 
 // 비탈출 클로저에서는 인스턴스의 프로퍼티인 x를 사용하기 위해 self를 생략해도 무관하지만, 탈출하는 클로저에서는 값 획들을 하기 위해 self 키워드를 사용해야 한다.
 
-// withoutActuallyEscaping
-
-func closureExample(){
-    
+func functionWithNoescapeClosure(closure: VoidVoidClosure){
+    closure()
 }
+
+func functionWithEscapingClosure(completionHandler : @escaping VoidVoidClosure) -> VoidVoidClosure{
+    return completionHandler
+}
+
+class SomeClass{
+    var x = 10
+    
+    func runNoescapeClosure(){
+        functionWithNoescapeClosure{
+            x=200
+        }
+    }
+    
+    func runEscapingClosure() -> VoidVoidClosure{
+        return functionWithEscapingClosure{
+            self.x = 100
+        }
+    }
+}
+
+let instance: SomeClass = SomeClass()
+instance.runNoescapeClosure()
+print(instance.x)
+
+let returnedClosure2: VoidVoidClosure = instance.runEscapingClosure()
+returnedClosure2()
+print(instance.x)
+
+// withoutActuallyEscaping
+// 비탈출 클로저로 전달한 클로저가 탈출 클로저인 척 해야 하는 경우 -> 실제로는 탈출하지 않는데 다른 삼수에서 탈출 클로저를 요구하는 상황
+
+//func hasElements(in array: [Int], match predicate: (Int) -> Bool) -> Bool{
+//    return (array.lazy.filter {predicate($0)}.isEmpty == false) -> lazy 컬렉션은 비동기 작업이기 때문에 탈출 클로저를 사용해야 한다
+//}
+
+let numbers: [Int] = [2,4,6,8]
+
+let evenNumberPredicate = {(number: Int) -> Bool in
+    return number % 2 == 0
+}
+
+let oddNumberPredicate = {(number: Int) -> Bool in
+    return number % 2 == 1
+}
+
+func hasElements(in array: [Int], match predicate: (Int) -> Bool) -> Bool{
+    return withoutActuallyEscaping(predicate, do: {escapablePredicate in
+        return (array.lazy.filter {escapablePredicate($0)}.isEmpty == false)
+    })
+}
+
+// 자동 클로저
+// 함수의 전달인자로 전달하는 표현을 자동으로 변환해주는 클로저 -> 전달인자를 갖지 않는다 -> 클로저가 호출되기 전까지 내부 코드가 동작하지 않는다 -> 연산 지연
+
+var customersInLine: [String] = ["YoangWha", "SangYong", "SungHun", "HaMi"]
+print(customersInLine.count)
+
+let customerProvider: () -> String = { // 클로저를 만들어두면 클로저 내부의 코드를 미리 연산하지 않고 가지고만 있다
+    return customersInLine.removeFirst()
+}
+
+print(customersInLine.count)
+
+print("Now serving \(customerProvider())!")
+print(customersInLine.count)
+
+//func serveCustomer(_ customerProvider: () -> String){
+//    print("Now serving \(customerProvider())!")
+//}
+
+//serveCustomer({customersInLine.removeFirst()})
+
+// 위를 자동 클로저로 구현
+
+func serveCustomer(_ customerProvider: @autoclosure () -> String){
+    print("Now serving \(customerProvider())!")
+}
+
+serveCustomer(customersInLine.removeFirst())
