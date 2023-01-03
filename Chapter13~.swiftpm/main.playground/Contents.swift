@@ -493,3 +493,51 @@ result3 = result3.filter{$0.location != "서울" && $0.age >= 25}
 let string3: String = result3.reduce("서울 외의 지역에 거주하며 25세 이상인 친구"){ $0 + "\n" + "\($1.name)  \($1.gender) \($1.location) \($1.age)세"}
 print(string3)
 
+
+// Chapter 16 모나드
+// 모나드는 닫힌 함수객체이다 -> 자신의 컨텍스트와 같은 컨텍스트의 형태로 맵핑할 수 있는 함수객체
+
+// flatmap -> 컨텍스트 내부의 컨텍스트를 모두 같은 위상으로 평평하게 펼쳐준다 -> 포장된 값 내부의 포장된 값의 포장을 풀어서 같은 위상으로 펼쳐준다
+
+// map과 flatmap(compactmap)의 차이
+let optionals: [Int?] = [1,2,nil,5]
+
+let mapped: [Int?] = optionals.map{$0}
+let compactMapped: [Int] = optionals.compactMap{$0}
+
+print(mapped)
+print(compactMapped)
+
+// 중첩된 컨테이너에서 map, flatmap차이
+
+let multipleContainer = [[1,2,Optional.none], [3, Optional.none], [4,5,Optional.none]]
+
+let mappedMultipleContainer = multipleContainer.map{$0.map{$0}}
+let flatmappedMultipleContainer = multipleContainer.flatMap{$0.flatMap{$0}}
+
+print(mappedMultipleContainer)
+print(flatmappedMultipleContainer)
+
+
+// 플랫맵의 활용
+
+func stringToInteger(_ string: String) -> Int?{
+    return Int(string)
+}
+
+func integerToString(_ integer: Int) -> String?{
+    return "\(integer)"
+}
+
+var optionalString: String? = "2"
+
+let flattenResult = optionalString.flatMap(stringToInteger)
+    .flatMap(integerToString)
+    .flatMap(stringToInteger)
+
+print(flattenResult)
+
+let mappedResult = optionalString.map(stringToInteger)
+print(mappedResult)
+
+
