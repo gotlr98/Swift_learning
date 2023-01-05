@@ -782,3 +782,4 @@ celebrateBirthday(to: siksik)
 
 
 
+print(siksik is Named2)
