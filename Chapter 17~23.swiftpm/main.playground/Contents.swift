@@ -535,3 +535,250 @@ func checkAnyType(of item: Any){
 }
 
 checkAnyType(of: {(name: String) -> String in "Hello, \(name)"})
+
+
+// Chapter 20 프로토콜
+/*
+ 프로토콜은 특정 역할을 하기 위한 메서드, 프로퍼티, 기타 요구사항 등의 청사진. 프로토콜은 정의를 하고 제시를 할 뿐이지 스스로 기능을 구현하지는 않는다.
+ 구조체, 클래스, 열거형 등에서 프로토콜을 채택하려면 타입 이름 뒤에 콜론을 붙여준 후 채택할 프로토콜 이름을 쉼표로 구분하여 명시
+ 프로토콜은 타입이 특정 기능을 실행하기 위해 필요한 기능을 요구한다.
+ 
+ 1. 프로퍼티 요구
+ 프로토콜은 자신을 채택한 타입이 어떤 프로퍼티를 구현해야 하는지 요구할 수 있다 -> 종류는 중요하지 않고 프로토콜이 요구하는 프로퍼티 이름과 타입만 맞도록 구현하면 된다.
+ 다만 프로퍼티를 읽기 전용으로 할지 읽고 쓰기가 모두 가능하게 할지는 프로토콜이 정한다.
+ 프로퍼티 요구사항은 항상 var 키워드 사용. 읽기 쓰기 모두 가능한 프로퍼티는  {get set}, 읽기 전용은 {get}
+ 
+*/
+
+//protocol Sendable{
+//    var from: String{get}
+//    var to: String{get}
+//}
+//
+//class Message: Sendable{
+//    var sender: String
+//    var from: String{
+//        return self.sender
+//    }
+//
+//    var to: String
+//
+//    init(sender: String, receiver: String){
+//        self.sender = sender
+//        self.to = receiver
+//    }
+//}
+
+protocol Receiveable{
+    func received(data: Any, from: Sendable)
+}
+
+protocol Sendable{
+    var from: Sendable {get}
+    var to: Receiveable? {get}
+    
+    func send(data: Any)
+    
+    static func isSendableInstance(_ instance: Any) -> Bool
+}
+
+class Message: Sendable, Receiveable{
+    var from: Sendable{
+        return self
+    }
+    
+    var to: Receiveable?
+    
+    func send(data: Any){
+        guard let receiver: Receiveable = self.to else{
+            print("Message has no receiver")
+            return
+        }
+        
+        receiver.received(data: data, from: self.from)
+    }
+    
+    func received(data: Any, from: Sendable){
+        print("Message received \(data) from \(from)")
+    }
+    
+    class func isSendableInstance(_ instance: Any) -> Bool{
+        if let sendableInstance: Sendable = instance as? Sendable{
+            return sendableInstance.to != nil
+        }
+        return false
+    }
+}
+
+class Mail: Sendable, Receiveable{
+    var from: Sendable{
+        return self
+    }
+    
+    var to: Receiveable?
+    
+    func send(data: Any){
+        guard let receiver: Receiveable = self.to else{
+            print("Mail has no receiver")
+            return
+        }
+        receiver.received(data: data, from: self.from)
+    }
+    
+    func received(data: Any, from: Sendable){
+        print("Mail received \(data) from \(from)")
+    }
+    
+    static func isSendableInstance(_ instance: Any) -> Bool{
+        if let sendableInstance: Sendable = instance as? Sendable{
+            return sendableInstance.to != nil
+        }
+        return false
+    }
+}
+
+let myPhoneMessage: Message = Message()
+let yourPhoneMessage: Message = Message()
+
+myPhoneMessage.send(data: "Hello")
+
+myPhoneMessage.to = yourPhoneMessage
+myPhoneMessage.send(data: "Hello")
+
+
+// 가변 메서드 요구
+// 프로토콜에 mutating 키워드를 사용한 메서드 요구가 있다고 하더라고 클래스 구현에서는 mutating 키워드를 써주지 않아도 된다.
+
+protocol Resettable{
+    mutating func reset()
+}
+
+class rsPerson: Resettable{
+    var name: String?
+    var age: Int?
+    
+    func reset(){
+        self.name = nil
+        self.age = nil
+    }
+}
+
+
+// 이니셜라이저 요구
+
+protocol Named{
+    var name: String{get}
+    
+    init(name: String)
+}
+
+struct Pet: Named{
+    var name: String
+    
+    init(name: String){
+        self.name = name
+    }
+}
+
+// 클래스 타입에서 프로토콜의 이니셜라이저 요구에 부합하는 이니셜라이저를 구현할 때는 required 식별자를 붙인 요구 이니셜라이저로 구현해야 한다.
+// 이는 nPerson 클래스를 상속받는 모든 클래스는 Named 프로토콜을 준수해야 하며, 이는 곧 상속받는 클래스에 해당 이니셜라이저를 모두 구현해야 한다는 뜻.
+// 만약 클래스 자체가 상속받을 수 없는 final 클래스라면 required 식별자를 붙여줄 필요가 없다.
+
+class nPerson: Named{
+    var name: String
+    
+    required init(name: String){
+        self.name = name
+    }
+}
+
+// 만약 틀정 클래스에 프로토콜이 요구하는 이니셜라이저가 이미 구현되어 있는 상황에서 그 클래스를 상속받은 클래스가 있다면, required와 override 식별자를 모두 명시하여야 한다.
+
+class sSchool{
+    var name: String
+    
+    init(name: String){ // Named 프로토콜의 이니셜라이저를 구현해놓았다
+        self.name = name
+    }
+}
+
+class MiddleSchool: sSchool, Named{
+    required override init(name: String){
+        super.init(name: name)
+    }
+}
+
+// 프로토콜의 상속
+
+protocol Readable{
+    func read()
+}
+
+protocol Writeable{
+    func write()
+}
+
+protocol ReadSpeakable: Readable{
+    func speak()
+}
+
+protocol ReadWriteSpeakable: Readable, Writeable{
+    func speak()
+}
+
+class SomeClass2: ReadWriteSpeakable{
+    func read(){
+        print("Read")
+    }
+    
+    func write(){
+        print("Write")
+    }
+    
+    func speak(){
+        print("Speak")
+    }
+}
+
+
+// 프로토콜 조합과 프로토콜 준수 확인
+
+protocol Named2{
+    var name: String{get}
+}
+
+protocol Aged2{
+    var age: Int{get}
+}
+
+struct naPerson: Named2, Aged2{
+    var name: String
+    var age: Int
+}
+
+class Car: Named2{
+    var name: String
+    
+    init(name: String){
+        self.name = name
+    }
+}
+
+class Truck: Car, Aged2{
+    var age: Int
+    
+    init(name: String, age: Int){
+        self.age = age
+        super.init(name: name)
+    }
+}
+
+func celebrateBirthday(to celebrator: Named2 & Aged2){
+    print("Happy birthday \(celebrator.name) !! Now you are \(celebrator.age)")
+}
+
+let siksik: naPerson = naPerson(name: "haesik", age: 26)
+celebrateBirthday(to: siksik)
+
+
+
