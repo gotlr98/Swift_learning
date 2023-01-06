@@ -783,3 +783,42 @@ celebrateBirthday(to: siksik)
 
 
 print(siksik is Named2)
+print(siksik is Aged2)
+
+if let castedInstance: Named2 = siksik as? Named2{
+    print("\(castedInstance) is Named2")
+}
+
+
+// 프로토콜의 선택적 요구
+// 프로토콜의 요구사항 중 일부를 선택적 요구사항으로 지정할 수 있다. 석택적 요구사항을 정의하고 싶은 프로토콜은 objc 속성이 부여된 프로토콜(Objective-C코드)
+
+import Foundation
+
+@objc protocol Moveable{
+    func walk()
+    @objc optional func fly()
+}
+
+class Tiger: NSObject, Moveable{
+    func walk(){
+        print("Tiger walks")
+    }
+}
+
+class Bird: NSObject, Moveable{
+    func walk(){
+        print("Bird walks")
+    }
+    
+    func fly(){
+        print("Bird flys")
+    }
+}
+
+// 위임을 위한 프로토콜
+/*
+ 위임은 클래스나 구조체가 자신의 책임이나 임무를 다른 타입의 인스턴스에게 위임하는 디자인 패턴
+ 위임 패턴은 애플의 프레임워크에서 사용하는 주요한 패턴 중 하나. 예를 들어 UITableView타입의 인스턴스가 해야 하는 일을 위임받아 처리하는 인스턴스는 UITableViewDelegate 프로토콜을 준수
+ 어떤 인스턴스 + Delegate로 명명
+ */
