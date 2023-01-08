@@ -829,3 +829,69 @@ class Bird: NSObject, Moveable{
  익스텐션은 스위프트의 강력한 기능 중 하나로 구조체, 클래스, 열거형, 프로토콜 타입에 새로운 기능을 추가할 수 있다.
  익스텐션은 타입에 새로운 기능을 추가할 수는 있지만, 기존에 존재하는 기능을 재정의할 수는 없다.
  */
+
+extension Int{
+    var isEven: Bool{
+        return self % 2 == 0
+    }
+    
+    var isOdd: Bool{
+        return self % 2 == 1
+    }
+}
+
+print(1.isEven)
+
+var number: Int = 3
+print(number.isOdd)
+
+extension Int{
+    func multiply(by n: Int) -> Int{
+        return self * n
+    }
+    
+    mutating func multiplySelf(by n: Int){
+        self = self.multiply(by: n)
+    }
+    
+    static func isIntTypeInstance(_ instance: Any) -> Bool{
+        return instance is Int
+    }
+}
+
+print(3.multiply(by:2))
+print(number.multiplySelf(by: 3))
+
+prefix operator ++
+
+struct Position{
+    var x: Int
+    var y: Int
+}
+
+extension Position{
+    static func + (left: Position, right: Position) -> Position{
+        return Position(x: left.x + right.x, y: left.y + right.y)
+    }
+    
+    static prefix func - (vector: Position) -> Position{
+        return Position(x: -vector.x, y: -vector.y)
+    }
+    
+    static func += (left: inout Position, right: Position){
+        left = left + right
+    }
+    
+    static func == (left: Position, right: Position) -> Bool{
+        return (left.x == right.y) && (left.y == right.y)
+    }
+    
+}
+
+var myPosition: Position = Position(x: 3, y: 2)
+var yourPosition: Position = Position(x: 2, y: 1)
+
+myPosition == yourPosition
+
+//print(-myPosition)
+
