@@ -895,3 +895,95 @@ myPosition == yourPosition
 
 //print(-myPosition)
 
+
+// 이니셜라이저 -> 익스텐션으로 편의 이니셜라이저는 추가할 수 있지만, 지정 이니셜라이저는 추가할 수 없다.
+
+extension String{
+    init(intTypeNumber: Int){
+        self = "\(intTypeNumber)"
+    }
+    
+    init(doubleTypeNumber: Double){
+        self = "\(doubleTypeNumber)"
+    }
+}
+
+let stringFromInt: String = String(intTypeNumber: 100)
+
+class kkPerson{
+    var name: String
+    
+    init(name: String){
+        self.name = name
+    }
+}
+
+extension kkPerson{
+    convenience init(){
+        self.init(name: "unknown")
+    }
+}
+
+let someOne: kkPerson = kkPerson()
+print(someOne.name)
+
+
+// 서브스크립트
+
+extension String{
+    subscript(appedValue: String) -> String{
+        return self + appedValue
+    }
+    
+    subscript(repeatCount: UInt) -> String{
+        var str: String = ""
+        
+        for _ in 0..<repeatCount{
+            str += self
+        }
+        
+        return str
+    }
+}
+
+print("abd"["def"])
+print("abc"[3])
+
+extension Int{
+    enum Kind{
+        case negative, zero, positive
+    }
+    
+    var kind: Kind{
+        switch self{
+        case 0:
+            return .zero
+        case let x where x > 0:
+            return .positive
+        default:
+            return .negative
+        }
+    }
+}
+
+func printIntegerKinds(numbers: [Int]){
+    for number in numbers{
+        switch number.kind{
+        case .negative:
+            print("- ", terminator: "")
+        case .zero:
+            print("0 ", terminator: "")
+        case .positive:
+            print("+ ", terminator: "")
+        }
+    }
+    print("")
+}
+
+printIntegerKinds(numbers: [3,19,-27,0,-6,0,7])
+
+
+// Chatper 22 제네릭
+/*
+ 
+ */
