@@ -985,5 +985,152 @@ printIntegerKinds(numbers: [3,19,-27,0,-6,0,7])
 
 // Chatper 22 제네릭
 /*
+ 제네릭으로 구현한 기능과 타입은 재사용하기도 쉽고, 코드의 중복을 줄일 수 있기에 깔끔하고 추상적인 표현 가능
  
+ 제네릭을 사용하고자 하는 타입 이름 <타입 매개변수>
+ 제네릭을 사용하고자 하는 함수 이름 <타입 매개변수> (함수의 매개변수...)
  */
+
+prefix operator **
+
+prefix func ** <T: BinaryInteger> (value: T) -> T{ // T다음에 오는 BinaryInteger는 타입 제약이다
+    return value * value
+}
+
+let minusFive: Int = -5
+let five: UInt = 5
+
+let sqrtMinusFive: Int = **minusFive
+let sqrtFive: UInt = **five
+
+print(sqrtMinusFive)
+print(sqrtFive)
+
+
+func swapTwoInts(_ a: inout Int, _ b: inout Int){
+    let temporaryA: Int = a
+    a = b
+    b = temporaryA
+}
+
+var numberOne: Int = 5
+var numberTwo : Int = 10
+
+swapTwoInts(&numberOne, &numberTwo)
+print(numberOne, numberTwo)
+
+
+// 위의 함수를 제네릭으로 구현
+
+func swapTwoValues<T> (_ a: inout T, _ b: inout T){
+    let temporaryA: T = a
+    a = b
+    b = temporaryA
+}
+
+swapTwoValues(&numberOne, &numberTwo)
+
+var stringOne: String = "One"
+var stringTwo: String = "Two"
+
+swapTwoValues(&stringOne, &stringTwo)
+
+print(stringOne, stringTwo)
+
+
+// 제네릭 타입
+
+struct Stack<Element>{
+    var items = [Element]()
+    
+    mutating func push(_ item: Element){
+        items.append(item)
+    }
+    
+    mutating func pop() -> Element{
+        items.removeLast()
+    }
+}
+
+var doubleStack: Stack<Double> = Stack<Double>()
+
+doubleStack.push(1.0)
+print(doubleStack.items)
+
+doubleStack.pop()
+print(doubleStack.items)
+
+
+var anyStack: Stack<Any> = Stack<Any>()
+
+anyStack.push("eoeo")
+anyStack.push(1)
+print(anyStack.items)
+
+
+// 제네릭 타입 확장 -> 익스텐션 정의에 타입 매개변수를 명시하지 않는다. 대신 원래의 제네릭 정의에 명시한 타입 매개변수 사용
+
+extension Stack{
+    var topElement: Element?{
+        return self.items.last
+    }
+}
+
+print(anyStack.topElement)
+
+
+// 프로토콜의 연관타입
+/*
+ 연관 타입은 프로토콜에서 사용할 수 있는 플레이스홀더 이름이다. 제네릭에서는 어떤 타입이 들어올지 모를 때, 타입 매개변수를 통해 종류는 알 수 없지만, 어떤 타입이 여기에 쓰일것이다
+ 라고 표현해주었다면 연관 타입은 타입 매개변수의 그 역할을 프로토콜에서 수행할 수 있도록 만들어진 기능
+ */
+
+protocol Container{
+    associatedtype ItemType
+    var count: Int {get}
+    mutating func append(_ item: ItemType)
+    subscript(i: Int) -> ItemType {get}
+}
+
+
+class MyContainer: Container{
+    var items: Array<Int> = Array<Int>()
+    
+    var count: Int{
+        return items.count
+    }
+    
+    func append(_ item: Int){
+        items.append(item)
+    }
+    
+    subscript(i: Int) -> Int{
+        return items[i]
+    }
+}
+
+struct IntStack: Container{
+    
+    typealias ItemType = Int
+    
+    var items = [ItemType]()
+    mutating func push(_ item: ItemType){
+        items.append(item)
+    }
+    
+    mutating func pop() -> ItemType{
+        return items.removeLast()
+    }
+    
+    mutating func append(_ item: ItemType){
+        self.push(item)
+    }
+    
+    var count: ItemType{
+        return items.count
+    }
+    
+    subscript(i: ItemType) -> ItemType{
+        return items[i]
+    }
+}
