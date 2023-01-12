@@ -1134,3 +1134,26 @@ struct IntStack: Container{
         return items[i]
     }
 }
+
+struct Stack<Element>:Container{
+    var items = [Element]()
+    
+    mutating func push(_ item: Element){
+        items.append(item)
+    }
+    
+    mutating func pop() -> Element{
+        return items.removeFirst()
+    }
+    
+    mutating func append(_ item: Element){
+        self.push(item)
+    }
+    var count: Int{
+        return items.count
+    }
+    
+    subscript(i: Int) -> Element{
+        return items[i]
+    }
+}
