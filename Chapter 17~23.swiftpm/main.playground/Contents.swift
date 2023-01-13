@@ -1052,29 +1052,29 @@ struct Stack<Element>{
     }
 }
 
-var doubleStack: Stack<Double> = Stack<Double>()
+//var doubleStack: Stack<Double> = Stack<Double>()
+//
+//doubleStack.push(1.0)
+//print(doubleStack.items)
+//
+//doubleStack.pop()
+//print(doubleStack.items)
 
-doubleStack.push(1.0)
-print(doubleStack.items)
 
-doubleStack.pop()
-print(doubleStack.items)
-
-
-var anyStack: Stack<Any> = Stack<Any>()
-
-anyStack.push("eoeo")
-anyStack.push(1)
-print(anyStack.items)
+//var anyStack: Stack<Any> = Stack<Any>()
+//
+//anyStack.push("eoeo")
+//anyStack.push(1)
+//print(anyStack.items)
 
 
 // 제네릭 타입 확장 -> 익스텐션 정의에 타입 매개변수를 명시하지 않는다. 대신 원래의 제네릭 정의에 명시한 타입 매개변수 사용
 
-extension Stack{
-    var topElement: Element?{
-        return self.items.last
-    }
-}
+//extension Stack{
+//    var topElement: Element?{
+//        return self.items.last
+//    }
+//}
 
 print(anyStack.topElement)
 
@@ -1157,3 +1157,27 @@ struct Stack<Element>:Container{
         return items[i]
     }
 }
+
+
+// 제네릭 서브스크립트
+
+extension Stack{
+    subscript<Indices: Sequence>(indices: Indices) -> [ItemType]
+    where Indices.Iterator.Element == Int{
+        var result = [ItemType]()
+        for index in indices{
+            result.append(self[index])
+        }
+        return result
+    }
+}
+
+var integerStack: Stack<Int> = Stack<Int>()
+
+integerStack.append(1)
+integerStack.append(2)
+integerStack.append(3)
+integerStack.append(4)
+integerStack.append(5)
+
+print(integerStack[0...2])
