@@ -1190,3 +1190,22 @@ print(integerStack[0...2])
  그런데 특정 프로토콜을 정의하고 여러 타입에서 이 프로토콜을 준수하게 만들어 타입마다 똑같은 메서드, 프로퍼티, 서브스크립트 등을 구현해야 한다면
  코드가 중복되고 유지보수가 힘들 것이다. -> 익스텐션과 프로토콜의 결합으로 해결
  */
+
+protocol Receiveable{
+    func received(data: Any, from: Sendable)
+}
+extension Receiveable{
+    func received(data: Any, from: Sendable){
+        print("\(self) received \(data) from \(from)")
+    }
+}
+
+protocol Sendable2{
+    var from: Sendable2{get}
+    var to: Receiveable?{get}
+    
+    func send(data: Any)
+    
+    static func isSendableInstance(_ instance: Any) -> Bool
+}
+
