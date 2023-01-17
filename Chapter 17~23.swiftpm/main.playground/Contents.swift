@@ -1209,3 +1209,25 @@ protocol Sendable2{
     static func isSendableInstance(_ instance: Any) -> Bool
 }
 
+extension Sendable2{
+    var from: Sendable2{
+        return self
+    }
+    
+    func send(data: Any){
+        guard let receiver: Receiveable = self.to else{
+            print("Message has no receiver")
+            return
+        }
+        
+        receiver.received(data: data, from: self.from)
+    }
+    
+    static func isSendableInstance(_ instance: Any ) -> Bool{
+        if let sendableInstance: Sendable2 = instance as? Sendable2{
+            return sendableInstance.to != nil
+        }
+        
+        return false
+    }
+}
