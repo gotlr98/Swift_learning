@@ -1231,3 +1231,5 @@ extension Sendable2{
         return false
     }
 }
+
+class Message: Sendable2, Receivable
