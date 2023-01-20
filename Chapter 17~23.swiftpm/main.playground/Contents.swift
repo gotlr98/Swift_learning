@@ -637,13 +637,13 @@ class Mail: Sendable, Receiveable{
     }
 }
 
-let myPhoneMessage: Message = Message()
-let yourPhoneMessage: Message = Message()
+//let myPhoneMessage: Message = Message()
+//let yourPhoneMessage: Message = Message()
 
-myPhoneMessage.send(data: "Hello")
-
-myPhoneMessage.to = yourPhoneMessage
-myPhoneMessage.send(data: "Hello")
+//myPhoneMessage.send(data: "Hello")
+//
+//myPhoneMessage.to = yourPhoneMessage
+//myPhoneMessage.send(data: "Hello")
 
 
 // 가변 메서드 요구
@@ -1076,7 +1076,7 @@ struct Stack<Element>{
 //    }
 //}
 
-print(anyStack.topElement)
+//print(anyStack.topElement)
 
 
 // 프로토콜의 연관타입
@@ -1135,7 +1135,7 @@ struct IntStack: Container{
     }
 }
 
-struct Stack<Element>:Container{
+struct Stack2<Element>:Container{
     var items = [Element]()
     
     mutating func push(_ item: Element){
@@ -1161,18 +1161,18 @@ struct Stack<Element>:Container{
 
 // 제네릭 서브스크립트
 
-extension Stack{
-    subscript<Indices: Sequence>(indices: Indices) -> [ItemType]
-    where Indices.Iterator.Element == Int{
-        var result = [ItemType]()
-        for index in indices{
-            result.append(self[index])
-        }
-        return result
-    }
-}
+//extension Stack2{
+//    subscript<Indices: Sequence>(indices: Indices) -> [ItemType]
+//    where Indices.Iterator.Element == Int{
+//        var result = [ItemType]()
+//        for index in indices{
+//            result.append(self[index])
+//        }
+//        return result
+//    }
+//}
 
-var integerStack: Stack<Int> = Stack<Int>()
+var integerStack: Stack2<Int> = Stack2<Int>()
 
 integerStack.append(1)
 integerStack.append(2)
@@ -1180,7 +1180,7 @@ integerStack.append(3)
 integerStack.append(4)
 integerStack.append(5)
 
-print(integerStack[0...2])
+//print(integerStack[0...2])
 
 
 
@@ -1191,18 +1191,18 @@ print(integerStack[0...2])
  코드가 중복되고 유지보수가 힘들 것이다. -> 익스텐션과 프로토콜의 결합으로 해결
  */
 
-protocol Receiveable{
-    func received(data: Any, from: Sendable)
+protocol Receiveable2{
+    func received(data: Any, from: Sendable2)
 }
-extension Receiveable{
-    func received(data: Any, from: Sendable){
+extension Receiveable2{
+    func received(data: Any, from: Sendable2){
         print("\(self) received \(data) from \(from)")
     }
 }
 
 protocol Sendable2{
-    var from: Sendable2{get}
-    var to: Receiveable?{get}
+    var from: Sendable2 {get}
+    var to: Receiveable2? {get}
     
     func send(data: Any)
     
@@ -1215,7 +1215,7 @@ extension Sendable2{
     }
     
     func send(data: Any){
-        guard let receiver: Receiveable = self.to else{
+        guard let receiver: Receiveable2 = self.to else{
             print("Message has no receiver")
             return
         }
@@ -1232,4 +1232,15 @@ extension Sendable2{
     }
 }
 
-class Message: Sendable2, Receivable
+class Message2: Sendable2, Receiveable2{
+    var to: Receiveable2?
+}
+
+class Mail2: Sendable2, Receiveable2{
+    var to: Receiveable2?
+}
+
+let myPhoneMessage: Message2 = Message2()
+let yourPhoneMessage: Message2 = Message2()
+
+myPhoneMessage.send(data: "Hello")
