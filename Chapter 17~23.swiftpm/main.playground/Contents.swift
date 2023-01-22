@@ -1244,3 +1244,14 @@ let myPhoneMessage: Message2 = Message2()
 let yourPhoneMessage: Message2 = Message2()
 
 myPhoneMessage.send(data: "Hello")
+
+
+class NewYear{
+    var family: String
+    var country: String
+    var food: String
+    
+    func greeting{
+        print("Happy New Year")
+    }
+}
