@@ -1250,8 +1250,23 @@ class NewYear{
     var family: String
     var country: String
     var food: String
+    var money: Int
+    var age: Int
     
     func greeting{
         print("Happy New Year")
+    }
+    
+    func newYearsmoney{
+        if age <= 15{
+            self.money += 10000
+        }
+        else if age <= 18{
+            self.money += 50000
+        }
+        
+        else{
+            self.money += 100000
+        }
     }
 }
