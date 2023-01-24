@@ -1253,11 +1253,19 @@ class NewYear{
     var money: Int
     var age: Int
     
-    func greeting{
+    func greeting(){
         print("Happy New Year")
     }
     
-    func newYearsmoney{
+    init(){
+        self.money = 0
+        self.family = ""
+        self.country = ""
+        self.food = ""
+        self.age = 0
+    }
+    
+    func newYearsmoney(){
         if age <= 15{
             self.money += 10000
         }
@@ -1269,4 +1277,8 @@ class NewYear{
             self.money += 100000
         }
     }
+}
+
+extension NewYear{
+    
 }
