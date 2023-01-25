@@ -1240,45 +1240,122 @@ class Mail2: Sendable2, Receiveable2{
     var to: Receiveable2?
 }
 
-let myPhoneMessage: Message2 = Message2()
-let yourPhoneMessage: Message2 = Message2()
+let myPhoneMessage2: Message2 = Message2()
+let yourPhoneMessage2: Message2 = Message2()
 
-myPhoneMessage.send(data: "Hello")
+myPhoneMessage2.send(data: "Hello")
+
+myPhoneMessage2.to = yourPhoneMessage2
+myPhoneMessage2.send(data: "Hello")
 
 
-class NewYear{
-    var family: String
-    var country: String
-    var food: String
-    var money: Int
-    var age: Int
-    
-    func greeting(){
-        print("Happy New Year")
-    }
-    
-    init(){
-        self.money = 0
-        self.family = ""
-        self.country = ""
-        self.food = ""
-        self.age = 0
-    }
-    
-    func newYearsmoney(){
-        if age <= 15{
-            self.money += 10000
-        }
-        else if age <= 18{
-            self.money += 50000
-        }
-        
-        else{
-            self.money += 100000
-        }
+
+//class NewYear{
+//    var family: String
+//    var country: String
+//    var food: String
+//    var money: Int
+//    var age: Int
+//
+//    func greeting(){
+//        print("Happy New Year")
+//    }
+//
+//    init(){
+//        self.money = 0
+//        self.family = ""
+//        self.country = ""
+//        self.food = ""
+//        self.age = 0
+//    }
+//
+//    func newYearsmoney(){
+//        if age <= 15{
+//            self.money += 10000
+//        }
+//        else if age <= 18{
+//            self.money += 50000
+//        }
+//
+//        else{
+//            self.money += 100000
+//        }
+//    }
+//}
+//
+//extension NewYear{
+//
+//}
+
+
+// 제네릭, 프로토콜, 익스텐션을 통한 재사용 가능한 코드
+
+protocol SelfPrintable{
+    func printSelf()
+}
+
+extension SelfPrintable where Self: MyContainer{
+    func printSelf(){
+        print(items)
     }
 }
 
-extension NewYear{
+protocol Container2: SelfPrintable{
+    associatedtype ItemType
     
+    var items: [ItemType] {get set}
+    var count: Int {get}
+    
+    mutating func append(item: ItemType)
+    subscript(i: Int) -> ItemType{get}
 }
+
+extension Container2{
+    mutating func append(item: ItemType){
+        items.append(item)
+    }
+    
+    var count: Int{
+        return items.count
+    }
+    
+    subscript(i: Int) -> ItemType{
+        return items[i]
+    }
+}
+
+protocol Popable: Container2{
+    mutating func pop() -> ItemType?
+    mutating func push(_ item: ItemType)
+}
+
+extension Popable{
+    mutating func pop() -> ItemType?{
+        return items.removeLast()
+    }
+    
+    mutating func push(_ item: ItemType){
+        self.append(item: item)
+    }
+}
+
+protocol Insertable: Container2{
+    mutating func delete() -> ItemType?
+    mutating func insert(_ item: ItemType)
+}
+
+extension Insertable{
+    mutating func delete() -> ItemType?{
+        return items.removeFirst()
+    }
+    
+    mutating func insert(_ item: ItemType){
+        self.append(item: item)
+    }
+}
+
+let itemsk: Array<Int> = [1,2,3]
+
+let mappedItems: Array<Int> = itemsk.map{(item: Int) -> Int in return item * 10}
+print(mappedItems)
+
