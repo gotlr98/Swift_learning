@@ -26,7 +26,7 @@ class Student: Person{
     init(school: School){
         self.school = school
         super.init()
-        self.job = .student
+        self.job = .high
     }
 }
 
