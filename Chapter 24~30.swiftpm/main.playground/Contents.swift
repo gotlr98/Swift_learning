@@ -18,7 +18,7 @@ class Person{
 
 class Student: Person{
     enum School{
-        case elementary, middle, high
+        case elementary, middle, high, university
     }
     
     var school: School
@@ -26,7 +26,7 @@ class Student: Person{
     init(school: School){
         self.school = school
         super.init()
-        self.job = .high
+        self.job = .student
     }
 }
 
@@ -34,3 +34,4 @@ let personJob: Person.Job = .jobless
 let studentJob: Student.Job = .student
 
 let student: Student = Student(school: .middle)
+let sik: Student = Student(school: .university)
