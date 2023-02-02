@@ -496,3 +496,203 @@ extension Array: CallToAll where Element: Talkable{
 }
 
 
+
+// Chapter 27 ARC
+/*
+ 자동으로 메모리를 관리해주는 방식
+ 컴파일 당시 이미 인스턴스의 해제 시점이 정해져 있어서 인스턴스가 언제 메모리에서 해제될지 예측할 수 있다.
+ ARC의 작동 규칙을 모르고 사용하면 인스턴스가 메모리에서 영원히 해제되지 않을 가능성이 있다.
+ 
+ 강한참조는 인스턴스가 계속해서 메모리에 남아있어야 하는 명분을 만들어 준다.
+ 인스턴스는 참조 횟수가 0이 되는 순간 메모리에서 해제되는데, 인스턴스를 다른 인스턴스의 프로퍼티나 변수, 상수 등에 할당할 때 강한참조를 사용하면
+ 참조 횟수가 1 증가한다. 또 강한참조를 사용하는 변수, 상수 등에 nil을 할당해주면 원래 자신에게 할당되어 있던 인스턴스의 참조 횟수가 1 감소한다.
+ */
+
+
+var globalReference: Person2?
+
+func foo(){
+    let haesik: Person2 = Person2(name: "haesik", age: 26) // haesik is being initialized & 인스턴스의 참조 횟수 : 1
+    
+    globalReference = haesik // 인스턴스의 참조 횟수 : 2
+    
+    // 함수 종료 시점 -> 참조 횟수 -1
+    // 인스턴스의 참조 횟수 : 1
+}
+
+foo() // 참조 횟수가 1이기 때문에 메모리 해제 안됨
+
+
+// 강한참조 순환 문제 -> 인스턴스끼리 서로가 서로를 강한참조할 때
+
+class Person3{
+    let name: String
+    
+    init(name: String){
+        self.name = name
+    }
+    
+    var room: Room?
+    
+    deinit{
+        print("\(name) is being deinitialized")
+    }
+}
+
+
+class Room{
+    let number: String
+    
+    init(number: String){
+        self.number = number
+    }
+    
+    var host: Person3?
+    
+    deinit{
+        print("Room \(number) is being deinitialized")
+    }
+}
+
+var person3: Person3? = Person3(name: "haesik") // Person3 인스턴스 참조 횟수 : 1
+var room: Room? = Room(number: "505") // Room 인스턴스 참조 횟수 : 1
+
+room?.host = person3 // Person3 인스턴스 참조 횟수 : 2
+person3?.room = room // Room 인스턴스 참조 횟수 : 2
+
+person3 = nil // Person3 인스턴스 참조 횟수 : 1
+room = nil // Room 인스턴스 참조 횟수 : 1
+
+// Person3, Room 인스턴스를 참조할 방법 상실, 그러나 메모리에는 잔존
+
+/*
+ room에 nil을 할당하는 순간 person3 변수가 참조하던 Person3 클래스의 인스턴스에 접근할 방법도, room 변수가 참조하던 Room클래스의 인스턴스에 접근할 방법도 사라졌다.
+ 이 경우 두 인스턴스 모두 메모리에 남아 있게 된다.
+ */
+
+
+// 약한참조
+/*
+ 자신이 참조하는 인스턴스의 참조 횟수를 증가시키지 않는다. 참조 타입의 프로퍼티나 변수의 선언 앞에 weak 키워드를 써주면 그 프로퍼티나 변수는 자신이 참조하는 인스턴스를 약한참조 한다.
+ 상수에는 사용할 수 없다. 만약 자신이 참조하던 인스턴스가 메모리에서 해제된다면 nil이 할당될 수 있어야 하기 때문. 따라서 약한참조는 항상 옵셔널이어야 한다.
+ */
+
+
+class Room2{
+    let number: String
+    
+    init(number: String){
+        self.number = number
+    }
+    
+    weak var host: Person3?
+    
+    deinit{
+        print("Room \(number) is being deinitialized")
+    }
+}
+
+var sik: Person3? = Person3(name: "haesik") // Person3 인스턴스의 참조 횟수 : 1
+var room2: Room2? = Room2(number: "505") // Room2 인스턴스의 참조 횟수 : 1
+
+room2?.host = sik // Person3 인스턴스의 참조 횟수 : 1
+sik?.room = room // Room2 인스턴스의 참조 횟수 : 2
+
+sik = nil // Person3 인스턴스의 참조 횟수 : 0, Room2 인스턴스의 참조 횟수 : 1 -> 자신의 프로퍼티가 강한참조를 하면 인스턴스의 참조 횟수를 1 감소시킨다.
+print(room2?.host)
+
+room2 = nil // Room2 인스턴스의 참조 횟수 : 0
+
+
+// 미소유참조
+/*
+ 미소유참조는 약한참조와 다르게 자신이 참조하는 인스턴스가 항상 메모리에 존재할 것이라는 전제를 기반을 동작 -> 자신이 참조하는 인스턴스가 메모리에서 해제되더라도 스스로 nil을 할당해주지 않는다.
+ 미소유참조는 참조하는 동안 해당 인스턴스가 메모리에서 해제되지 않으리나는 확신이 있을 때만 사용
+ 참조 타입의 변수나 프로퍼티의 정의 앞에 unowned 키워드를 써주면 미소유참조
+ 강한참조를 피해야 하는데 약한참조를 사용할 수 없는 경우(옵셔널이 아니어야 하거나 상수로 지정해야 하는 경우)에 사용
+ */
+
+class Person4{
+    let name: String
+    
+    // 카드를 소지할 수도, 소지하지 않을 수도 있기 때문에 옵셔널로 정의
+    // 또, 카드를 한 번 가진 후 잃어버리면 안 되기 때문에 강한참조를 해야 한다.
+    
+    var card: CreditCard?
+    
+    init(name: String){
+        self.name = name
+    }
+    
+    deinit{
+        print("\(name) is being deinitialized")
+    }
+}
+
+class CreditCard{
+    let number: UInt
+    
+    unowned let owner: Person4 // 카드의 소유자가 분명히 존재해야 한다.
+    
+    init(number: UInt, owner: Person4){
+        self.number = number
+        self.owner = owner
+    }
+    
+    deinit{
+        print("Card #\(number) is being deinitialized")
+    }
+}
+
+var jisoo: Person4? = Person4(name: "jisoo") // Person4 인스턴스의 참조 횟수 : 1
+
+if let person: Person4 = jisoo{
+    // Creditcard 인스턴스의 참조 횟수 : 1
+    person.card = CreditCard(number: 1004, owner: person)
+    // Person4 인스턴스의 참조 횟수 : 1 -> 참조 하였지만 미소유참조라 늘어나지 않았다.
+}
+
+jisoo = nil
+
+
+// 미소유참조와 암시적 추출 옵셔널 프로퍼티 -> 서로 참조해야 하는 프로퍼티에 값이 꼭 있어야 하면서도 한번 초기화되면 그 이후에는 nil을 할당할 수 없는 조건을 갖추어야 하는 경우
+
+class Company{
+    let name: String
+    
+    var ceo: CEO! // 암시적 추출 옵셔널 프로퍼티(강한참조)
+    
+    init(name: String, ceoName: String){
+        self.name = name
+        self.ceo = CEO(name: ceoName, company: self)
+    }
+    
+    func introduce(){
+        print("\(name)의 CEO는 \(ceo.name)입니다.")
+    }
+}
+
+class CEO{
+    let name: String
+    
+    unowned let company: Company // 미소유참조 상수 프로퍼티(미소유참조)
+    
+    init(name: String, company: Company){
+        self.name = name
+        self.company = company
+    }
+    
+    func introduce(){
+        print("\(name)는 \(company.name)의 CEO입니다.")
+    }
+}
+
+let company: Company = Company(name: "무한상사", ceoName: "김태호")
+company.introduce()
+company.ceo.introduce()
+
+
+// 획득목록
+/*
+ 획득목록은 클로저 내부에서 참조 타입을 획득하는 규칙을 제시해줄 수 있는 기능.
+ */
