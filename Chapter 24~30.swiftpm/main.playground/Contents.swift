@@ -695,4 +695,89 @@ company.ceo.introduce()
 // 획득목록
 /*
  획득목록은 클로저 내부에서 참조 타입을 획득하는 규칙을 제시해줄 수 있는 기능.
+ 획득목록은 클로저 내부의 매개변수 목록 이전 위치에 작성해준다. 획득목록은 참조 방식과 참조할 대상을 ([])로 둘러싼 목록 형식으로 작성하며
+ 획득목록 뒤에는 in 키워드를 써준다
  */
+
+// 획득목록을 통한 값 획득
+var a = 0
+var b = 0
+let closure = { [a] in
+    print(a,b)
+    b = 20
+}
+
+a = 10
+b = 10
+
+closure()
+// a 변수는 클로저가 생성됨과 동시에 획득목록 내에서 다시 a라는 이름의 상수로 초기화된 것이다. -> 외부에서 a의 값을 변경하더라도 클로저의 획득목록을 통한 a와는 별개
+
+
+// 참조 타입의 획득목록 동작
+
+class SimpleClass{
+    var value: Int = 0
+}
+
+var x = SimpleClass()
+var y = SimpleClass()
+
+let closure2 = {[x] in
+    print(x.value, y.value)
+}
+
+x.value = 10
+y.value = 10
+
+closure2()
+
+class SimpleClass2{
+    var value: Int = 0
+}
+
+var z: SimpleClass2? = SimpleClass2()
+var k = SimpleClass2()
+
+let closure3 = { [weak z, unowned k] in
+    print(z?.value, k.value)
+}
+
+z = nil
+k.value = 10
+
+closure3()
+
+
+// 획득목록을 통한 클로저의 강한참조 순환 문제 해결
+class PersonWho{
+    let name: String
+    let hobby: String?
+    
+    lazy var introduce: () -> String = { [unowned self] in
+        var introduction: String = "My name is \(self.name)."
+        
+        guard let hobby = self.hobby else{
+            return introduction
+        }
+        
+        introduction += " "
+        introduction += "My hobby is \(hobby)."
+        return introduction
+    }
+    
+    init(name: String, hobby: String? = nil){
+        self.name = name
+        self.hobby = hobby
+    }
+    
+    deinit{
+        print("\(name) is being deinitialized")
+    }
+}
+
+var haesik: PersonWho? = PersonWho(name: "haesik", hobby: "drink")
+print(haesik?.introduce())
+haesik = nil
+
+// 미소유참조로 인한 문제상황이 발생할 수 있다면 약한참조로 변경하여 옵셔널로 사용해도 무방하다.
