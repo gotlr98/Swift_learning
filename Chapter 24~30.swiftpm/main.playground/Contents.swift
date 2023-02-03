@@ -781,3 +781,7 @@ print(haesik?.introduce())
 haesik = nil
 
 // 미소유참조로 인한 문제상황이 발생할 수 있다면 약한참조로 변경하여 옵셔널로 사용해도 무방하다.
+
+// Chapter28 오류처리
+
+
