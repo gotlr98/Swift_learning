@@ -783,5 +783,104 @@ haesik = nil
 // 미소유참조로 인한 문제상황이 발생할 수 있다면 약한참조로 변경하여 옵셔널로 사용해도 무방하다.
 
 // Chapter28 오류처리
+/*
+ 오류처리는 프로그램이 오류를 일으켰을 때 이것을 감지하고 회복시키는 일련의 과정
+ 스위프트에서 오류는 Error라는 프로토콜을 준수하는 타입의 값을 통해 표현. Error 프로토콜은 사실상 요구사항이 없는 빈 프로토콜이지만 오류를 표현하기 위한 타입으로 채택
+ 오류를 던져즐 때는 throw 구문을 사용한다.
+ 
+ 오류를 처리하기 위한 네 가지 방법
+ 1. 함수에서 발생한 오류를 해당 함수를 호출한 코드에 알리는 방법
+ 2. do-catch 구문을 이용하여 오류를 처리하는 방법
+ 3. 옵셔널 값으로 오류를 처리하는 방법
+ 4. 오류가 발생하지 않을 것이라고 확신하는 방법
+ */
 
 
+// 자판기 동작 오류의 종류를 표현한 열거형
+
+enum VendingMachineError: Error{
+    case invalidSelection
+    case insufficientFunds(coinsNeeded: Int)
+    case outOfStock
+}
+
+/*
+ 1. 함수에서 발생한 오류 알리기
+ 
+ try 키워드로 던져진 오류를 받을 수 있다. try 키워드는 try, try? try!등으로 표현
+ */
+
+// 자판기 동작 도중 발생한 오류 던지기
+
+struct Item{
+    var price: Int
+    var count: Int
+}
+
+class VendingMachine{
+    var inventory = [
+        "Candy Bar" : Item(price: 12, count: 7),
+        "Chips" : Item(price: 10, count: 4),
+        "Biscuit" : Item(price: 7, count: 11)
+    ]
+    
+    var coinsDeposited = 0
+    
+    func dispense(snack: String){
+        print("\(snack) 제공")
+    }
+    
+    func vend(itemNamed name: String) throws{
+        
+        guard let item = self.inventory[name] else{
+            throw VendingMachineError.invalidSelection
+        }
+        
+        guard item.count > 0 else{
+            throw VendingMachineError.outOfStock
+        }
+        
+        guard item.price <= self.coinsDeposited else{
+            throw VendingMachineError.insufficientFunds(coinsNeeded: item.price - self.coinsDeposited)
+        }
+        
+        self.coinsDeposited -= item.price
+        
+        var newItem = item
+        newItem.count -= 1
+        self.inventory[name] = newItem
+        
+        self.dispense(snack:name)
+    }
+}
+
+let favoriteSnacks = [
+    "haesik": "Chips",
+    "jinsung" : "Biscuit",
+    "heejin" : "Chocolate"
+]
+
+func buyFavoriteSnack(person: String, vendingMachine: VendingMachine) throws{
+    let snackName = favoriteSnacks[person] ?? "Candy bar"
+    try vendingMachine.vend(itemNamed: snackName)
+}
+
+struct PurchasedSnack{
+    let name: String
+    init(name: String, vendingMachine: VendingMachine) throws{
+        try vendingMachine.vend(itemNamed: name)
+        self.name = name
+    }
+}
+
+let machine: VendingMachine = VendingMachine()
+machine.coinsDeposited = 30
+
+var purchase: PurchasedSnack = try PurchasedSnack(name: "Biscuit", vendingMachine: machine)
+
+print(purchase.name)
+
+for (person, favoriteSnack) in favoriteSnacks{
+    print(person, favoriteSnack)
+    try buyFavoriteSnack(person: person, vendingMachine: machine)
+}
