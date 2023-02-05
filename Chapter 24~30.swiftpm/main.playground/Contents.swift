@@ -1006,3 +1006,72 @@ for i in 0...2{
     }
 }
 
+
+
+// Chapter 29 메모리 안전
+
+/*
+ 메모리 접근 충돌은 서로 다른 코드에서 동시에 같은 위치의 메모리에 접근할 때 발생
+ 
+ 1. 메모리 접근의 특성
+ 
+ 다음의 세 가지 조건에 모두 해당하는 메모리 접근이 두 군데 이상의 코드에서 동시에 일어나면 메모리 접근 충돌이 발생
+ - 최소한 한 곳에서 쓰기 접근
+ - 같은 메모리 위치에 접근
+ - 접근 타이밍이 겹침
+ 
+ 장기적 메모리 접근 중에는 해당 메모리 접근이 끝나기 전에 다른 코드에서 메모리에 접근할 가능성이 있다.
+ inout 또는 mutating 키워드를 사용하는 경우.
+ 
+ 2. 입출력 매개변수에서의 메모리 접근 충돌
+ 
+ */
+
+var step: Int = 1
+
+//func increment(_ number: inout Int){
+//    number += step
+//}
+
+//increment(&step)  -? step 변수가 함수 입출력 매개변수로 전달되었는데 함수 내부에서 같음 메모리 공간에 읽기 접근을 하려고 시도하기 때문에 메모리 접근 충돌이 발생
+
+var copyOfStep: Int = step
+
+func increment(_ number: inout Int){
+    number += copyOfStep
+}
+
+increment(&step)
+
+/*
+ 3. 메서드 내부에서 self 접근의 충돌
+ 
+ 구조체의 가변 메서드는 메서드 실행 중에 self 쓰기 접근을 한다.
+ */
+
+func balance(_ x: inout Int, _ y : inout Int){
+    let sum = x + y
+    x = sum / 2
+    y = sum - x
+}
+
+
+struct GamePlayer{
+    var name: String
+    var health: Int
+    var energy: Int
+    
+    static let maxHealth = 10
+    
+    mutating func restoreHealth(){
+        self.health = GamePlayer.maxHealth
+    }
+    
+    mutating func shareHealth(with teammate: inout GamePlayer){
+        balance(&teammate.health, &health)
+    }
+}
+
+var oscar: GamePlayer = GamePlayer(name: "Oscar", health: 10, energy: 10)
+var maria: GamePlayer = GamePlayer(name: "Maria", health: 5, energy: 10)
+oscar.shareHealth(with: &maria)
