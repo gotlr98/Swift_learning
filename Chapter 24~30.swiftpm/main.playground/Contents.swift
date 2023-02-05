@@ -860,16 +860,32 @@ let favoriteSnacks = [
     "heejin" : "Chocolate"
 ]
 
-func buyFavoriteSnack(person: String, vendingMachine: VendingMachine) throws{
+func buyFavoriteSnack(person: String, vendingMachine: VendingMachine){
     let snackName = favoriteSnacks[person] ?? "Candy bar"
-    try vendingMachine.vend(itemNamed: snackName)
+//    try vendingMachine.vend(itemNamed: snackName)
+    tryingVend(itemNamed: snackName, vendingMachine: vendingMachine)
 }
 
 struct PurchasedSnack{
     let name: String
-    init(name: String, vendingMachine: VendingMachine) throws{
-        try vendingMachine.vend(itemNamed: name)
+    init(name: String, vendingMachine: VendingMachine){
+//        try vendingMachine.vend(itemNamed: name)
+        tryingVend(itemNamed: name, vendingMachine: vendingMachine)
         self.name = name
+    }
+}
+
+func tryingVend(itemNamed: String, vendingMachine: VendingMachine){
+    do{
+        try vendingMachine.vend(itemNamed: itemNamed)
+    }catch VendingMachineError.invalidSelection{
+        print("유효하지 않은 선택")
+    }catch VendingMachineError.outOfStock{
+        print("품절")
+    }catch VendingMachineError.insufficientFunds(let coinsNeeded){
+        print("자금 부족 - 동전 \(coinsNeeded)개를 추가로 지급해주세요.")
+    }catch{
+        print("그 외 오류 발생 : ", error)
     }
 }
 
@@ -884,3 +900,109 @@ for (person, favoriteSnack) in favoriteSnacks{
     print(person, favoriteSnack)
     try buyFavoriteSnack(person: person, vendingMachine: machine)
 }
+
+
+// 2. do-catch 구문을 이용하여 오류처리
+let machine2: VendingMachine = VendingMachine()
+machine2.coinsDeposited = 20
+
+var purchase2: PurchasedSnack = PurchasedSnack(name: "Biscuit", vendingMachine: machine2)
+
+print(purchase.name)
+
+purchase2 = PurchasedSnack(name: "Ice Cream", vendingMachine: machine2)
+print(purchase2.name)
+
+for (person, favoriteSnack) in favoriteSnacks{
+    print(person, favoriteSnack)
+    try buyFavoriteSnack(person: person, vendingMachine: machine2)
+}
+
+// 코드가 중단되지 않고 끝까지 정상 동작한다
+
+
+// 3. 옵셔널 값으로 오류처리 -> try?를 사용하여 오류 처리. 오류를 던지면 그 코드의 반환 값은 nil
+
+
+func someThrowingFunction(shouldThrowError: Bool) throws -> Int{ // 반환타입이 Int지만 옵셔널로 반환된다
+    if shouldThrowError{
+        enum SomeError: Error{
+            case justSomeError
+        }
+        throw SomeError.justSomeError
+    }
+    
+    return 100
+}
+
+let w: Optional = try? someThrowingFunction(shouldThrowError: true)
+print(w)
+
+let e: Optional = try? someThrowingFunction(shouldThrowError: false)
+print(e)
+
+
+// 4. 오류가 발생하지 않을 것이라고 확신하는 방법
+
+let aa: Int = try! someThrowingFunction(shouldThrowError: false)
+print(aa)
+
+//let xx: Int = try! someThrowingFunction(shouldThrowError: true)// -> 오류가 발생하지 않는다는 가정하에 암시적 추출 옵셔널을 사용했기 때문에 오류가 난다
+
+
+// 5. 다시 던지기 -> 함수나 메서드는 rethrows 키워드를 사용하여 자신의 매개변수로 전달받은 함수가 오류를 던진다는 것을 나타낼 수 있다.
+// 다시 던지기가 가능하게 하려면 최소 하나 이상의 오류 발생 가능한 함수를 매개변수로 전달받아야 한다.
+
+func someThrowingFunction2() throws{
+    enum SomeError: Error{
+        case justSomeError
+    }
+    
+    throw SomeError.justSomeError
+}
+
+func someFunction2(callback: () throws -> Void) rethrows{
+    enum AnotherError: Error{
+        case justAnotherError
+    }
+    
+    do{
+        try callback() // 매개변수로 전달한 오류 던지기 함수이므로 catch 절에서 제어할 수 있다.
+    }catch{
+        throw AnotherError.justAnotherError
+    }
+    
+    do{
+        try someThrowingFunction2()
+    }catch{
+//        throw AnotherError.justAnotherError // 매개변수로 전달한 오류 던지기 함수가 아니므로 오류
+    }
+    
+//    throw AnotherError.justAnotherError // 매개변수로 전달한 오류 던지기 함수가 아니므로 오류
+
+}
+
+// 던지기 메서드를 상속받으면 다시 던지기 메서드로 상속해야한다.
+
+
+// 후처리 defer -> 코드가 어떤 식으로 빠져나가든 간에 꼭 실행해야 하는 마무리 작업을 할 수 있도록 도와준다.
+// 현재 코드 범위를 벗어나기 전까지 실행을 미루고 있다가 프로그램 실행 흐름이 코드 범위를 벗어나기 직전 실행
+// defer 구문 내부에는 break, return 등과 같이 구문을 빠져나갈 수 있는 코드 또는 오류를 던지는 코드는 작성하면 안된다.
+// 여러 개의 defer 구문이 하나의 블록 내부에 속해 있으면 맨 마지막부터 역순으로 실행
+
+for i in 0...2{
+    defer{
+        print("A", terminator: " ")
+    }
+    
+    print(i, terminator: " ")
+    
+    if i % 2 == 0{
+        defer{
+            print("", terminator: "\n")
+        }
+        
+        print("It's even", terminator: " ")
+    }
+}
+
