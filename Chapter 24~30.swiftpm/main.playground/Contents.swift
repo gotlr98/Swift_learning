@@ -1075,3 +1075,15 @@ struct GamePlayer{
 var oscar: GamePlayer = GamePlayer(name: "Oscar", health: 10, energy: 10)
 var maria: GamePlayer = GamePlayer(name: "Maria", health: 10, energy: 10)
 oscar.shareHealth(with: &maria)
+
+
+
+// 프로퍼티 접근 중 충돌
+/*
+ 다음 세 조건을 충족하면 구조체의 프로퍼티 메모리에 동시에 접근하더라도 안전이 보장된다.
+ 
+ 1. 연산 프로퍼티나 클래스 프로퍼티가 아닌 인스턴스의 저장 프로퍼티에만 접근
+ 2. 전역 변수가 아닌 지역 변수일 때
+ 3. 클로저에 의해 획득되지 않았거나, 비탈출 클로저에 의해서만 획득 되었을 때
+ */
+
