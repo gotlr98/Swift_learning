@@ -1073,5 +1073,5 @@ struct GamePlayer{
 }
 
 var oscar: GamePlayer = GamePlayer(name: "Oscar", health: 10, energy: 10)
-var maria: GamePlayer = GamePlayer(name: "Maria", health: 5, energy: 10)
+var maria: GamePlayer = GamePlayer(name: "Maria", health: 10, energy: 10)
 oscar.shareHealth(with: &maria)
