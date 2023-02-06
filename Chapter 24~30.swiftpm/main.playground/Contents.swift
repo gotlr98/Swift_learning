@@ -1087,3 +1087,42 @@ oscar.shareHealth(with: &maria)
  3. 클로저에 의해 획득되지 않았거나, 비탈출 클로저에 의해서만 획득 되었을 때
  */
 
+
+// Chapter 30 불명확 타입
+
+/*
+ 반환 타입에 불명확 타입을 사용하면 반환할 타입의 정확한 타입을 알려주지 않은채로 반환하겠다는 것을 의미
+ 프로퍼티나 서브스크립트의 선언 혹은 함수의 반환 타입 위치에 프로토콜을 쓰면서 앞에 some을 붙이면, '이 프로토콜을 준수하는 어떤 타입 중에 하나이다'는 뜻.
+ 제네릭은 정의해줄 때 정확히 어떤 타입이 들어올지 모르는 상태로 플레이스 홀더를 만들어 준다. 불명확 타입은 반대로 외부에서는 어떤 타입이 나에게 반환될지 모른다.
+ 제네릭은 외부에서 타입을 지정해 주는 것이고, 불명확 타입은 내부에서 타입을 정해서 내보내게 되는데, 밖에서는 정확히 어떤 타입인지는 몰라도 쓸 수 있는 것.
+ */
+
+protocol WrappedPrize{
+    associatedtype Prize
+    
+    var wrapColor: String! {get}
+    var prize: Prize! {get}
+}
+
+
+protocol Gundam{}
+protocol Pokemon{}
+
+struct WrappedGundam: WrappedPrize{
+    var wrapColor: String!
+    var prize: Gundam!
+}
+
+struct WrappedPokemon: WrappedPrize{
+    var wrapColor: String!
+    var prize: Pokemon!
+}
+
+struct PrizeMachine{
+    func dispenseRandomPrize() -> some WrappedPrize{ // WrappedPrize 프로토콜의 연관 타입인 Prize를 추론할 힌트를 얻지 못하기 때문에 some을 붙여서 불명확 타입으로 바꾼다.
+        return WrappedGundam()
+    }
+}
+
+let machine3: PrizeMachine = PrizeMachine()
+let wrappedPrize = machine3.dispenseRandomPrize()
