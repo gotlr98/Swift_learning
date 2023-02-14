@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct MyProjectCard: View{
+    
+    @State var showAlert: Bool = false
+    
     var body: some View{
         
         VStack(alignment: .leading, spacing: 0){
@@ -38,13 +41,22 @@ struct MyProjectCard: View{
                 
                 Spacer()
                 
-                Text("Check")
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(width: 90)
-                    .background(Color.blue)
-                    .cornerRadius(20)
+                Button(action: {
+                    print("Cliked Check Button")
+                    
+                    self.showAlert = true
+                }){
+                    Text("Check")
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(width: 90)
+                        .background(Color.blue)
+                        .cornerRadius(20)
+                }.alert(isPresented: $showAlert){
+                    Alert(title: Text("Alert"))
+                }
+            
             }
         }
         .padding()

@@ -33,9 +33,10 @@ struct MyLayoutView: View{
                     VStack{
                         MyProjectCard()
                         MyBasicCard()
-                        MyBasicCard()
-                        MyBasicCard()
-                        MyBasicCard()
+                        MyCard(icon: "tray.fill", title: "Cleaning", startTime: "15:00 PM", endTime: "15:30 PM", backgroundColor: Color.blue)
+                        MyCard(icon: "pencil.line", title: "Note", startTime: "17:00 PM", endTime: "18:00 PM", backgroundColor: Color.gray)
+                        MyCard(icon: "play.display", title: "Youtube", startTime: "19:00 PM", endTime: "20:00 PM", backgroundColor: Color.red)
+                        
                     }
                     .padding()
                     
