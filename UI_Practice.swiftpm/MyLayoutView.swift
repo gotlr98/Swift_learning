@@ -29,8 +29,15 @@ struct MyLayoutView: View{
                         
                         Spacer()
                         
-                        Image(systemName: "person.crop.circle.fill")
-                            .font(.largeTitle)
+                        
+                        NavigationLink(destination: MyProfile(isNavigationBarHidden: self.$isNavigationBarHidden)){
+                            Image(systemName: "person.crop.circle.fill")
+                                .font(.largeTitle)
+                                .foregroundColor(Color.black)
+
+                        }
+                        
+                        
                     }
                     Text("Haesik's To Do List")
                         .font(.system(size: 30))
