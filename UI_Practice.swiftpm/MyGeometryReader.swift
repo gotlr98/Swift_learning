@@ -15,26 +15,37 @@ struct MyGeometryReader: View{
             
             HStack(spacing: 0){
                 Text("1")
-                    .frame(width: geometryReader.size.width / 3)
+                    .frame(width: geometryReader.size.width / 4)
                     .foregroundColor(.white)
                     .background(Color.red)
                 Text("2")
-                    .frame(width: geometryReader.size.width / 3)
+                    .frame(width: geometryReader.size.width / 4)
                     .foregroundColor(.white)
                     .background(Color.blue)
                 Text("3")
-                    .frame(width: geometryReader.size.width / 3)
+                    .frame(width: geometryReader.size.width / 4)
                     .foregroundColor(.white)
                     .background(Color.green)
-//                Text("4")
-//                    .frame(width: 50)
-//                    .background(Color.purple)
+                Text("4")
+                    .frame(width: geometryReader.size.width / 4)
+                    .background(Color.purple)
+                
+            }
+            .frame(width : geometryReader.size.width,
+                             height : geometryReader.size.height,
+                             alignment : .center)
+            
+            VStack{
+                Text("1")
+                    .frame(height: geometryReader.size.width / 2)
+                    .foregroundColor(.white)
+                    .background(Color.red)
             }
             .background(Color.yellow)
 //            .position(x: geometryReader.frame(in: .local).midX, y: geometryReader.frame(in: .local).midY)
             .frame(width : geometryReader.size.width,
                              height : geometryReader.size.height,
-                             alignment : .center)
+                   alignment : .top)
         }
         
 
