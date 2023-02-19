@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct MyGeometryReader: View{
+    
+    let centerPosition: (GeometryProxy) -> CGPoint = {  proxy in
+        return CGPoint(x: proxy.frame(in: .local).midX,
+                       y: proxy.frame(in: .local).midY)
+    }
+    
     var body: some View{
         
         
