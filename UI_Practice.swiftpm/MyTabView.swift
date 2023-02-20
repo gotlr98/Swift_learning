@@ -11,15 +11,18 @@ struct MyTabView: View{
     var body: some View{
         TabView{
             ZStack{
-                        Color(red: 52 / 255, green: 152 / 255, blue: 219 / 255).ignoresSafeArea()
-                    }
+                
+                Color.yellow.ignoresSafeArea()
+                Text("장바구니")
+                }
+                
                 .tabItem{
                     Image(systemName: "airplane")
                     Text("No.1")
                 }
                 .tag(1)
             ZStack{
-                        Color(red: 52 / 255, green: 20 / 255, blue: 219 / 255).ignoresSafeArea()
+                Color.blue.ignoresSafeArea()
                     }
                 .tabItem{
                     Image(systemName: "flame.fill")
@@ -27,13 +30,14 @@ struct MyTabView: View{
                 }
                     
             ZStack{
-                        Color(red: 52 / 255, green: 152 / 255, blue: 219 / 255).ignoresSafeArea()
+                Color.green.ignoresSafeArea()
                     }
                 .tabItem{
                     Image(systemName: "doc.fill")
                     Text("No.3")
                 }
         }
+//        .withAnimation()
     }
 }
 
