@@ -17,6 +17,7 @@ let package = Package(
             name: "UI_Practice",
             targets: ["AppModule"],
             bundleIdentifier: "sik.UI-Practice",
+            teamIdentifier: "JNYZF4BBNC",
             displayVersion: "1.0",
             bundleVersion: "1",
             appIcon: .placeholder(icon: .chatMessage),
