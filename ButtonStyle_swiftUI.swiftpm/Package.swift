@@ -8,19 +8,19 @@ import PackageDescription
 import AppleProductTypes
 
 let package = Package(
-    name: "Test_MyDevice",
+    name: "ButtonStyle_swiftUI",
     platforms: [
         .iOS("15.2")
     ],
     products: [
         .iOSApplication(
-            name: "Test_MyDevice",
+            name: "ButtonStyle_swiftUI",
             targets: ["AppModule"],
-            bundleIdentifier: "sik.Test-MyDevice",
+            bundleIdentifier: "sik.ButtonStyle-swiftUI",
             teamIdentifier: "JNYZF4BBNC",
             displayVersion: "1.0",
             bundleVersion: "1",
-            appIcon: .placeholder(icon: .calendar),
+            appIcon: .placeholder(icon: .moon),
             accentColor: .presetColor(.purple),
             supportedDeviceFamilies: [
                 .pad,
@@ -31,11 +31,6 @@ let package = Package(
                 .landscapeRight,
                 .landscapeLeft,
                 .portraitUpsideDown(.when(deviceFamilies: [.pad]))
-            ],
-            capabilities: [
-                .camera(purposeString: "Unknown Usage Description"),
-                .photoLibrary(purposeString: "Unknown Usage Description"),
-                .photoLibraryAdd(purposeString: "Unknown Usage Description")
             ]
         )
     ],
