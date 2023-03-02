@@ -32,7 +32,7 @@ struct ContentView: View {
             // .fix 고정
             // .adaptive 여러개 채우기 - 계산해서 분할로
             // .flexible 하나만 채우기
-            LazyVGrid(columns: [GridItem(.fixed(100)), GridItem(.adaptive(minimum: 200))], content: {
+            LazyVGrid(columns: [GridItem(.fixed(100)), GridItem(.adaptive(minimum: 200))],spacing: 10, content: {
                 
                 ForEach(dummyDataArray, content: { (dataItem: MyModel) in
                     Rectangle()

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A2A218629B06DF600AF9FA4 /* SegmentLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2A218529B06DF600AF9FA4 /* SegmentLayoutView.swift */; };
 		8A946F9729AF0EED00D00D0E /* LazyVGrid_tutorialApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A946F9629AF0EED00D00D0E /* LazyVGrid_tutorialApp.swift */; };
 		8A946F9929AF0EED00D00D0E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A946F9829AF0EED00D00D0E /* ContentView.swift */; };
 		8A946F9B29AF0EED00D00D0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A946F9A29AF0EED00D00D0E /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A2A218529B06DF600AF9FA4 /* SegmentLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentLayoutView.swift; sourceTree = "<group>"; };
 		8A946F9329AF0EED00D00D0E /* LazyVGrid_tutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LazyVGrid_tutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A946F9629AF0EED00D00D0E /* LazyVGrid_tutorialApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyVGrid_tutorialApp.swift; sourceTree = "<group>"; };
 		8A946F9829AF0EED00D00D0E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 			children = (
 				8A946F9629AF0EED00D00D0E /* LazyVGrid_tutorialApp.swift */,
 				8A946F9829AF0EED00D00D0E /* ContentView.swift */,
+				8A2A218529B06DF600AF9FA4 /* SegmentLayoutView.swift */,
 				8A946F9A29AF0EED00D00D0E /* Assets.xcassets */,
 				8A946F9C29AF0EED00D00D0E /* Preview Content */,
 			);
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A2A218629B06DF600AF9FA4 /* SegmentLayoutView.swift in Sources */,
 				8A946F9929AF0EED00D00D0E /* ContentView.swift in Sources */,
 				8A946F9729AF0EED00D00D0E /* LazyVGrid_tutorialApp.swift in Sources */,
 			);
