@@ -60,6 +60,8 @@ struct SegmentLayoutView: View{
             .pickerStyle(SegmentedPickerStyle())
             
             ScrollView{
+                
+                // Stack vs Lazy - Stack은 한번에 그리고, Lazy는 동적으로 그린다. 메모리에 유리할 듯
                 LazyVGrid(columns: selectedLayoutType.columns, content:{
                     ForEach(dummyData){ dataItem in
                         
