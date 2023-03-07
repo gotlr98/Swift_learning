@@ -43,10 +43,9 @@ struct ContentView: View {
                 GeometryReader{ geo in
                     
                     NavigationLink(destination:{
-                        MyWebView(urlToLoad: "www.naver.com")
+                        MyWebView(urlToLoad: "https://www.naver.com")
                         
                     }
-
                     , label: {
                         VStack{
                             Rectangle()
@@ -60,12 +59,11 @@ struct ContentView: View {
                                 }
                             
                         }
-                        .position(x: geo.size.width / 2, y: geo.size.height / 1.7)
-                        
                     })
+                    .position(x: geo.size.width / 2, y: geo.size.height / 1.7)
                 
                     NavigationLink(destination:{
-                        MyWebView(urlToLoad: "www.google.com")
+                        MyWebView(urlToLoad: "https://www.google.com")
                     
                     }
                     , label: {
@@ -80,11 +78,9 @@ struct ContentView: View {
                                         .foregroundColor(Color.white)
                                         .fontWeight(.black)
                                 }
-                                
                         }
-                        .position(x: geo.size.width / 2, y: geo.size.height / 1.5)
- 
                     })
+                    .position(x: geo.size.width / 2, y: geo.size.height / 1.5)
                 }
                
             }
@@ -98,5 +94,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+//        MyWebView(urlToLoad: "https://www.naver.com")
     }
 }
