@@ -7,6 +7,9 @@
 
 import SwiftUI
 import WebKit
+import UIKit
+
+
 
 struct MyWebView: UIViewRepresentable {
    
@@ -41,6 +44,16 @@ struct ContentView: View {
             VStack {
                 
                 GeometryReader{ geo in
+                    
+                    Text("Korean Traditional Wine \n             Community")
+                        .frame(alignment: .center)
+                        .foregroundColor(Color.white)
+                        .fontWeight(.bold)
+                        .font(.system(size: 20))
+                        .position(x: geo.size.width / 2, y: geo.size.height / 5)
+                    
+                    Image("AppIcon")
+                        
                     
                     NavigationLink(destination:{
                         MyWebView(urlToLoad: "https://www.naver.com")
@@ -82,13 +95,13 @@ struct ContentView: View {
                     })
                     .position(x: geo.size.width / 2, y: geo.size.height / 1.5)
                 }
-               
+                
             }
-            .padding()
+            .background(Color.indigo)
         }
         
-        
     }
+        
 }
 
 struct ContentView_Previews: PreviewProvider {
