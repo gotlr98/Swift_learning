@@ -53,7 +53,7 @@ struct ContentView: View {
                         .font(.system(size: 20))
                         .position(x: geo.size.width / 2, y: geo.size.height / 5)
                     
-                    Image("AppIcon")
+//                    Image("AppIcon")
                         
                     
                     NavigationLink(destination:{
