@@ -23,6 +23,8 @@
 		8A25A79429C172FE001BFF01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A25A79329C172FE001BFF01 /* AppDelegate.swift */; };
 		8A25A79629C17953001BFF01 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A25A79529C17953001BFF01 /* SceneDelegate.swift */; };
 		8A25A79829C17BAD001BFF01 /* Kakao_AuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A25A79729C17BAD001BFF01 /* Kakao_AuthVM.swift */; };
+		8A25A79A29C194D9001BFF01 /* MyApi.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A25A79929C194D9001BFF01 /* MyApi.plist */; };
+		8A25A79C29C19512001BFF01 /* Kakao_Login++Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A25A79B29C19512001BFF01 /* Kakao_Login++Bundle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		8A25A79329C172FE001BFF01 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A25A79529C17953001BFF01 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8A25A79729C17BAD001BFF01 /* Kakao_AuthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kakao_AuthVM.swift; sourceTree = "<group>"; };
+		8A25A79929C194D9001BFF01 /* MyApi.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = MyApi.plist; sourceTree = "<group>"; };
+		8A25A79B29C19512001BFF01 /* Kakao_Login++Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Kakao_Login++Bundle.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,8 @@
 				8A25A77029C16F6B001BFF01 /* Kakao_Login_TutorialApp.swift */,
 				8A25A79329C172FE001BFF01 /* AppDelegate.swift */,
 				8A25A79729C17BAD001BFF01 /* Kakao_AuthVM.swift */,
+				8A25A79929C194D9001BFF01 /* MyApi.plist */,
+				8A25A79B29C19512001BFF01 /* Kakao_Login++Bundle.swift */,
 				8A25A79529C17953001BFF01 /* SceneDelegate.swift */,
 				8A25A77229C16F6B001BFF01 /* ContentView.swift */,
 				8A25A77429C16F6C001BFF01 /* Assets.xcassets */,
@@ -170,6 +176,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A25A79A29C194D9001BFF01 /* MyApi.plist in Resources */,
 				8A25A77829C16F6C001BFF01 /* Preview Assets.xcassets in Resources */,
 				8A25A77529C16F6C001BFF01 /* Assets.xcassets in Resources */,
 			);
@@ -185,6 +192,7 @@
 				8A25A79429C172FE001BFF01 /* AppDelegate.swift in Sources */,
 				8A25A77329C16F6B001BFF01 /* ContentView.swift in Sources */,
 				8A25A77129C16F6B001BFF01 /* Kakao_Login_TutorialApp.swift in Sources */,
+				8A25A79C29C19512001BFF01 /* Kakao_Login++Bundle.swift in Sources */,
 				8A25A79829C17BAD001BFF01 /* Kakao_AuthVM.swift in Sources */,
 				8A25A79629C17953001BFF01 /* SceneDelegate.swift in Sources */,
 			);
@@ -322,7 +330,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Kakao-Login-Tutorial-Info.plist";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -353,7 +361,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Kakao-Login-Tutorial-Info.plist";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
