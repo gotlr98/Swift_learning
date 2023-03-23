@@ -26,3 +26,4 @@ struct Kakao_Login_TutorialApp: App {
         }
     }
 }
+
