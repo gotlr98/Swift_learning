@@ -13,6 +13,8 @@
 		8A29A21529CBEA3800193D61 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A29A21429CBEA3800193D61 /* Persistence.swift */; };
 		8A29A21829CBEA3800193D61 /* Memo_Tutorial.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8A29A21629CBEA3800193D61 /* Memo_Tutorial.xcdatamodeld */; };
 		8A29A21F29CBFBE400193D61 /* MainListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A29A21E29CBFBE400193D61 /* MainListView.swift */; };
+		8A29A22329CC01C200193D61 /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A29A22229CC01C200193D61 /* Memo.swift */; };
+		8A29A22529CC059A00193D61 /* MemoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A29A22429CC059A00193D61 /* MemoStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,8 @@
 		8A29A21429CBEA3800193D61 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		8A29A21729CBEA3800193D61 /* Memo_Tutorial.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Memo_Tutorial.xcdatamodel; sourceTree = "<group>"; };
 		8A29A21E29CBFBE400193D61 /* MainListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListView.swift; sourceTree = "<group>"; };
+		8A29A22229CC01C200193D61 /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memo.swift; sourceTree = "<group>"; };
+		8A29A22429CC059A00193D61 /* MemoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,8 @@
 		8A29A22129CC017800193D61 /* Memory */ = {
 			isa = PBXGroup;
 			children = (
+				8A29A22229CC01C200193D61 /* Memo.swift */,
+				8A29A22429CC059A00193D61 /* MemoStore.swift */,
 			);
 			path = Memory;
 			sourceTree = "<group>";
@@ -160,9 +166,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A29A21529CBEA3800193D61 /* Persistence.swift in Sources */,
+				8A29A22529CC059A00193D61 /* MemoStore.swift in Sources */,
 				8A29A21F29CBFBE400193D61 /* MainListView.swift in Sources */,
 				8A29A20C29CBEA3700193D61 /* Memo_TutorialApp.swift in Sources */,
 				8A29A21829CBEA3800193D61 /* Memo_Tutorial.xcdatamodeld in Sources */,
+				8A29A22329CC01C200193D61 /* Memo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
