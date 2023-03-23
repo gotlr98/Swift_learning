@@ -12,6 +12,9 @@ struct DetailView: View {
     @ObservedObject var memo: Memo
     @EnvironmentObject var store: MemoStore
     @State private var showComposer = false
+    @State private var showDeleteAlert = false
+    
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         
@@ -38,6 +41,23 @@ struct DetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar{
             ToolbarItemGroup(placement: .bottomBar){
+                Button(action: {
+                    showDeleteAlert = true
+                }, label: {
+                    Image(systemName: "trash")
+                        .foregroundColor(Color.red)
+                })
+                .alert("Delete Check", isPresented: $showDeleteAlert, actions: {
+                    Button(role: .destructive, action: {
+                        store.delete(memo: memo)
+                        dismiss()
+                    }, label: {
+                        Text("Delete")
+                    })
+                }, message: {
+                    Text("Delete the Memo?")
+                })
+                
                 Button(action: {
                     showComposer = true
                 }, label: {
