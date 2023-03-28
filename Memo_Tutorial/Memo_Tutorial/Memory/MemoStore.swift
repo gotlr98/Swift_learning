@@ -21,7 +21,8 @@ class MemoStore: ObservableObject{
     @Published var list: [Memo]
     
     init(){
-        list = RealmData().list
+        let realmData = RealmData()
+        list = realmData.list
     }
     
     func insert(memo: String){
@@ -34,10 +35,10 @@ class MemoStore: ObservableObject{
             realm.add(realmData)
           }
     }
-    
-    func getMemo() -> Results<RealmData> {
-      let realm = try! Realm()
-      let filteredData = realm.objects(RealmData.self)
+//
+//    func getMemo() -> Results<RealmData> {
+//      let realm = try! Realm()
+//      let filteredData = realm.objects(RealmData.self)
 //      let arrData = Array(filteredData)
 //      guard let resultData = arrData else { return }
 //
