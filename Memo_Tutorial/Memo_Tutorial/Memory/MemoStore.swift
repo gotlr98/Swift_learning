@@ -9,7 +9,8 @@ import Foundation
 import RealmSwift
 
 class RealmData: Object {
-    dynamic var list: [Memo] = [
+    
+    var list: [Memo] = [
         Memo(content: "Hello", insertDate: Date.now),
         Memo(content: "Awesome", insertDate: Date.now.addingTimeInterval(3600 * -24)),
         Memo(content: "Hello", insertDate: Date.now.addingTimeInterval(3600 * -48))
@@ -18,12 +19,17 @@ class RealmData: Object {
 }
 
 class MemoStore: ObservableObject{
-    @Published var list: [Memo]
+    @Published var list: [Memo] = [
+        Memo(content: "Hello", insertDate: Date.now),
+        Memo(content: "Awesome", insertDate: Date.now.addingTimeInterval(3600 * -24)),
+        Memo(content: "Hello", insertDate: Date.now.addingTimeInterval(3600 * -48))
+        
+    ]
     
-    init(){
-        let realmData = RealmData()
-        list = realmData.list
-    }
+//    init(){
+//        let realmData = try! RealmData()
+//        list = realmData.list
+//    }
     
     func insert(memo: String){
         let realmData = RealmData()
@@ -35,14 +41,14 @@ class MemoStore: ObservableObject{
             realm.add(realmData)
           }
     }
-//
-//    func getMemo() -> Results<RealmData> {
-//      let realm = try! Realm()
-//      let filteredData = realm.objects(RealmData.self)
-//      let arrData = Array(filteredData)
+
+    func getMemo() -> [RealmData] {
+      let realm = try! Realm()
+      let filteredData = realm.objects(RealmData.self)
+      let arrData = Array(filteredData)
 //      guard let resultData = arrData else { return }
-//
-      return filteredData
+
+      return arrData
     }
     
     func update(memo: Memo?, content: String){

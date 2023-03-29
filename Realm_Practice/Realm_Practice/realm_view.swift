@@ -9,42 +9,37 @@ import SwiftUI
 import RealmSwift
 
 class RealmData: Object {
-  @objc dynamic var name = ""
-  @objc dynamic var age = 0
-    
+    @objc dynamic var name = ""
+    @objc dynamic var age = 0
 }
 
 private func setRealmData() {
-  let realmData = RealmData()
-  realmData.name = "그린"
-  realmData.age = 100
-  
-  let realm = try! Realm()
-  try! realm.write {
+    let realmData = RealmData()
+    realmData.name = "그린"
+    realmData.age = 100
+
+    let realm = try! Realm()
+    try! realm.write {
     realm.add(realmData)
   }
 }
 
 private func getRealmData() -> RealmData {
-  let realm = try! Realm()
-  let filteredData = realm.objects(RealmData.self)
+    let realm = try! Realm()
+    let filteredData = realm.objects(RealmData.self)
     .filter("age > 50")
-  let arrData = Array(filteredData)
-  guard let resultData = arrData.first else { return RealmData() }
-  
-  return resultData
+    let arrData = Array(filteredData)
+    guard let resultData = arrData.first else { return RealmData() }
+
+    return resultData
 }
 
 private func removeRealmData() {
-  let realm = try! Realm()
-  try! realm.write {
+    let realm = try! Realm()
+    try! realm.write {
     realm.delete(realm.objects(RealmData.self))
-  }
+    }
 }
-
-
-
-
 
 struct realm_view: View {
     @State var name: String = "이름 데이터를 가져와주세요."
