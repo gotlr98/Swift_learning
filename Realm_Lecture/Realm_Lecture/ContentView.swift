@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  Realm
+//  Realm_Lecture
 //
 //  Created by HaeSik Jang on 2023/03/29.
 //
@@ -10,10 +10,14 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Button(action: {
+                setId()
+                
+                read()
+            }, label: {
+                Rectangle()
+                    .frame(width: 50, height: 50)
+            })
         }
         .padding()
     }
