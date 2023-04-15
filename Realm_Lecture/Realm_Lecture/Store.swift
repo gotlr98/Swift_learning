@@ -9,14 +9,16 @@ import Foundation
 import RealmSwift
 
 class Store: Object{
-    @Persisted var id: Int
+    @Persisted var name: String
+    
+    @Persisted(primaryKey: true) var _id: ObjectId
 }
 
 
 
 func setId(){
     let myStore = Store()
-    myStore.id = 1
+    myStore.name = "sik"
     
     let realm = try! Realm()
     try! realm.write(){
