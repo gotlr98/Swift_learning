@@ -43,14 +43,14 @@ class MainViewController: UIViewController {
         
         animationView.play{ (finish) in
              
-            print("Animiation finished")
+            print("Animiation")
             
             self.view.backgroundColor = .white
             self.animationView.removeFromSuperview()
             
             self.view.addSubview(self.titleLabel)
             
-            self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
+//            self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
             self.titleLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
             self.titleLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         }
