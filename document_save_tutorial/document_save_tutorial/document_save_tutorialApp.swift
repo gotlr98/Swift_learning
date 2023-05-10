@@ -11,7 +11,7 @@ import SwiftUI
 struct document_save_tutorialApp: App {
     var body: some Scene {
         WindowGroup {
-            Image_Test()
+            WebView_View()
         }
     }
 }

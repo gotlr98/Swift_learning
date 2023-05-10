@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "prettyaxis",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/RiuHDuo/PrettyAxis.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "280f8cf0373c52fc0eb32bf9dbebeecde36ccd95"
+      }
+    },
+    {
       "identity" : "realm-core",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-core.git",

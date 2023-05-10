@@ -17,6 +17,10 @@
 		8A36993B29E3FD7E0098CBE4 /* Drink_Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A36993A29E3FD7E0098CBE4 /* Drink_Realm.swift */; };
 		8A36993E29E3FDA40098CBE4 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 8A36993D29E3FDA40098CBE4 /* Realm */; };
 		8A36994029E3FDA40098CBE4 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8A36993F29E3FDA40098CBE4 /* RealmSwift */; };
+		8A93F60529ED3EA400663E96 /* PrettyAxis in Frameworks */ = {isa = PBXBuildFile; productRef = 8A93F60429ED3EA400663E96 /* PrettyAxis */; };
+		8AF45CCA2A01FF2E009713BC /* Store_WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF45CC92A01FF2E009713BC /* Store_WebView.swift */; };
+		8AF45CCC2A02024C009713BC /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF45CCB2A02024C009713BC /* Store.swift */; };
+		8AF45CCE2A020286009713BC /* WebView_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF45CCD2A020286009713BC /* WebView_View.swift */; };
 		8AFE5E2529E670D000937903 /* Image_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE5E2429E670D000937903 /* Image_Test.swift */; };
 		8AFE5E2829E6710500937903 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8AFE5E2729E6710500937903 /* Kingfisher */; };
 /* End PBXBuildFile section */
@@ -32,6 +36,9 @@
 		8A36993629E3F04F0098CBE4 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		8A36993829E3FD740098CBE4 /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		8A36993A29E3FD7E0098CBE4 /* Drink_Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink_Realm.swift; sourceTree = "<group>"; };
+		8AF45CC92A01FF2E009713BC /* Store_WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store_WebView.swift; sourceTree = "<group>"; };
+		8AF45CCB2A02024C009713BC /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		8AF45CCD2A020286009713BC /* WebView_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView_View.swift; sourceTree = "<group>"; };
 		8AFE5E2429E670D000937903 /* Image_Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image_Test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -43,6 +50,7 @@
 				8AFE5E2829E6710500937903 /* Kingfisher in Frameworks */,
 				8A36994029E3FDA40098CBE4 /* RealmSwift in Frameworks */,
 				8A36993E29E3FDA40098CBE4 /* Realm in Frameworks */,
+				8A93F60529ED3EA400663E96 /* PrettyAxis in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +86,9 @@
 				8A36992929E3CB970098CBE4 /* Assets.xcassets */,
 				8AFE5E2429E670D000937903 /* Image_Test.swift */,
 				8A36992B29E3CB970098CBE4 /* Preview Content */,
+				8AF45CC92A01FF2E009713BC /* Store_WebView.swift */,
+				8AF45CCB2A02024C009713BC /* Store.swift */,
+				8AF45CCD2A020286009713BC /* WebView_View.swift */,
 			);
 			path = document_save_tutorial;
 			sourceTree = "<group>";
@@ -110,6 +121,7 @@
 				8A36993D29E3FDA40098CBE4 /* Realm */,
 				8A36993F29E3FDA40098CBE4 /* RealmSwift */,
 				8AFE5E2729E6710500937903 /* Kingfisher */,
+				8A93F60429ED3EA400663E96 /* PrettyAxis */,
 			);
 			productName = document_save_tutorial;
 			productReference = 8A36992229E3CB960098CBE4 /* document_save_tutorial.app */;
@@ -142,6 +154,7 @@
 			packageReferences = (
 				8A36993C29E3FDA40098CBE4 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				8AFE5E2629E6710500937903 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				8A93F60329ED3EA400663E96 /* XCRemoteSwiftPackageReference "PrettyAxis" */,
 			);
 			productRefGroup = 8A36992329E3CB960098CBE4 /* Products */;
 			projectDirPath = "";
@@ -169,8 +182,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AF45CCE2A020286009713BC /* WebView_View.swift in Sources */,
+				8AF45CCA2A01FF2E009713BC /* Store_WebView.swift in Sources */,
 				8A36993429E3CCB20098CBE4 /* ImageManager.swift in Sources */,
 				8A36993729E3F04F0098CBE4 /* Image.swift in Sources */,
+				8AF45CCC2A02024C009713BC /* Store.swift in Sources */,
 				8A36993B29E3FD7E0098CBE4 /* Drink_Realm.swift in Sources */,
 				8A36992829E3CB960098CBE4 /* ContentView.swift in Sources */,
 				8A36993929E3FD740098CBE4 /* Drink.swift in Sources */,
@@ -392,6 +408,14 @@
 				kind = branch;
 			};
 		};
+		8A93F60329ED3EA400663E96 /* XCRemoteSwiftPackageReference "PrettyAxis" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RiuHDuo/PrettyAxis.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		8AFE5E2629E6710500937903 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -412,6 +436,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8A36993C29E3FDA40098CBE4 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		8A93F60429ED3EA400663E96 /* PrettyAxis */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8A93F60329ED3EA400663E96 /* XCRemoteSwiftPackageReference "PrettyAxis" */;
+			productName = PrettyAxis;
 		};
 		8AFE5E2729E6710500937903 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
