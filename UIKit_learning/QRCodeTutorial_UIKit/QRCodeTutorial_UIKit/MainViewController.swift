@@ -38,8 +38,8 @@ class MainViewController: UIViewController, QRCodeReaderViewControllerDelegate {
         let requestObj = URLRequest(url: url!)
         webView.load(requestObj)
         
-        qrcodeButton.layer.borderWidth = 3
-        qrcodeButton.layer.borderColor = UIColor.blue.cgColor
+        qrcodeButton.layer.borderWidth = 2
+        qrcodeButton.layer.borderColor = UIColor.black.cgColor
         qrcodeButton.layer.cornerRadius = 10
         
         qrcodeButton.addTarget(self, action: #selector(qrcodeReader), for: .touchUpInside)
