@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Custom Pop Up View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="AlertPopUpVC" id="Y6W-OH-hqX" customClass="CustomPopUpViewController" customModule="CustomePopUp_Tutorial" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ff-OX-mDp" userLabel="bgBtn">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="bgBtnClicekd:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="R0p-7x-i25"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IBs-xp-Ass" userLabel="contentView">
+                                <rect key="frame" x="71.666666666666686" y="301" width="250" height="250"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="poppy" translatesAutoresizingMaskIntoConstraints="NO" id="bm1-LE-Kdl">
+                                        <rect key="frame" x="64.999999999999986" y="20" width="120.00000000000001" height="120"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="120" id="ngL-J0-5JL"/>
+                                            <constraint firstAttribute="width" constant="120" id="uSN-0w-jfC"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I'm HaeSik" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9x2-VX-YDq">
+                                        <rect key="frame" x="84.333333333333329" y="148" width="80.999999999999986" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l0j-66-o0L">
+                                        <rect key="frame" x="99.666666666666671" y="208" width="50.333333333333329" height="38"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Go">
+                                            <backgroundConfiguration key="background">
+                                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                                            </backgroundConfiguration>
+                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="onGoBtnClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="S01-gq-OY4"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="7jN-V8-3ln"/>
+                                    <constraint firstItem="9x2-VX-YDq" firstAttribute="top" secondItem="bm1-LE-Kdl" secondAttribute="bottom" constant="8" id="CpI-SQ-KGm"/>
+                                    <constraint firstItem="bm1-LE-Kdl" firstAttribute="centerX" secondItem="IBs-xp-Ass" secondAttribute="centerX" id="KUz-i0-jhV"/>
+                                    <constraint firstAttribute="bottom" secondItem="l0j-66-o0L" secondAttribute="bottom" constant="4" id="LzM-f1-Mvb"/>
+                                    <constraint firstItem="9x2-VX-YDq" firstAttribute="centerX" secondItem="IBs-xp-Ass" secondAttribute="centerX" id="Yhd-dH-eKR"/>
+                                    <constraint firstItem="l0j-66-o0L" firstAttribute="centerX" secondItem="IBs-xp-Ass" secondAttribute="centerX" id="mJa-hK-1AU"/>
+                                    <constraint firstAttribute="height" constant="250" id="qzW-A3-MRW"/>
+                                    <constraint firstItem="bm1-LE-Kdl" firstAttribute="top" secondItem="IBs-xp-Ass" secondAttribute="top" constant="20" id="rNt-kz-7Yk"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.64461096938775508" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="3ff-OX-mDp" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="7Kl-gJ-YXI"/>
+                            <constraint firstItem="IBs-xp-Ass" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="Nz0-7X-dIB"/>
+                            <constraint firstItem="IBs-xp-Ass" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="OlC-3F-4CG"/>
+                            <constraint firstItem="3ff-OX-mDp" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="SQg-Gc-leo"/>
+                            <constraint firstItem="3ff-OX-mDp" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="kbh-ee-aQh"/>
+                            <constraint firstItem="3ff-OX-mDp" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="yjS-wM-Aln"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="ContentView" destination="IBs-xp-Ass" id="jyq-bD-uaI"/>
+                        <outlet property="bgBtn" destination="3ff-OX-mDp" id="p5P-eq-myX"/>
+                        <outlet property="goBtn" destination="l0j-66-o0L" id="ysc-nO-gY2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="75.572519083969468" y="-2.1126760563380285"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="poppy" width="400" height="533.5"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
