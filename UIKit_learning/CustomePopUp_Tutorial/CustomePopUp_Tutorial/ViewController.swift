@@ -19,7 +19,6 @@ class ViewController: UIViewController {
 
     
     @IBAction func onCreatePopUpBtnClicked(_ sender: UIButton) {
-        print("button clicked")
         
         let storyBoard = UIStoryboard.init(name: "PopUp", bundle: nil)
         let alertPopUpVC = storyBoard.instantiateViewController(identifier: "AlertPopUpVC") as CustomPopUpViewController
@@ -31,7 +30,6 @@ class ViewController: UIViewController {
         alertPopUpVC.modalTransitionStyle = .crossDissolve
         
         alertPopUpVC.subscribeBtnCompletion = {
-            print("completion block called")
             
             let URL = URL(string: "https://www.youtube.com")
             self.myWebView.load(URLRequest(url: URL!))
