@@ -14,18 +14,25 @@ class CustomPopUpViewController: UIViewController{
     @IBOutlet weak var bgBtn: UIButton!
     @IBOutlet weak var ContentView: UIView!
     
+    @IBOutlet weak var openChatBtn: UIButton!
+    
     var subscribeBtnCompletion: (() -> Void)?
+    
+    var myPopUpDelegate: PopUpDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         ContentView.layer.cornerRadius = 30
         goBtn.layer.cornerRadius = 10
+        openChatBtn.layer.cornerRadius = 10
         
     }
+    
     @IBAction func bgBtnClicekd(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
+    
     @IBAction func onGoBtnClicked(_ sender: UIButton) {
         
         self.dismiss(animated: true)
@@ -35,5 +42,12 @@ class CustomPopUpViewController: UIViewController{
             // 메인에 알리기
             subscribeBtnCompletion()
         }
+    }
+    
+    @IBAction func onOpenChatBtnClicked(_ sender: UIButton) {
+        
+        myPopUpDelegate?.onOpenChatBtnClicekd()
+        
+        self.dismiss(animated: true)
     }
 }

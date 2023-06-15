@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, PopUpDelegate {
 
     @IBOutlet weak var PopUpBtn: UIButton!
     @IBOutlet weak var myWebView: WKWebView!
@@ -35,9 +35,14 @@ class ViewController: UIViewController {
             self.myWebView.load(URLRequest(url: URL!))
         }
         
+        alertPopUpVC.myPopUpDelegate = self
+        
         self.present(alertPopUpVC, animated: true)
     }
     
+    func onOpenChatBtnClicekd() {
+        <#code#>
+    }
     
 }
 
