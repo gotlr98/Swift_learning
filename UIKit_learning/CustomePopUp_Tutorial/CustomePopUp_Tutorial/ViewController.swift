@@ -8,13 +8,34 @@
 import UIKit
 import WebKit
 
+let notificationName = "EventNotification"
+
 class ViewController: UIViewController, PopUpDelegate {
 
     @IBOutlet weak var PopUpBtn: UIButton!
     @IBOutlet weak var myWebView: WKWebView!
+    
+    deinit{
+        
+        // remove observer when viewcontroller dismiss
+        
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        // Notification Setting
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(loadWebView), name: Notification.Name(rawValue: notificationName), object: nil)
+    }
+    
+    @objc fileprivate func loadWebView(){
+        
+        let URL = URL(string: "https://www.youtube.com/watch?v=5jY0lKolkoI")
+        self.myWebView.load(URLRequest(url: URL!))
     }
 
     
@@ -41,7 +62,7 @@ class ViewController: UIViewController, PopUpDelegate {
     }
     
     func onOpenChatBtnClicekd() {
-        <#code#>
+        print(1)
     }
     
 }

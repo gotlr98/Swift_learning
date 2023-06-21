@@ -29,6 +29,15 @@ class CustomPopUpViewController: UIViewController{
         
     }
     
+    @IBAction func youtubeBtnClicked(_ sender: UIButton) {
+        
+        print("youtubeBtnClicked")
+        
+        NotificationCenter.default.post(name: Notification.Name(rawValue: notificationName), object: nil)
+        
+        dismiss(animated: true)
+    }
+    
     @IBAction func bgBtnClicekd(_ sender: UIButton) {
         self.dismiss(animated: true)
     }

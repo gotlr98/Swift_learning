@@ -63,9 +63,78 @@ import Foundation
 
 // # 2439
 
-let num = Int(readLine()!)!
-let count = num-1
+//let num = Int(readLine()!)!
+//
+//for i in 1..<num+1{
+//    for j in stride(from: num, to: 0, by: -1){
+//        if j > i{
+//            print(" ", terminator: "")
+//        }
+//        else{
+//            print("*", terminator: "")
+//        }
+//
+//    }
+//    print("\n", terminator: "")
+//}
 
-for i in 1..<num+1{
-    print(String(repeating: "*", count: num))
-}
+// # 2475
+
+//let num = readLine()!.split(separator: " ").map{Int(String($0))!}
+//var sum = 0
+//for i in num{
+//    sum += i*i
+//}
+//
+//print(sum % 10)
+
+// # 2562
+
+//var num: [Int] = []
+//var max = -1
+//var index = 0
+//for _ in 0..<9{
+//    num.append(Int(readLine()!)!)
+//}
+//
+//for i in 0..<9{
+//    if num[i] > max{
+//        max = num[i]
+//        index = i+1
+//    }
+//}
+//print(max)
+//print(index)
+
+
+// #2577
+
+//var num: [Int] = []
+//var sum = 0
+//
+//var dict: [Int: Int] = [:]
+//
+//for _ in 0..<3{
+//    num.append(Int(readLine()!)!)
+//}
+//
+//sum = num[0] * num[1] * num[2]
+//
+//for i in 0..<10{
+//    dict[i] = 0
+//}
+//
+//while sum > 0{
+//    let rem = sum % 10
+//    dict[rem]! += 1
+//    sum /= 10
+//}
+//
+//let sort = dict.sorted{ (first, second) in
+//    return first.key < second.key
+//}
+//
+//for (_, value) in sort{
+//    print(value)
+//}
+
