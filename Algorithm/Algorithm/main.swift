@@ -138,3 +138,34 @@ import Foundation
 //    print(value)
 //}
 
+
+// # 2675
+
+let num = Int(readLine()!)!
+//var dict: [String: Int] = [:]
+
+var count: [Int] = []
+var word: [String] = []
+
+for _ in 0..<num{
+    let a = readLine()!.split(separator: " ")
+    count.append(Int(a[0])!)
+    word.append(String(a[1]))
+//    dict[String(a[1])] = Int(a[0])
+}
+
+for i in 0..<count.count{
+    for j in word[i]{
+        print(String(repeating: j, count: count[i]), terminator: "")
+    }
+    print("\n", terminator: "")
+}
+
+//for (key, value) in dict{
+//    for i in key{
+//        print(String(repeating: i, count: value), terminator: "")
+//
+//    }
+//    print("\n", terminator: "")
+//}
+
