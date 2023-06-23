@@ -141,31 +141,59 @@ import Foundation
 
 // # 2675
 
-let num = Int(readLine()!)!
-//var dict: [String: Int] = [:]
-
-var count: [Int] = []
-var word: [String] = []
-
-for _ in 0..<num{
-    let a = readLine()!.split(separator: " ")
-    count.append(Int(a[0])!)
-    word.append(String(a[1]))
-//    dict[String(a[1])] = Int(a[0])
-}
-
-for i in 0..<count.count{
-    for j in word[i]{
-        print(String(repeating: j, count: count[i]), terminator: "")
-    }
-    print("\n", terminator: "")
-}
-
-//for (key, value) in dict{
-//    for i in key{
-//        print(String(repeating: i, count: value), terminator: "")
+//let num = Int(readLine()!)!
 //
+//var count: [Int] = []
+//var word: [String] = []
+//
+//for _ in 0..<num{
+//    let a = readLine()!.split(separator: " ")
+//    count.append(Int(a[0])!)
+//    word.append(String(a[1]))
+//}
+//
+//for i in 0..<count.count{
+//    for j in word[i]{
+//        print(String(repeating: j, count: count[i]), terminator: "")
 //    }
 //    print("\n", terminator: "")
 //}
 
+// # 2739
+
+//let num = Int(readLine()!)!
+//
+//for i in 1..<10{
+//    print("\(num) * \(i) = \(num * i)")
+//}
+
+
+// # 2741
+
+//let num = Int(readLine()!)!
+//
+//if (num % 4 == 0) && ((num % 100 != 0) || (num % 400 == 0)){
+//    print(1)
+//}
+//else{
+//    print(0)
+//}
+
+
+// # 2884
+
+let num = readLine()!.split(separator: " ").map{Int(String($0))!}
+var conv = num[0] * 60 + num[1]
+
+if conv - 45 < 0{
+    conv += 24 * 60
+}
+
+//else if conv - 45 > 24 * 60{
+//    conv = 24 * 60 - conv
+//}
+
+let hour = (conv - 45) / 60
+let min = (conv - 45) % 60
+
+print("\(hour) \(min)")
