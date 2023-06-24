@@ -182,18 +182,31 @@ import Foundation
 
 // # 2884
 
-let num = readLine()!.split(separator: " ").map{Int(String($0))!}
-var conv = num[0] * 60 + num[1]
+//let num = readLine()!.split(separator: " ").map{Int(String($0))!}
+//var conv = num[0] * 60 + num[1]
+//
+//if conv - 45 < 0{
+//    conv += 24 * 60
+//}
+//
+//
+//let hour = (conv - 45) / 60
+//let min = (conv - 45) % 60
+//
+//print("\(hour) \(min)")
 
-if conv - 45 < 0{
-    conv += 24 * 60
+// # 2920
+
+let num = readLine()!.split(separator: " ").map{Int(String($0))!}
+
+if num[0] == 1 && (num.sorted() == num){
+    print("ascending")
 }
 
-//else if conv - 45 > 24 * 60{
-//    conv = 24 * 60 - conv
-//}
+else if num[0] == 8 && (num.sorted(by: {$0 > $1}) == num){
+    print("descending")
+}
 
-let hour = (conv - 45) / 60
-let min = (conv - 45) % 60
-
-print("\(hour) \(min)")
+else{
+    print("mixed")
+}
