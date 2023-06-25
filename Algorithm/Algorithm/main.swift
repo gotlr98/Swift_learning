@@ -197,16 +197,28 @@ import Foundation
 
 // # 2920
 
-let num = readLine()!.split(separator: " ").map{Int(String($0))!}
+//let num = readLine()!.split(separator: " ").map{Int(String($0))!}
+//
+//if num[0] == 1 && (num.sorted() == num){
+//    print("ascending")
+//}
+//
+//else if num[0] == 8 && (num.sorted(by: {$0 > $1}) == num){
+//    print("descending")
+//}
+//
+//else{
+//    print("mixed")
+//}
 
-if num[0] == 1 && (num.sorted() == num){
-    print("ascending")
+
+// # 3052
+
+var dict: [Int:Int] = [:]
+
+for _ in 1..<11{
+    let num = Int(readLine()!)!
+    dict[num%42] = 1
 }
 
-else if num[0] == 8 && (num.sorted(by: {$0 > $1}) == num){
-    print("descending")
-}
-
-else{
-    print("mixed")
-}
+print(dict.keys.count)
