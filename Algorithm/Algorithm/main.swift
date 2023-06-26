@@ -214,11 +214,67 @@ import Foundation
 
 // # 3052
 
-var dict: [Int:Int] = [:]
+//var dict: [Int:Int] = [:]
+//
+//for _ in 1..<11{
+//    let num = Int(readLine()!)!
+//    dict[num%42] = 1
+//}
+//
+//print(dict.keys.count)
 
-for _ in 1..<11{
-    let num = Int(readLine()!)!
-    dict[num%42] = 1
+// #8958
+
+//let count = Int(readLine()!)!
+//var question: [String] = []
+//var sum = 0
+//var num = 0
+//
+//for _ in 0..<count{
+//    let a = readLine()!
+//    question.append(a)
+//}
+//
+//for i in question{
+//    for j in i{
+//        if j == "O"{
+//            num += 1
+//            sum += num
+//
+//        }
+//        else{
+//            num = 0
+//        }
+//    }
+//    print(sum)
+//    sum = 0
+//    num = 0
+//}
+
+// # 10809
+
+
+let alpha = "abcdefghijklmnopqrstuvwxyz"
+var count = 0
+var dict: [Character: Int] = [:]
+
+for i in alpha{
+    dict[i] = -1
 }
 
-print(dict.keys.count)
+
+let word = readLine()!
+
+for i in word{
+    
+    if dict[i] == -1{
+        dict[i] = count
+    }
+    count += 1
+}
+
+let sort_dict = dict.sorted{$0.0 < $1.0}
+
+for (key,value) in sort_dict.enumerated(){
+    print(value.value, terminator: " ")
+}
