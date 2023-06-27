@@ -254,27 +254,101 @@ import Foundation
 // # 10809
 
 
-let alpha = "abcdefghijklmnopqrstuvwxyz"
-var count = 0
-var dict: [Character: Int] = [:]
+//let alpha = "abcdefghijklmnopqrstuvwxyz"
+//var count = 0
+//var dict: [Character: Int] = [:]
+//
+//for i in alpha{
+//    dict[i] = -1
+//}
+//
+//
+//let word = readLine()!
+//
+//for i in word{
+//
+//    if dict[i] == -1{
+//        dict[i] = count
+//    }
+//    count += 1
+//}
+//
+//let sort_dict = dict.sorted{$0.0 < $1.0}
+//
+//for (key,value) in sort_dict.enumerated(){
+//    print(value.value, terminator: " ")
+//}
 
-for i in alpha{
-    dict[i] = -1
-}
+// # 10818
 
 
-let word = readLine()!
+//let num = Int(readLine()!)!
+//
+//let arr = readLine()!.split(separator: " ").map{Int(String($0))!}
+//
+//print("\(arr.min()!) \(arr.max()!)")
 
-for i in word{
-    
-    if dict[i] == -1{
-        dict[i] = count
-    }
-    count += 1
-}
 
-let sort_dict = dict.sorted{$0.0 < $1.0}
+// # 10869
 
-for (key,value) in sort_dict.enumerated(){
-    print(value.value, terminator: " ")
-}
+//let num = readLine()!.split(separator: " ").map{Int(String($0))!}
+//
+//print(num[0]+num[1])
+//print(num[0]-num[1])
+//print(num[0]*num[1])
+//print(num[0]/num[1])
+//print(num[0]%num[1])
+
+// # 10871
+
+//let num = readLine()!.split(separator: " ").map{Int(String($0))!}
+//
+//let arr = readLine()!.split(separator: " ").map{Int(String($0))!}
+//
+//for i in arr{
+//    if num[1] > i{
+//        print(i, terminator: " ")
+//    }
+//}
+
+// # 10950
+
+//let count = Int(readLine()!)!
+//
+//for _ in 0..<count{
+//    let num = readLine()!.split(separator: " ").map{Int(String($0))!}
+//
+//    print(num[0] + num[1])
+//}
+
+
+// # 10951
+
+//while let input = readLine(){
+//    let num = input.split(separator: " ").map{Int(String($0))!}
+//
+//    print(num[0] + num[1])
+//
+//}
+
+
+// # 11654
+
+//print(Character(readLine()!).unicodeScalars.first!.value)
+
+
+// # 11720
+
+//let count = Int(readLine()!)!
+//var sum = 0
+//
+//let arr = readLine()!
+//
+//for i in arr{
+//    sum += Int(String(i))!
+//}
+//print(sum)
+
+// # 1018
+
+
