@@ -349,6 +349,37 @@ import Foundation
 //}
 //print(sum)
 
-// # 1018
+// # 1181
+
+let count = Int(readLine()!)!
+
+var words: [String: [String]] = [:]
+var conv: [String] = []
+
+for _ in 0..<count{
+    let a = readLine()!
+    
+    words[String(a), default: [String]()].append(a)
+}
 
 
+
+for (key, value) in words{
+    for i in 1..<value.count{
+        
+        if conv.contains(value[i-1]) {
+            continue
+        }
+        
+        if value[i-1] < value[i]{
+            conv.append(value[i-1])
+            conv.append(value[i])
+
+        }
+        else{
+            conv.append(value[i])
+            conv.append(value[i-1])
+        }
+    }
+}
+print(conv)
