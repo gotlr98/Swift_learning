@@ -351,35 +351,76 @@ import Foundation
 
 // # 1181
 
-let count = Int(readLine()!)!
+//let count = Int(readLine()!)!
+//
+//var words: [String: [String]] = [:]
+//var conv: [String] = []
+//
+//for _ in 0..<count{
+//    let a = readLine()!
+//
+//    words[String(a), default: [String]()].append(a)
+//}
+//
+//
+//
+//for (key, value) in words{
+//    for i in 1..<value.count{
+//
+//        if conv.contains(value[i-1]) {
+//            continue
+//        }
+//
+//        if value[i-1] < value[i]{
+//            conv.append(value[i-1])
+//            conv.append(value[i])
+//
+//        }
+//        else{
+//            conv.append(value[i])
+//            conv.append(value[i-1])
+//        }
+//    }
+//}
+//print(conv)
 
-var words: [String: [String]] = [:]
-var conv: [String] = []
+// # 약수의 합
 
-for _ in 0..<count{
-    let a = readLine()!
+//func solution(_ n: Int) -> Int{
+//    var sum = 0
+//
+//    for i in 1..<n+1{
+//        if n % i == 0{
+//            sum += i
+//        }
+//    }
+//
+//    return sum
+//}
+
+// # 최댓값과 최솟값
+
+func solution(_ s:String) -> String {
     
-    words[String(a), default: [String]()].append(a)
-}
-
-
-
-for (key, value) in words{
-    for i in 1..<value.count{
-        
-        if conv.contains(value[i-1]) {
-            continue
+    let str = s.split(separator: " ").map{Int(String($0))!}
+    print(str)
+    
+    var max = str[0]
+    var min = str[0]
+    
+    for i in str{
+        if i >= max{
+            max = i
         }
         
-        if value[i-1] < value[i]{
-            conv.append(value[i-1])
-            conv.append(value[i])
-
-        }
-        else{
-            conv.append(value[i])
-            conv.append(value[i-1])
+        if i <= min{
+            min = i
         }
     }
+    
+//    print("\(max)\(min)")
+    
+    return "\(min) \(max)"
 }
-print(conv)
+
+print(solution("1 2 3 4"))
