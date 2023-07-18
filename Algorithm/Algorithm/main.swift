@@ -400,27 +400,56 @@ import Foundation
 
 // # 최댓값과 최솟값
 
-func solution(_ s:String) -> String {
+//func solution(_ s:String) -> String {
+//
+//    let str = s.split(separator: " ").map{Int(String($0))!}
+//
+//    var max = str[0]
+//    var min = str[0]
+//
+//    for i in str{
+//        if i >= max{
+//            max = i
+//        }
+//
+//        if i <= min{
+//            min = i
+//        }
+//    }
+//
+//    return "\(min) \(max)"
+//}
+//
+//print(solution("1 2 3 4"))
+
+
+func solution(_ s: String) -> String{
     
-    let str = s.split(separator: " ").map{Int(String($0))!}
-    print(str)
+    let str = s.split(separator: " ").map{String($0)}
+    var answer = ""
+    var count = 0
     
-    var max = str[0]
-    var min = str[0]
-    
-    for i in str{
-        if i >= max{
-            max = i
+
+    for j in s{
+        if j.isNumber{
+            answer.append(j)
+            count = 1
         }
-        
-        if i <= min{
-            min = i
+        else if !j.isNumber && count == 0{
+            answer += j.uppercased()
+            count = 1
+        }
+        else if j == " "{
+            count = 0
+            answer.append(j)
+        }
+        else{
+            answer += j.lowercased()
         }
     }
     
-//    print("\(max)\(min)")
     
-    return "\(min) \(max)"
-}
+    return answer.trimmingCharacters(in: .whitespaces)
+}   
 
-print(solution("1 2 3 4"))
+print(solution("A "))
