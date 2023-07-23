@@ -423,33 +423,68 @@ import Foundation
 //print(solution("1 2 3 4"))
 
 
-func solution(_ s: String) -> String{
-    
-    let str = s.split(separator: " ").map{String($0)}
-    var answer = ""
-    var count = 0
-    
+//func solution(_ s: String) -> String{
+//
+//    let str = s.split(separator: " ").map{String($0)}
+//    var answer = ""
+//    var count = 0
+//
+//
+//    for j in s{
+//        if j.isNumber{
+//            answer.append(j)
+//            count = 1
+//        }
+//        else if !j.isNumber && count == 0{
+//            answer += j.uppercased()
+//            count = 1
+//
+//        else if j == " "{
+//            count = 0
+//            answer.append(j)
+//        }
+//        else{
+//            answer += j.lowercased()
+//        }
+//    }
+//
+//
+//    return answer.trimmingCharacters(in: .whitespaces)
+//}
+//
+//print(solution("A "))
 
-    for j in s{
-        if j.isNumber{
-            answer.append(j)
-            count = 1
-        }
-        else if !j.isNumber && count == 0{
-            answer += j.uppercased()
-            count = 1
-        }
-        else if j == " "{
-            count = 0
-            answer.append(j)
+
+func solution(_ s:String) -> Bool
+{
+    var ans: Bool = true
+    
+    if s[s.startIndex] == ")" || s.suffix(1) == "("{
+        ans = false
+    }
+    
+    var count = 0
+    var count2 = 0
+    
+    for i in s{
+        if i == "("{
+            count += 1
         }
         else{
-            answer += j.lowercased()
+            count2 += 1
+        }
+        
+        if count < count2{
+            ans = false
         }
     }
     
+    if count != count2{
+        ans = false
+    }
     
-    return answer.trimmingCharacters(in: .whitespaces)
-}   
 
-print(solution("A "))
+    return ans
+}
+
+print(solution("())(()"))
