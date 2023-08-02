@@ -455,36 +455,77 @@ import Foundation
 //print(solution("A "))
 
 
-func solution(_ s:String) -> Bool
-{
-    var ans: Bool = true
+//func solution(_ s:String) -> Bool
+//{
+//    var ans: Bool = true
+//
+//    if s[s.startIndex] == ")" || s.suffix(1) == "("{
+//        ans = false
+//    }
+//
+//    var count = 0
+//    var count2 = 0
+//
+//    for i in s{
+//        if i == "("{
+//            count += 1
+//        }
+//        else{
+//            count2 += 1
+//        }
+//
+//        if count < count2{
+//            ans = false
+//        }
+//    }
+//
+//    if count != count2{
+//        ans = false
+//    }
+//
+//
+//    return ans
+//}
+//
+//print(solution("())(()"))
+
+func solution(_ s:String) -> [Int] {
     
-    if s[s.startIndex] == ")" || s.suffix(1) == "("{
-        ans = false
-    }
-    
+    var zero = 0
     var count = 0
-    var count2 = 0
     
-    for i in s{
-        if i == "("{
-            count += 1
-        }
-        else{
-            count2 += 1
+    var str = s
+    
+    var temp = ""
+        
+    while true{
+        
+        if temp == "1"{
+            break
         }
         
-        if count < count2{
-            ans = false
+        for i in str{
+            if i == "0"{
+                zero += 1
+                
+            }
+            
+            else{
+                temp.append(i)
+            }
         }
+        print(str)
+        
+        str = String(Int(temp)!, radix: 2)
+        
+        temp = ""
+        
+        
     }
-    
-    if count != count2{
-        ans = false
-    }
-    
 
-    return ans
+//    print(zero)
+    
+    return []
 }
 
-print(solution("())(()"))
+print(solution("1111111"))
