@@ -489,43 +489,47 @@ import Foundation
 //
 //print(solution("())(()"))
 
-func solution(_ s:String) -> [Int] {
+func solution(_ n:Int) -> Int
+{
     
-    var zero = 0
+    var answer = 0
+    
     var count = 0
     
-    var str = s
+    let conv = String(answer, radix: 2)
     
-    var temp = ""
+    for i in conv{
         
+        if i == "1"{
+            count += 1
+        }
+    }
+    
+    var sum = n
     while true{
         
-        if temp == "1"{
+        
+        var count_ = 0
+        
+        let temp = String(sum, radix: 2)
+        
+        for i in temp{
+            
+            if i == "1"{
+                count_ += 1
+            }
+        }
+        
+        if count == count_{
+            answer = sum
             break
         }
         
-        for i in str{
-            if i == "0"{
-                zero += 1
-                
-            }
-            
-            else{
-                temp.append(i)
-            }
-        }
-        print(str)
-        
-        str = String(Int(temp)!, radix: 2)
-        
-        temp = ""
-        
+        sum += 1
         
     }
-
-//    print(zero)
     
-    return []
+    return answer
 }
 
-print(solution("1111111"))
+print(solution(78))
