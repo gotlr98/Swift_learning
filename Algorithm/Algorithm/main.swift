@@ -535,24 +535,42 @@ import Foundation
 
 //print(solution(78))
 
-func solution(_ A:[Int], _ B:[Int]) -> Int
-{
-    var ans = 0
-    
-    let a = A.sorted(by: { (one, two) in
-        return one < two
-    })
-    
-    let b = B.sorted(by: { (one, two) in
-        return one > two
-    })
-    
-    for i in 0..<a.count{
-        
-        ans += a[i] * b[i]
-    }
+//func solution(_ A:[Int], _ B:[Int]) -> Int
+//{
+//    var ans = 0
+//
+//    let a = A.sorted(by: { (one, two) in
+//        return one < two
+//    })
+//
+//    let b = B.sorted(by: { (one, two) in
+//        return one > two
+//    })
+//
+//    for i in 0..<a.count{
+//
+//        ans += a[i] * b[i]
+//    }
+//
+//    return ans
+//}
+//
+//print(solution([1,2], [3,4]))
 
-    return ans
+func solution(_ n:Int) -> Int {
+    
+    var num: [Int] = [Int](repeating: 0, count: n+1)
+    
+    num[0] = 0
+    num[1] = 1
+    num[2] = 1
+    
+    for i in 3..<n+1{
+        num[i] = (num[i-1] + num[i-2]) % 1234567
+    }
+    
+    
+    return num[n] % 1234567
 }
 
-print(solution([1,2], [3,4]))
+print(solution(12414124))
