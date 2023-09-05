@@ -489,47 +489,70 @@ import Foundation
 //
 //print(solution("())(()"))
 
-func solution(_ n:Int) -> Int
+//func solution(_ n:Int) -> Int
+//{
+//
+//    var answer = 0
+//
+//    var count = 0
+//
+//    let conv = String(n, radix: 2)
+//
+//    for i in conv{
+//
+//        if i == "1"{
+//            count += 1
+//        }
+//    }
+//
+//    var sum = n+1
+//
+//    while true{
+//
+//
+//        var count_ = 0
+//
+//        let temp = String(sum, radix: 2)
+//
+//        for i in temp{
+//
+//            if i == "1"{
+//                count_ += 1
+//            }
+//        }
+//
+//        if count == count_{
+//            answer = sum
+//            break
+//        }
+//
+//        sum += 1
+//
+//    }
+//
+//    return answer
+//}
+
+//print(solution(78))
+
+func solution(_ A:[Int], _ B:[Int]) -> Int
 {
+    var ans = 0
     
-    var answer = 0
+    let a = A.sorted(by: { (one, two) in
+        return one < two
+    })
     
-    var count = 0
+    let b = B.sorted(by: { (one, two) in
+        return one > two
+    })
     
-    let conv = String(answer, radix: 2)
-    
-    for i in conv{
+    for i in 0..<a.count{
         
-        if i == "1"{
-            count += 1
-        }
+        ans += a[i] * b[i]
     }
-    
-    var sum = n
-    while true{
-        
-        
-        var count_ = 0
-        
-        let temp = String(sum, radix: 2)
-        
-        for i in temp{
-            
-            if i == "1"{
-                count_ += 1
-            }
-        }
-        
-        if count == count_{
-            answer = sum
-            break
-        }
-        
-        sum += 1
-        
-    }
-    
-    return answer
+
+    return ans
 }
 
-print(solution(78))
+print(solution([1,2], [3,4]))
