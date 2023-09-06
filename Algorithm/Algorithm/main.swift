@@ -557,20 +557,76 @@ import Foundation
 //
 //print(solution([1,2], [3,4]))
 
-func solution(_ n:Int) -> Int {
+//func solution(_ n:Int) -> Int {
+//
+//    var num: [Int] = [Int](repeating: 0, count: n+1)
+//
+//    num[0] = 0
+//    num[1] = 1
+//    num[2] = 1
+//
+//    for i in 3..<n+1{
+//        num[i] = (num[i-1] + num[i-2]) % 1234567
+//    }
+//
+//
+//    return num[n] % 1234567
+//}
+//
+//print(solution(12414124))
+
+
+// BFS 구현해보기
+
+func BFS(graph: [String: [String]], start: String) -> [String]{
     
-    var num: [Int] = [Int](repeating: 0, count: n+1)
     
-    num[0] = 0
-    num[1] = 1
-    num[2] = 1
+    var neededVisit: [String] = [start]
+    var visited: [String] = []
     
-    for i in 3..<n+1{
-        num[i] = (num[i-1] + num[i-2]) % 1234567
+    while !neededVisit.isEmpty{
+        
+        // First In First Out
+        let node: String = neededVisit.removeFirst()
+        if visited.contains(node){continue}
+        
+        visited.append(node)
+        neededVisit += graph[node] ?? []
+    }
+    
+    return visited
+    
+}
+
+
+let graph: [String: [String]] = [
+    "A" : ["B", "C"],
+    "B" : ["A", "D", "E"],
+    "C" : ["A", "F"],
+    "D" : ["B"],
+    "E" : ["B"],
+    "F" : ["C"],
+]
+
+print(BFS(graph: graph, start: "A"))
+
+func DFS(graph: [String: [String]], start: String) -> [String]{
+    
+    
+    var neededVisit: [String] = [start]
+    var visited: [String] = []
+    
+    while !neededVisit.isEmpty{
+        
+        let node: String = neededVisit.removeLast()
+        if visited.contains(node){continue}
+        
+        visited.append(node)
+        neededVisit += graph[node] ?? []
     }
     
     
-    return num[n] % 1234567
+    return visited
 }
 
-print(solution(12414124))
+print(DFS(graph: graph, start: "A"))
