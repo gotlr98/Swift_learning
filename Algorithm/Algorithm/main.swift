@@ -650,5 +650,24 @@ func BubbleSort(array: inout [Int]){
         if isSort == false{return}
     }
 }
-BubbleSort(array: &array)
+//BubbleSort(array: &array)
+//print(array)
+
+func SelectSort(array: inout [Int]){
+    
+    for i in 0..<array.count-1{
+        
+        var minIndex = i
+        for j in i+1..<array.count{
+            
+            if array[j] < array[minIndex]{
+                minIndex = j
+            }
+        }
+        
+        array.swapAt(minIndex, i)
+    }
+}
+
+SelectSort(array: &array)
 print(array)
