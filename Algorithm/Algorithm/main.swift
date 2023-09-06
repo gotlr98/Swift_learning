@@ -576,98 +576,113 @@ import Foundation
 //print(solution(12414124))
 
 
-// BFS 구현해보기
-
-func BFS(graph: [String: [String]], start: String) -> [String]{
-    
-    
-    var neededVisit: [String] = [start]
-    var visited: [String] = []
-    
-    while !neededVisit.isEmpty{
-        
-        // First In First Out
-        let node: String = neededVisit.removeFirst()
-        if visited.contains(node){continue}
-        
-        visited.append(node)
-        neededVisit += graph[node] ?? []
-    }
-    
-    return visited
-    
-}
-
-
-let graph: [String: [String]] = [
-    "A" : ["B", "C"],
-    "B" : ["A", "D", "E"],
-    "C" : ["A", "F"],
-    "D" : ["B"],
-    "E" : ["B"],
-    "F" : ["C"],
-]
-
-print(BFS(graph: graph, start: "A"))
-
-func DFS(graph: [String: [String]], start: String) -> [String]{
-    
-    
-    var neededVisit: [String] = [start]
-    var visited: [String] = []
-    
-    while !neededVisit.isEmpty{
-        
-        let node: String = neededVisit.removeLast()
-        if visited.contains(node){continue}
-        
-        visited.append(node)
-        neededVisit += graph[node] ?? []
-    }
-    
-    
-    return visited
-}
-
-print(DFS(graph: graph, start: "A"))
-
-var array: [Int] = [3,2,5,6,1,4]
-
-func BubbleSort(array: inout [Int]){
-    
-    var isSort: Bool = false
-    
-    for i in 0..<array.count - 1{
-        
-        for j in 0..<(array.count - i) - 1{
-            
-            if array[j] > array[j+1]{
-                array.swapAt(j, j+1)
-                isSort = true
-            }
-        }
-        
-        if isSort == false{return}
-    }
-}
+//func BFS(graph: [String: [String]], start: String) -> [String]{
+//
+//
+//    var neededVisit: [String] = [start]
+//    var visited: [String] = []
+//
+//    while !neededVisit.isEmpty{
+//
+//        // First In First Out
+//        let node: String = neededVisit.removeFirst()
+//        if visited.contains(node){continue}
+//
+//        visited.append(node)
+//        neededVisit += graph[node] ?? []
+//    }
+//
+//    return visited
+//
+//}
+//
+//
+//let graph: [String: [String]] = [
+//    "A" : ["B", "C"],
+//    "B" : ["A", "D", "E"],
+//    "C" : ["A", "F"],
+//    "D" : ["B"],
+//    "E" : ["B"],
+//    "F" : ["C"],
+//]
+//
+//print(BFS(graph: graph, start: "A"))
+//
+//func DFS(graph: [String: [String]], start: String) -> [String]{
+//
+//
+//    var neededVisit: [String] = [start]
+//    var visited: [String] = []
+//
+//    while !neededVisit.isEmpty{
+//
+//        let node: String = neededVisit.removeLast()
+//        if visited.contains(node){continue}
+//
+//        visited.append(node)
+//        neededVisit += graph[node] ?? []
+//    }
+//
+//
+//    return visited
+//}
+//
+//print(DFS(graph: graph, start: "A"))
+//
+//var array: [Int] = [3,2,5,6,1,4]
+//
+//func BubbleSort(array: inout [Int]){
+//
+//    var isSort: Bool = false
+//
+//    for i in 0..<array.count - 1{
+//
+//        for j in 0..<(array.count - i) - 1{
+//
+//            if array[j] > array[j+1]{
+//                array.swapAt(j, j+1)
+//                isSort = true
+//            }
+//        }
+//
+//        if isSort == false{return}
+//    }
+//}
 //BubbleSort(array: &array)
 //print(array)
+//
+//func SelectSort(array: inout [Int]){
+//
+//    for i in 0..<array.count-1{
+//
+//        var minIndex = i
+//        for j in i+1..<array.count{
+//
+//            if array[j] < array[minIndex]{
+//                minIndex = j
+//            }
+//        }
+//
+//        array.swapAt(minIndex, i)
+//    }
+//}
+//
+//SelectSort(array: &array)
+//print(array)
 
-func SelectSort(array: inout [Int]){
+func InsertionSort(array: inout [Int]){
     
-    for i in 0..<array.count-1{
-        
-        var minIndex = i
-        for j in i+1..<array.count{
+    for i in 1..<array.count{
+        for j in stride(from: i, to: 0, by: -1){
             
-            if array[j] < array[minIndex]{
-                minIndex = j
+            if array[j] < array[j-1]{
+                array.swapAt(j, j-1)
             }
         }
-        
-        array.swapAt(minIndex, i)
     }
 }
 
-SelectSort(array: &array)
+var array = [5,3,8,1,2]
+
+InsertionSort(array: &array)
 print(array)
