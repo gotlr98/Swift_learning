@@ -670,19 +670,57 @@ import Foundation
 //SelectSort(array: &array)
 //print(array)
 
-func InsertionSort(array: inout [Int]){
+//func InsertionSort(array: inout [Int]){
+//
+//    for i in 1..<array.count{
+//        for j in stride(from: i, to: 0, by: -1){
+//
+//            if array[j] < array[j-1]{
+//                array.swapAt(j, j-1)
+//            }
+//        }
+//    }
+//}
+//
+//var array = [5,3,8,1,2]
+//
+//InsertionSort(array: &array)
+//print(array)
+
+func solution(_ s: String) -> [Int]{
     
-    for i in 1..<array.count{
-        for j in stride(from: i, to: 0, by: -1){
-            
-            if array[j] < array[j-1]{
-                array.swapAt(j, j-1)
+    var temp = s
+    
+    var count = 0
+    var removeCount = 0
+    
+    var a: String = ""
+    
+    while true{
+
+        
+        for i in temp{
+            if i == "0"{
+                removeCount += 1
+            }
+            else{
+                a.append(i)
             }
         }
+        
+        temp = String(a.count, radix: 2)
+        
+        
+        
+        
+        count += 1
+        a = ""
+        if temp == "1"{
+            break
+        }
     }
+    
+    return [count, removeCount]
 }
 
-var array = [5,3,8,1,2]
-
-InsertionSort(array: &array)
-print(array)
+print(solution("110010101001"))
