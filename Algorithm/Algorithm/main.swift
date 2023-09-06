@@ -630,3 +630,25 @@ func DFS(graph: [String: [String]], start: String) -> [String]{
 }
 
 print(DFS(graph: graph, start: "A"))
+
+var array: [Int] = [3,2,5,6,1,4]
+
+func BubbleSort(array: inout [Int]){
+    
+    var isSort: Bool = false
+    
+    for i in 0..<array.count - 1{
+        
+        for j in 0..<(array.count - i) - 1{
+            
+            if array[j] > array[j+1]{
+                array.swapAt(j, j+1)
+                isSort = true
+            }
+        }
+        
+        if isSort == false{return}
+    }
+}
+BubbleSort(array: &array)
+print(array)
