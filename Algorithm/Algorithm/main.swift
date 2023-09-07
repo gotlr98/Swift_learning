@@ -687,40 +687,69 @@ import Foundation
 //InsertionSort(array: &array)
 //print(array)
 
-func solution(_ s: String) -> [Int]{
-    
-    var temp = s
-    
-    var count = 0
-    var removeCount = 0
-    
-    var a: String = ""
-    
-    while true{
+//func solution(_ s: String) -> [Int]{
+//
+//    var temp = s
+//
+//    var count = 0
+//    var removeCount = 0
+//
+//    var a: String = ""
+//
+//    while true{
+//
+//
+//        for i in temp{
+//            if i == "0"{
+//                removeCount += 1
+//            }
+//            else{
+//                a.append(i)
+//            }
+//        }
+//
+//        temp = String(a.count, radix: 2)
+//
+//
+//
+//
+//        count += 1
+//        a = ""
+//        if temp == "1"{
+//            break
+//        }
+//    }
+//
+//    return [count, removeCount]
+//}
+//
+//print(solution("110010101001"))
 
+
+func solution(_ s:String) -> Int{
+    var answer = 0
+    
+    var temp: [Character] = []
+    
+    
+    temp.append(s[s.index(s.startIndex, offsetBy: 0)])
+    for i in 1..<s.count{
         
-        for i in temp{
-            if i == "0"{
-                removeCount += 1
-            }
-            else{
-                a.append(i)
-            }
+        if s[s.index(s.startIndex, offsetBy: i)] == temp.last{
+            temp.removeLast()
         }
-        
-        temp = String(a.count, radix: 2)
-        
-        
-        
-        
-        count += 1
-        a = ""
-        if temp == "1"{
-            break
+        else{
+            temp.append(s[s.index(s.startIndex, offsetBy: i)])
         }
     }
     
-    return [count, removeCount]
+    
+    if temp.count == 0{
+        answer = 1
+    }
+    else{
+        answer = 0
+    }
+    
+    return answer
 }
-
-print(solution("110010101001"))
