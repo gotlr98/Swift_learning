@@ -726,30 +726,95 @@ import Foundation
 //print(solution("110010101001"))
 
 
-func solution(_ s:String) -> Int{
-    var answer = 0
+//func solution(_ s:String) -> Int{
+//    var answer = 0
+//    
+//    var temp: [Character] = []
+//    
+//    
+//    temp.append(s[s.index(s.startIndex, offsetBy: 0)])
+//    for i in 1..<s.count{
+//        
+//        if s[s.index(s.startIndex, offsetBy: i)] == temp.last{
+//            temp.removeLast()
+//        }
+//        else{
+//            temp.append(s[s.index(s.startIndex, offsetBy: i)])
+//        }
+//    }
+//    
+//    
+//    if temp.count == 0{
+//        answer = 1
+//    }
+//    else{
+//        answer = 0
+//    }
+//    
+//    return answer
+//}
+
+// 역전 알고리즘
+// 회전시키는 수에 대해 구간을 나누어 reverse로 구현하는 방법
+
+
+var arr: [Int] = [1,2,3,4,5]
+print(arr.count)
+
+
+func rotateArr(arr: [Int], n: Int) -> [Int]{
+    var temp1: [Int] = []
+    var temp2: [Int] = []
+    var temp3: [Int] = []
+    temp1 = Array(arr[0...n-1].reversed())
+    temp2 = Array(arr[n...arr.count-1].reversed())
     
-    var temp: [Character] = []
+    temp3 = temp1+temp2
     
-    
-    temp.append(s[s.index(s.startIndex, offsetBy: 0)])
-    for i in 1..<s.count{
-        
-        if s[s.index(s.startIndex, offsetBy: i)] == temp.last{
-            temp.removeLast()
-        }
-        else{
-            temp.append(s[s.index(s.startIndex, offsetBy: i)])
-        }
-    }
-    
-    
-    if temp.count == 0{
-        answer = 1
-    }
-    else{
-        answer = 0
-    }
-    
-    return answer
+    return temp3.reversed()
 }
+
+print(rotateArr(arr: arr, n: 2))
+
+// i*arr[i] 최댓값 구하기
+
+var tem = [10,1,2,3,4,5,6,7,8,9]
+let temp = tem.sorted(by: { a1, a2 in
+    return a1 < a2
+})
+print(temp)
+var sum = 0
+for i in 0..<temp.count{
+    sum += i * temp[i]
+}
+print(sum)
+
+// 특정 배열을 arr[i] = i로 재배열 하기
+
+func reArr(arr: [Int]) -> [Int]{
+    
+    var temp = arr
+    var iff = 0
+    
+    for i in iff..<arr.count{
+        if temp[i] != -1 && temp[i] != i{
+            var x = temp[i]
+            while temp[x] != -1 && temp[x] != x{
+                var y = temp[x]
+                temp[x] = x
+                x = y
+            }
+            temp[x] = x
+            
+            if temp[i] != i{
+                temp[i] = -1
+            }
+        }
+        iff += 1
+    }
+    return temp
+}
+
+print(reArr(arr: [-1, -1, 6, 1, 9, 3, 2, -1, 4, -1]))
+
+
