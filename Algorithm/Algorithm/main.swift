@@ -817,4 +817,68 @@ func reArr(arr: [Int]) -> [Int]{
 
 print(reArr(arr: [-1, -1, 6, 1, 9, 3, 2, -1, 4, -1]))
 
+class Node<T>{
+    var value: T
+    var next: Node?
+    
+    init(value: T, next: Node? = nil) {
+        self.value = value
+        self.next = next
+    }
+}
 
+struct LinkedList<T>{
+    var head: Node<T>?
+    var tail: Node<T>?
+    
+    init(){}
+    
+    var isEmpty: Bool{
+        self.head == nil
+    }
+    
+    // 가장 앞에 추가
+    mutating func push(_ value: T){
+        head = Node(value: value, next: head)
+        if tail == nil{
+            self.tail = head
+        }
+    }
+    
+    mutating func append(_ value: T){
+        guard !isEmpty else{
+            push(value)
+            return
+        }
+        
+        tail!.next = Node(value: value)
+        tail = tail!.next
+    }
+    
+    func find(at index: Int) -> Node<T>?{
+        var now = head
+        var ind = 0
+        while now != nil && ind < index{
+            now = now!.next
+            ind += 1
+        }
+        return now
+    }
+    
+    mutating func insert(_ value: T, after node: Node<T>) -> Node<T>{
+        guard tail !== node else{
+            append(value)
+            return tail!
+        }
+        
+        node.next = Node(value: value, next: node.next)
+        return node.next!
+    }
+}
+
+var list = LinkedList<Int>()
+list.push(3)
+list.push(2)
+list.push(1)
+
+var middleNode = list.find(at: 1)!
