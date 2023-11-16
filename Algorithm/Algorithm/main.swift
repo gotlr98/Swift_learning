@@ -882,3 +882,36 @@ list.push(2)
 list.push(1)
 
 var middleNode = list.find(at: 1)!
+
+
+var index = 0
+var closureArr: [() -> ()] = []
+
+for i in 1...5{
+    closureArr.append({[index] in print(index)})
+    index += 1
+}
+
+for i in 0..<closureArr.count{
+    closureArr[i]()
+}
+
+
+class ClassA{
+    var objB: ClassB!
+    deinit {print("A 객체 해제")}
+}
+class ClassB{
+    var objA: ClassA!
+    deinit {print("B 객체 해제")}
+}
+var a: ClassA! = ClassA() // -> A 객체 RC = 1
+var b: ClassB! = ClassB() // -> B 객체 RC = 1
+
+a.objB = b // B 객체 RC = 2
+b.objA = a // A 객체 RC = 2
+
+a = nil // -> A 객체 RC = 1
+b = nil // -> B 객체 RC = 1
+
+
