@@ -914,4 +914,24 @@ b.objA = a // A 객체 RC = 2
 a = nil // -> A 객체 RC = 1
 b = nil // -> B 객체 RC = 1
 
+class Stack<T>{
+    var stack: [T] = []
+    
+    var isEmpty: Bool{
+        return stack.isEmpty
+    }
+    
+    var count: Int{
+        return stack.count
+    }
+    
+    func push(element: T){
+        return stack.append(element)
+    }
+    
+    func pop(element: T) -> T?{
+        return isEmpty ? nil : stack.popLast()
+    }
+}
+
 
