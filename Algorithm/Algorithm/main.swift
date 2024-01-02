@@ -988,9 +988,6 @@ func solution(_ phone_number:String) -> Int {
     let case2 = /^010-[0-9]{4}-[0-9]{4}$/
     let case3 = /^\+82-10-[0-9]{4}-[0-9]{4}$/
     
-//    let match = "010-3344-1234".wholeMatch(of: case2)?.output
-//    let match2 = "+82-10-1234-1524".wholeMatch(of: case3)?.output
-    
     if phone_number.wholeMatch(of: case1) != nil{
         result = 1
         return result
@@ -1015,27 +1012,27 @@ func solution(_ phone_number:String) -> Int {
 print(solution("123"))
 
 
-//func solution(_ p:[[Int]]) -> Int {
-//
-//    var already: [[Int]] = [[]]
-//    var count = 0
-//    for i in p{
-//        
-//        if already.contains(i){
-//            continue
-//        }
-//        
-//        let a = i.reversed() as [Int]
-//        
-//        
-//        if p.contains(a) && !already.contains(i){
-//            count += 1
-//            already.append(a)
-//        }
-//    }
-//    
-//    return count
-//}
+func solution(_ p:[[Int]]) -> Int {
+
+    var already: [[Int]] = [[]]
+    var count = 0
+    for i in p{
+        
+        if already.contains(i){
+            continue
+        }
+        
+        let a = i.reversed() as [Int]
+        
+        
+        if p.contains(a) && !already.contains(i){
+            count += 1
+            already.append(a)
+        }
+    }
+    
+    return count
+}
 
 
 
