@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A7CCA9B2B45AA0B00CB5BB6 /* MovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7CCA9A2B45AA0B00CB5BB6 /* MovieRepository.swift */; };
+		8A7CCA9D2B45AA5600CB5BB6 /* PresentationLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7CCA9C2B45AA5600CB5BB6 /* PresentationLayer.swift */; };
 		8A9BE9FA2B44042900389E2B /* CleanArchitectureTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9BE9F92B44042900389E2B /* CleanArchitectureTestApp.swift */; };
 		8A9BE9FC2B44042900389E2B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9BE9FB2B44042900389E2B /* ContentView.swift */; };
 		8A9BE9FE2B44042A00389E2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A9BE9FD2B44042A00389E2B /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A7CCA9A2B45AA0B00CB5BB6 /* MovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepository.swift; sourceTree = "<group>"; };
+		8A7CCA9C2B45AA5600CB5BB6 /* PresentationLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationLayer.swift; sourceTree = "<group>"; };
 		8A9BE9F62B44042900389E2B /* CleanArchitectureTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanArchitectureTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A9BE9F92B44042900389E2B /* CleanArchitectureTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanArchitectureTestApp.swift; sourceTree = "<group>"; };
 		8A9BE9FB2B44042900389E2B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,6 +59,8 @@
 				8A9BE9FB2B44042900389E2B /* ContentView.swift */,
 				8A9BE9FD2B44042A00389E2B /* Assets.xcassets */,
 				8A9BE9FF2B44042A00389E2B /* Preview Content */,
+				8A7CCA9A2B45AA0B00CB5BB6 /* MovieRepository.swift */,
+				8A7CCA9C2B45AA5600CB5BB6 /* PresentationLayer.swift */,
 			);
 			path = CleanArchitectureTest;
 			sourceTree = "<group>";
@@ -139,6 +145,8 @@
 			files = (
 				8A9BE9FC2B44042900389E2B /* ContentView.swift in Sources */,
 				8A9BE9FA2B44042900389E2B /* CleanArchitectureTestApp.swift in Sources */,
+				8A7CCA9B2B45AA0B00CB5BB6 /* MovieRepository.swift in Sources */,
+				8A7CCA9D2B45AA5600CB5BB6 /* PresentationLayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
