@@ -13,6 +13,7 @@
 		8A9BE9FC2B44042900389E2B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9BE9FB2B44042900389E2B /* ContentView.swift */; };
 		8A9BE9FE2B44042A00389E2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A9BE9FD2B44042A00389E2B /* Assets.xcassets */; };
 		8A9BEA012B44042A00389E2B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A9BEA002B44042A00389E2B /* Preview Assets.xcassets */; };
+		8ABA86BA2B4831780093AA09 /* MoviesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA86B92B4831780093AA09 /* MoviesListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		8A9BE9FB2B44042900389E2B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8A9BE9FD2B44042A00389E2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A9BEA002B44042A00389E2B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8ABA86B92B4831780093AA09 /* MoviesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				8A9BE9FF2B44042A00389E2B /* Preview Content */,
 				8A7CCA9A2B45AA0B00CB5BB6 /* MovieRepository.swift */,
 				8A7CCA9C2B45AA5600CB5BB6 /* PresentationLayer.swift */,
+				8ABA86B92B4831780093AA09 /* MoviesListViewController.swift */,
 			);
 			path = CleanArchitectureTest;
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 			files = (
 				8A9BE9FC2B44042900389E2B /* ContentView.swift in Sources */,
 				8A9BE9FA2B44042900389E2B /* CleanArchitectureTestApp.swift in Sources */,
+				8ABA86BA2B4831780093AA09 /* MoviesListViewController.swift in Sources */,
 				8A7CCA9B2B45AA0B00CB5BB6 /* MovieRepository.swift in Sources */,
 				8A7CCA9D2B45AA5600CB5BB6 /* PresentationLayer.swift in Sources */,
 			);
