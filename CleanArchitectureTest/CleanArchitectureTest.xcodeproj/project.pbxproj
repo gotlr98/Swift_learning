@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A41983C2B4C4537001FDAD0 /* MoviesSearchFlowCoordinatorDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A41983B2B4C4537001FDAD0 /* MoviesSearchFlowCoordinatorDependencies.swift */; };
 		8A7CCA9B2B45AA0B00CB5BB6 /* MovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7CCA9A2B45AA0B00CB5BB6 /* MovieRepository.swift */; };
 		8A7CCA9D2B45AA5600CB5BB6 /* PresentationLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7CCA9C2B45AA5600CB5BB6 /* PresentationLayer.swift */; };
 		8A9BE9FA2B44042900389E2B /* CleanArchitectureTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9BE9F92B44042900389E2B /* CleanArchitectureTestApp.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A41983B2B4C4537001FDAD0 /* MoviesSearchFlowCoordinatorDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesSearchFlowCoordinatorDependencies.swift; sourceTree = "<group>"; };
 		8A7CCA9A2B45AA0B00CB5BB6 /* MovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepository.swift; sourceTree = "<group>"; };
 		8A7CCA9C2B45AA5600CB5BB6 /* PresentationLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationLayer.swift; sourceTree = "<group>"; };
 		8A9BE9F62B44042900389E2B /* CleanArchitectureTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanArchitectureTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +66,7 @@
 				8A7CCA9A2B45AA0B00CB5BB6 /* MovieRepository.swift */,
 				8A7CCA9C2B45AA5600CB5BB6 /* PresentationLayer.swift */,
 				8ABA86B92B4831780093AA09 /* MoviesListViewController.swift */,
+				8A41983B2B4C4537001FDAD0 /* MoviesSearchFlowCoordinatorDependencies.swift */,
 			);
 			path = CleanArchitectureTest;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A41983C2B4C4537001FDAD0 /* MoviesSearchFlowCoordinatorDependencies.swift in Sources */,
 				8A9BE9FC2B44042900389E2B /* ContentView.swift in Sources */,
 				8A9BE9FA2B44042900389E2B /* CleanArchitectureTestApp.swift in Sources */,
 				8ABA86BA2B4831780093AA09 /* MoviesListViewController.swift in Sources */,
