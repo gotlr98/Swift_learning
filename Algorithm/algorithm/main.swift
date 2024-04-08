@@ -57,4 +57,56 @@ func mergeSort(_ array: [Int]) -> [Int] {
 }
 
 
-print(mergeSort([3,2,6,1,8,4]))
+//print(mergeSort([3,2,6,1,8,4]))
+
+struct stack<T>{
+    
+    var items = [T]()
+    
+    mutating func push(_ item: T){
+        items.append(item)
+    }
+    
+    mutating func pop(){
+        items.removeLast()
+    }
+}
+
+struct queue<T>{
+    
+    var items = [T]()
+    
+    mutating func push(_ item: T){
+        items.append(item)
+    }
+    
+    mutating func pop() -> T?{
+        
+        return items.isEmpty ? nil : items.removeFirst()
+    }
+}
+
+func dfs(_ graph: [[Int]], _ startNode: Int, _ visited: inout [Bool]){
+    visited[startNode] = true
+    
+    print(startNode, terminator: " ")
+    
+    for next in graph[startNode]{
+        if !visited[next]{
+            dfs(graph, next, &visited)
+        }
+    }
+}
+var graph = [
+    [],
+    [2, 3, 8],
+    [1, 7],
+    [1, 4, 5],
+    [3, 5],
+    [3, 4],
+    [7],
+    [2, 6, 8],
+    [1, 7]
+]
+var visited = [Bool](repeating: false, count: graph.count)
+print(dfs(graph, 1, &visited))
