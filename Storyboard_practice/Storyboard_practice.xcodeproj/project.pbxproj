@@ -210,6 +210,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				8AE246152CAE5AB800896459 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */,
+				8ADDA9912CAFACDF0021224A /* XCRemoteSwiftPackageReference "SideMenu" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8AE245E02CAE587E00896459 /* Products */;
@@ -582,6 +583,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8ADDA9912CAFACDF0021224A /* XCRemoteSwiftPackageReference "SideMenu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jonkykong/SideMenu.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.0;
+			};
+		};
 		8AE246152CAE5AB800896459 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kakao-mapsSDK/KakaoMapsSDK-SPM";

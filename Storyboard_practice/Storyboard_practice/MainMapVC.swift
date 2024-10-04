@@ -16,6 +16,6 @@ class MainMapVC: UIViewController{
         print("hello")
     }
     @IBAction func Click_Btn1(_ sender: UIButton) {
-        
+        print("hello")
     }
 }
