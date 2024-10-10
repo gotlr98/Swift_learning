@@ -1,22 +1,13 @@
 {
-  "originHash" : "4851566cafb9b26ccef17faeb59505d6fe9a8e0d963d54656843fca98e4ee622",
+  "originHash" : "337a9e2431f842e4c087a46879421bbb6f4e58a45840acccb775e302c27a3aa3",
   "pins" : [
     {
-      "identity" : "kakaomapssdk-spm",
+      "identity" : "then",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/kakao-mapsSDK/KakaoMapsSDK-SPM",
+      "location" : "https://github.com/devxoul/Then",
       "state" : {
-        "revision" : "ddeadbe5166909370b7518366ad5ebd517452be6",
-        "version" : "2.12.0"
-      }
-    },
-    {
-      "identity" : "sidemenu",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/jonkykong/SideMenu.git",
-      "state" : {
-        "revision" : "8bd4fd128923cf5494fa726839af8afe12908ad9",
-        "version" : "6.5.0"
+        "revision" : "d41ef523faef0f911369f79c0b96815d9dbb6d7a",
+        "version" : "3.0.0"
       }
     }
   ],

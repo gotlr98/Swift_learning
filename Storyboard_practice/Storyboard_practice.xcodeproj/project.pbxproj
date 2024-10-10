@@ -6,27 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXContainerItemProxy section */
-		8AE245F62CAE588000896459 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8AE245D72CAE587E00896459 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8AE245DE2CAE587E00896459;
-			remoteInfo = Storyboard_practice;
-		};
-		8AE246002CAE588000896459 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8AE245D72CAE587E00896459 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8AE245DE2CAE587E00896459;
-			remoteInfo = Storyboard_practice;
-		};
-/* End PBXContainerItemProxy section */
+/* Begin PBXBuildFile section */
+		8AA04E172CB77F1900BECCCB /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 8AA04E162CB77F1900BECCCB /* Then */; };
+/* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8AE245DF2CAE587E00896459 /* Storyboard_practice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Storyboard_practice.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8AE245F52CAE588000896459 /* Storyboard_practiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Storyboard_practiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8AE245FF2CAE588000896459 /* Storyboard_practiceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Storyboard_practiceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -48,16 +33,6 @@
 			path = Storyboard_practice;
 			sourceTree = "<group>";
 		};
-		8AE245F82CAE588000896459 /* Storyboard_practiceTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Storyboard_practiceTests;
-			sourceTree = "<group>";
-		};
-		8AE246022CAE588000896459 /* Storyboard_practiceUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Storyboard_practiceUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,20 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8AE245F22CAE588000896459 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8AE245FC2CAE588000896459 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				8AA04E172CB77F1900BECCCB /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,8 +51,6 @@
 			isa = PBXGroup;
 			children = (
 				8AE245E12CAE587E00896459 /* Storyboard_practice */,
-				8AE245F82CAE588000896459 /* Storyboard_practiceTests */,
-				8AE246022CAE588000896459 /* Storyboard_practiceUITests */,
 				8AE245E02CAE587E00896459 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,8 +59,6 @@
 			isa = PBXGroup;
 			children = (
 				8AE245DF2CAE587E00896459 /* Storyboard_practice.app */,
-				8AE245F52CAE588000896459 /* Storyboard_practiceTests.xctest */,
-				8AE245FF2CAE588000896459 /* Storyboard_practiceUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,56 +83,11 @@
 			);
 			name = Storyboard_practice;
 			packageProductDependencies = (
+				8AA04E162CB77F1900BECCCB /* Then */,
 			);
 			productName = Storyboard_practice;
 			productReference = 8AE245DF2CAE587E00896459 /* Storyboard_practice.app */;
 			productType = "com.apple.product-type.application";
-		};
-		8AE245F42CAE588000896459 /* Storyboard_practiceTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8AE2460D2CAE588000896459 /* Build configuration list for PBXNativeTarget "Storyboard_practiceTests" */;
-			buildPhases = (
-				8AE245F12CAE588000896459 /* Sources */,
-				8AE245F22CAE588000896459 /* Frameworks */,
-				8AE245F32CAE588000896459 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8AE245F72CAE588000896459 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				8AE245F82CAE588000896459 /* Storyboard_practiceTests */,
-			);
-			name = Storyboard_practiceTests;
-			packageProductDependencies = (
-			);
-			productName = Storyboard_practiceTests;
-			productReference = 8AE245F52CAE588000896459 /* Storyboard_practiceTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		8AE245FE2CAE588000896459 /* Storyboard_practiceUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8AE246102CAE588000896459 /* Build configuration list for PBXNativeTarget "Storyboard_practiceUITests" */;
-			buildPhases = (
-				8AE245FB2CAE588000896459 /* Sources */,
-				8AE245FC2CAE588000896459 /* Frameworks */,
-				8AE245FD2CAE588000896459 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8AE246012CAE588000896459 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				8AE246022CAE588000896459 /* Storyboard_practiceUITests */,
-			);
-			name = Storyboard_practiceUITests;
-			packageProductDependencies = (
-			);
-			productName = Storyboard_practiceUITests;
-			productReference = 8AE245FF2CAE588000896459 /* Storyboard_practiceUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -189,14 +102,6 @@
 					8AE245DE2CAE587E00896459 = {
 						CreatedOnToolsVersion = 16.0;
 					};
-					8AE245F42CAE588000896459 = {
-						CreatedOnToolsVersion = 16.0;
-						TestTargetID = 8AE245DE2CAE587E00896459;
-					};
-					8AE245FE2CAE588000896459 = {
-						CreatedOnToolsVersion = 16.0;
-						TestTargetID = 8AE245DE2CAE587E00896459;
-					};
 				};
 			};
 			buildConfigurationList = 8AE245DA2CAE587E00896459 /* Build configuration list for PBXProject "Storyboard_practice" */;
@@ -209,8 +114,7 @@
 			mainGroup = 8AE245D62CAE587E00896459;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				8AE246152CAE5AB800896459 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */,
-				8ADDA9912CAFACDF0021224A /* XCRemoteSwiftPackageReference "SideMenu" */,
+				8AA04E152CB77F1900BECCCB /* XCRemoteSwiftPackageReference "Then" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8AE245E02CAE587E00896459 /* Products */;
@@ -218,28 +122,12 @@
 			projectRoot = "";
 			targets = (
 				8AE245DE2CAE587E00896459 /* Storyboard_practice */,
-				8AE245F42CAE588000896459 /* Storyboard_practiceTests */,
-				8AE245FE2CAE588000896459 /* Storyboard_practiceUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8AE245DD2CAE587E00896459 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8AE245F32CAE588000896459 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8AE245FD2CAE588000896459 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -256,34 +144,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8AE245F12CAE588000896459 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8AE245FB2CAE588000896459 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		8AE245F72CAE588000896459 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8AE245DE2CAE587E00896459 /* Storyboard_practice */;
-			targetProxy = 8AE245F62CAE588000896459 /* PBXContainerItemProxy */;
-		};
-		8AE246012CAE588000896459 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8AE245DE2CAE587E00896459 /* Storyboard_practice */;
-			targetProxy = 8AE246002CAE588000896459 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		8AE246092CAE588000896459 /* Debug */ = {
@@ -301,6 +162,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -333,6 +195,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -469,78 +332,6 @@
 			};
 			name = Release;
 		};
-		8AE2460E2CAE588000896459 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JNYZF4BBNC;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "sik.Storyboard-practiceTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Storyboard_practice.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Storyboard_practice";
-			};
-			name = Debug;
-		};
-		8AE2460F2CAE588000896459 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JNYZF4BBNC;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "sik.Storyboard-practiceTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Storyboard_practice.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Storyboard_practice";
-			};
-			name = Release;
-		};
-		8AE246112CAE588000896459 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JNYZF4BBNC;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "sik.Storyboard-practiceUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Storyboard_practice;
-			};
-			name = Debug;
-		};
-		8AE246122CAE588000896459 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JNYZF4BBNC;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "sik.Storyboard-practiceUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Storyboard_practice;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -562,44 +353,26 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8AE2460D2CAE588000896459 /* Build configuration list for PBXNativeTarget "Storyboard_practiceTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8AE2460E2CAE588000896459 /* Debug */,
-				8AE2460F2CAE588000896459 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8AE246102CAE588000896459 /* Build configuration list for PBXNativeTarget "Storyboard_practiceUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8AE246112CAE588000896459 /* Debug */,
-				8AE246122CAE588000896459 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8ADDA9912CAFACDF0021224A /* XCRemoteSwiftPackageReference "SideMenu" */ = {
+		8AA04E152CB77F1900BECCCB /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/jonkykong/SideMenu.git";
+			repositoryURL = "https://github.com/devxoul/Then";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 6.5.0;
-			};
-		};
-		8AE246152CAE5AB800896459 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kakao-mapsSDK/KakaoMapsSDK-SPM";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.12.0;
+				minimumVersion = 3.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8AA04E162CB77F1900BECCCB /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8AA04E152CB77F1900BECCCB /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8AE245D72CAE587E00896459 /* Project object */;
 }
